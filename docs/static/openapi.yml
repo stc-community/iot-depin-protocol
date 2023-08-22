@@ -43987,6 +43987,10 @@ paths:
           in: query
           required: false
           type: boolean
+        - name: creator
+          in: query
+          required: false
+          type: string
       tags:
         - Query
   /stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}:
@@ -44030,6 +44034,10 @@ paths:
         - name: address
           in: path
           required: true
+          type: string
+        - name: creator
+          in: query
+          required: false
           type: string
       tags:
         - Query

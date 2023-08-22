@@ -31,6 +31,7 @@ func TestDeviceGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetDevice(ctx,
 			item.Address,
+			items[0].Creator,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -45,9 +46,11 @@ func TestDeviceRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveDevice(ctx,
 			item.Address,
+			items[0].Creator,
 		)
 		_, found := keeper.GetDevice(ctx,
 			item.Address,
+			items[0].Creator,
 		)
 		require.False(t, found)
 	}
@@ -58,6 +61,6 @@ func TestDeviceGetAll(t *testing.T) {
 	items := createNDevice(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),
-		nullify.Fill(keeper.GetAllDevice(ctx)),
+		nullify.Fill(keeper.GetAllDevice(ctx, items[0].Creator)),
 	)
 }
