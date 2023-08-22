@@ -1,0 +1,7 @@
+syntax = "proto3";
+package stccommunity.iotdepinprotocol.iotdepinprotocol;
+
+option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
+
+// Msg defines the Msg service.
+service Msg {}

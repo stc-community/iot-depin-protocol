@@ -1,0 +1,12 @@
+syntax = "proto3";
+package stccommunity.iotdepinprotocol.iotdepinprotocol;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}
