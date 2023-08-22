@@ -10,7 +10,8 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		KvList: []Kv{},
+		KvList:     []Kv{},
+		DeviceList: []Device{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -28,6 +29,16 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("duplicated index for kv")
 		}
 		kvIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in device
+	deviceIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.DeviceList {
+		index := string(DeviceKey(elem.Address))
+		if _, ok := deviceIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for device")
+		}
+		deviceIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

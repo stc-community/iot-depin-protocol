@@ -7,6 +7,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "iotdepinprotocol/iotdepinprotocol/params.proto";
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
+import "iotdepinprotocol/iotdepinprotocol/device.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
@@ -26,6 +27,16 @@ service Query {
   }
   rpc KvAll (QueryAllKvRequest) returns (QueryAllKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv";
+  
+  }
+  
+  // Queries a list of Device items.
+  rpc Device    (QueryGetDeviceRequest) returns (QueryGetDeviceResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}";
+  
+  }
+  rpc DeviceAll (QueryAllDeviceRequest) returns (QueryAllDeviceResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device";
   
   }
 }
@@ -53,6 +64,23 @@ message QueryAllKvRequest {
 
 message QueryAllKvResponse {
   repeated Kv                                     kv         = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetDeviceRequest {
+  string address = 1;
+}
+
+message QueryGetDeviceResponse {
+  Device device = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllDeviceRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllDeviceResponse {
+  repeated Device                                 device     = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

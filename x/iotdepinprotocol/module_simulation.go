@@ -36,6 +36,18 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeleteKv int = 100
 
+	opWeightMsgCreateDevice = "op_weight_msg_device"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCreateDevice int = 100
+
+	opWeightMsgUpdateDevice = "op_weight_msg_device"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUpdateDevice int = 100
+
+	opWeightMsgDeleteDevice = "op_weight_msg_device"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgDeleteDevice int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -55,6 +67,16 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 			{
 				Creator: sample.AccAddress(),
 				Index:   "1",
+			},
+		},
+		DeviceList: []types.Device{
+			{
+				Creator: sample.AccAddress(),
+				Address: "0",
+			},
+			{
+				Creator: sample.AccAddress(),
+				Address: "1",
 			},
 		},
 		// this line is used by starport scaffolding # simapp/module/genesisState
@@ -111,6 +133,39 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteKv,
 		iotdepinprotocolsimulation.SimulateMsgDeleteKv(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgCreateDevice int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCreateDevice, &weightMsgCreateDevice, nil,
+		func(_ *rand.Rand) {
+			weightMsgCreateDevice = defaultWeightMsgCreateDevice
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCreateDevice,
+		iotdepinprotocolsimulation.SimulateMsgCreateDevice(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgUpdateDevice int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgUpdateDevice, &weightMsgUpdateDevice, nil,
+		func(_ *rand.Rand) {
+			weightMsgUpdateDevice = defaultWeightMsgUpdateDevice
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUpdateDevice,
+		iotdepinprotocolsimulation.SimulateMsgUpdateDevice(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgDeleteDevice int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgDeleteDevice, &weightMsgDeleteDevice, nil,
+		func(_ *rand.Rand) {
+			weightMsgDeleteDevice = defaultWeightMsgDeleteDevice
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgDeleteDevice,
+		iotdepinprotocolsimulation.SimulateMsgDeleteDevice(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

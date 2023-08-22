@@ -22,6 +22,14 @@ func TestGenesis(t *testing.T) {
 				Index: "1",
 			},
 		},
+		DeviceList: []types.Device{
+			{
+				Address: "0",
+			},
+			{
+				Address: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -34,5 +42,6 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.ElementsMatch(t, genesisState.KvList, got.KvList)
+	require.ElementsMatch(t, genesisState.DeviceList, got.DeviceList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }
