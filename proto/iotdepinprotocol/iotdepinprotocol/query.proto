@@ -1,26 +1,58 @@
 syntax = "proto3";
+
 package stccommunity.iotdepinprotocol.iotdepinprotocol;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "iotdepinprotocol/iotdepinprotocol/params.proto";
+import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/params";
+  
+  }
+  
+  // Queries a list of Kv items.
+  rpc Kv    (QueryGetKvRequest) returns (QueryGetKvResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv/{index}";
+  
+  }
+  rpc KvAll (QueryAllKvRequest) returns (QueryAllKvResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetKvRequest {
+  string index = 1;
+}
+
+message QueryGetKvResponse {
+  Kv kv = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllKvRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllKvResponse {
+  repeated Kv                                     kv         = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

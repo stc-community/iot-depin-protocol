@@ -1,0 +1,11 @@
+syntax = "proto3";
+package stccommunity.iotdepinprotocol.iotdepinprotocol;
+
+option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
+
+message Kv {
+  string index = 1; 
+  string value = 2; 
+  string creator = 3;
+}
+

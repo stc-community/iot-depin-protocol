@@ -1,7 +1,37 @@
 syntax = "proto3";
+
 package stccommunity.iotdepinprotocol.iotdepinprotocol;
+
+import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc CreateKv (MsgCreateKv) returns (MsgCreateKvResponse);
+  rpc UpdateKv (MsgUpdateKv) returns (MsgUpdateKvResponse);
+  rpc DeleteKv (MsgDeleteKv) returns (MsgDeleteKvResponse);
+}
+message MsgCreateKv {
+  string creator = 1;
+  string index   = 2;
+  string value   = 3;
+}
+
+message MsgCreateKvResponse {}
+
+message MsgUpdateKv {
+  string creator = 1;
+  string index   = 2;
+  string value   = 3;
+}
+
+message MsgUpdateKvResponse {}
+
+message MsgDeleteKv {
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteKvResponse {}
+
