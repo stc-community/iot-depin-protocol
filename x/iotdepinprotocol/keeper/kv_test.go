@@ -31,6 +31,7 @@ func TestKvGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetKv(ctx,
 			item.Index,
+			item.Creator,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -45,9 +46,11 @@ func TestKvRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveKv(ctx,
 			item.Index,
+			item.Creator,
 		)
 		_, found := keeper.GetKv(ctx,
 			item.Index,
+			item.Creator,
 		)
 		require.False(t, found)
 	}
@@ -58,6 +61,6 @@ func TestKvGetAll(t *testing.T) {
 	items := createNKv(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),
-		nullify.Fill(keeper.GetAllKv(ctx)),
+		nullify.Fill(keeper.GetAllKv(ctx, items[0].Creator)),
 	)
 }

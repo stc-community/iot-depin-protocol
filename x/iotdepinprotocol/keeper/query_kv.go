@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"log"
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -20,7 +21,8 @@ func (k Keeper) KvAll(goCtx context.Context, req *types.QueryAllKvRequest) (*typ
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	store := ctx.KVStore(k.storeKey)
-	kvStore := prefix.NewStore(store, types.KeyPrefix(types.KvKeyPrefix))
+	log.Println("KvAll-req.Creator:", req.Creator)
+	kvStore := prefix.NewStore(store, types.KeyPrefix(types.KvKeyPrefix+req.Creator))
 
 	pageRes, err := query.Paginate(kvStore, req.Pagination, func(key []byte, value []byte) error {
 		var kv types.Kv
@@ -48,6 +50,7 @@ func (k Keeper) Kv(goCtx context.Context, req *types.QueryGetKvRequest) (*types.
 	val, found := k.GetKv(
 		ctx,
 		req.Index,
+		req.Creator,
 	)
 	if !found {
 		return nil, status.Error(codes.NotFound, "not found")
