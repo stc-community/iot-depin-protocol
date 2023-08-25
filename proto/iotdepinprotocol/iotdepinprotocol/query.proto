@@ -8,36 +8,47 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "iotdepinprotocol/iotdepinprotocol/params.proto";
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
+import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Query defines the gRPC querier service.
 service Query {
-
+  
   // Parameters queries the parameters of the module.
   rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/params";
-
+  
   }
-
+  
   // Queries a list of Kv items.
   rpc Kv    (QueryGetKvRequest) returns (QueryGetKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv/{index}";
-
+  
   }
   rpc KvAll (QueryAllKvRequest) returns (QueryAllKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv";
-
+  
   }
-
+  
   // Queries a list of Device items.
   rpc Device    (QueryGetDeviceRequest) returns (QueryGetDeviceResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}";
-
+  
   }
   rpc DeviceAll (QueryAllDeviceRequest) returns (QueryAllDeviceResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device";
-
+  
+  }
+  
+  // Queries a list of EventPb items.
+  rpc EventPb    (QueryGetEventPbRequest) returns (QueryGetEventPbResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{pubId}";
+  
+  }
+  rpc EventPbAll (QueryAllEventPbRequest) returns (QueryAllEventPbResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb";
+  
   }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -45,13 +56,13 @@ message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
-
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
 message QueryGetKvRequest {
-  string index = 1;
+  string index   = 1;
   string creator = 2;
 }
 
@@ -61,7 +72,7 @@ message QueryGetKvResponse {
 
 message QueryAllKvRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
+  string                                creator    = 2;
 }
 
 message QueryAllKvResponse {
@@ -80,11 +91,30 @@ message QueryGetDeviceResponse {
 
 message QueryAllDeviceRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string creator = 2;
+  string                                creator    = 2;
 }
 
 message QueryAllDeviceResponse {
   repeated Device                                 device     = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetEventPbRequest {
+  string pubId = 1;
+}
+
+message QueryGetEventPbResponse {
+  EventPb eventPb = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllEventPbRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string pubId = 2;
+  string topic = 3;
+}
+
+message QueryAllEventPbResponse {
+  repeated EventPb                                eventPb    = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

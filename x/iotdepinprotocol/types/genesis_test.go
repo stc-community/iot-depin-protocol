@@ -38,6 +38,14 @@ func TestGenesisState_Validate(t *testing.T) {
 						Address: "1",
 					},
 				},
+				EventPbList: []types.EventPb{
+					{
+						PubId: "0",
+					},
+					{
+						PubId: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -65,6 +73,20 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 					{
 						Address: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated eventPb",
+			genState: &types.GenesisState{
+				EventPbList: []types.EventPb{
+					{
+						PubId: "0",
+					},
+					{
+						PubId: "0",
 					},
 				},
 			},

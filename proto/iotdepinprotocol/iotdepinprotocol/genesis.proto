@@ -6,13 +6,15 @@ import "gogoproto/gogo.proto";
 import "iotdepinprotocol/iotdepinprotocol/params.proto";
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
+import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // GenesisState defines the iotdepinprotocol module's genesis state.
 message GenesisState {
-           Params params     = 1 [(gogoproto.nullable) = false];
-  repeated Kv     kvList     = 2 [(gogoproto.nullable) = false];
-  repeated Device deviceList = 3 [(gogoproto.nullable) = false];
+           Params  params      = 1 [(gogoproto.nullable) = false];
+  repeated Kv      kvList      = 2 [(gogoproto.nullable) = false];
+  repeated Device  deviceList  = 3 [(gogoproto.nullable) = false];
+  repeated EventPb eventPbList = 4 [(gogoproto.nullable) = false];
 }
 

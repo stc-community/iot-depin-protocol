@@ -30,6 +30,14 @@ func TestGenesis(t *testing.T) {
 				Address: "1",
 			},
 		},
+		EventPbList: []types.EventPb{
+			{
+				PubId: "0",
+			},
+			{
+				PubId: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -43,5 +51,6 @@ func TestGenesis(t *testing.T) {
 
 	require.ElementsMatch(t, genesisState.KvList, got.KvList)
 	require.ElementsMatch(t, genesisState.DeviceList, got.DeviceList)
+	require.ElementsMatch(t, genesisState.EventPbList, got.EventPbList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -4,17 +4,21 @@ package stccommunity.iotdepinprotocol.iotdepinprotocol;
 
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
+import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Msg defines the Msg service.
 service Msg {
-  rpc CreateKv       (MsgCreateKv      ) returns (MsgCreateKvResponse      );
-  rpc UpdateKv       (MsgUpdateKv      ) returns (MsgUpdateKvResponse      );
-  rpc DeleteKv       (MsgDeleteKv      ) returns (MsgDeleteKvResponse      );
-  rpc CreateDevice   (MsgCreateDevice  ) returns (MsgCreateDeviceResponse  );
-  rpc UpdateDevice   (MsgUpdateDevice  ) returns (MsgUpdateDeviceResponse  );
-  rpc DeleteDevice   (MsgDeleteDevice  ) returns (MsgDeleteDeviceResponse  );
+  rpc CreateKv      (MsgCreateKv     ) returns (MsgCreateKvResponse     );
+  rpc UpdateKv      (MsgUpdateKv     ) returns (MsgUpdateKvResponse     );
+  rpc DeleteKv      (MsgDeleteKv     ) returns (MsgDeleteKvResponse     );
+  rpc CreateDevice  (MsgCreateDevice ) returns (MsgCreateDeviceResponse );
+  rpc UpdateDevice  (MsgUpdateDevice ) returns (MsgUpdateDeviceResponse );
+  rpc DeleteDevice  (MsgDeleteDevice ) returns (MsgDeleteDeviceResponse );
+  rpc CreateEventPb (MsgCreateEventPb) returns (MsgCreateEventPbResponse);
+  rpc UpdateEventPb (MsgUpdateEventPb) returns (MsgUpdateEventPbResponse);
+  rpc DeleteEventPb (MsgDeleteEventPb) returns (MsgDeleteEventPbResponse);
 }
 message MsgCreateKv {
   string creator = 1;
@@ -61,4 +65,33 @@ message MsgDeleteDevice {
 }
 
 message MsgDeleteDeviceResponse {}
+
+message MsgCreateEventPb {
+  string creator = 1;
+  string pubId   = 2;
+  string topic   = 3;
+  string pubType = 4;
+  string payload = 5;
+  uint64 pubTime = 6;
+}
+
+message MsgCreateEventPbResponse {}
+
+message MsgUpdateEventPb {
+  string creator = 1;
+  string pubId   = 2;
+  string topic   = 3;
+  string pubType = 4;
+  string payload = 5;
+  uint64 pubTime = 6;
+}
+
+message MsgUpdateEventPbResponse {}
+
+message MsgDeleteEventPb {
+  string creator = 1;
+  string pubId   = 2;
+}
+
+message MsgDeleteEventPbResponse {}
 

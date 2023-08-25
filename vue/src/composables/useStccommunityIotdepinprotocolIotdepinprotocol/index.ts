@@ -60,6 +60,30 @@ export default function useStccommunityIotdepinprotocolIotdepinprotocol() {
     );
   }
   
-  return {QueryParams,QueryKv,QueryKvAll,QueryDevice,QueryDeviceAll,
+  const QueryEventPb = (pubId: string,  options: any) => {
+    const key = { type: 'QueryEventPb',  pubId };    
+    return useQuery([key], () => {
+      const { pubId } = key
+      return  client.StccommunityIotdepinprotocolIotdepinprotocol.query.queryEventPb(pubId).then( res => res.data );
+    }, options);
+  }
+  
+  const QueryEventPbAll = (query: any, options: any, perPage: number) => {
+    const key = { type: 'QueryEventPbAll', query };    
+    return useInfiniteQuery([key], ({pageParam = 1}: { pageParam?: number}) => {
+      const {query } = key
+
+      query['pagination.limit']=perPage;
+      query['pagination.offset']= (pageParam-1)*perPage;
+      query['pagination.count_total']= true;
+      return  client.StccommunityIotdepinprotocolIotdepinprotocol.query.queryEventPbAll(query ?? undefined).then( res => ({...res.data,pageParam}) );
+    }, {...options,
+      getNextPageParam: (lastPage, allPages) => { if ((lastPage.pagination?.total ?? 0) >((lastPage.pageParam ?? 0) * perPage)) {return lastPage.pageParam+1 } else {return undefined}},
+      getPreviousPageParam: (firstPage, allPages) => { if (firstPage.pageParam==1) { return undefined } else { return firstPage.pageParam-1}}
+    }
+    );
+  }
+  
+  return {QueryParams,QueryKv,QueryKvAll,QueryDevice,QueryDeviceAll,QueryEventPb,QueryEventPbAll,
   }
 }
