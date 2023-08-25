@@ -587,110 +587,6 @@ func (m *MsgDeleteDeviceResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgDeleteDeviceResponse proto.InternalMessageInfo
 
-type MsgOracleOperator struct {
-	Creator      string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	ReqId        string `protobuf:"bytes,2,opt,name=reqId,proto3" json:"reqId,omitempty"`
-	OperatorType string `protobuf:"bytes,3,opt,name=operatorType,proto3" json:"operatorType,omitempty"`
-	Data         string `protobuf:"bytes,4,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (m *MsgOracleOperator) Reset()         { *m = MsgOracleOperator{} }
-func (m *MsgOracleOperator) String() string { return proto.CompactTextString(m) }
-func (*MsgOracleOperator) ProtoMessage()    {}
-func (*MsgOracleOperator) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9a543266f07a0522, []int{12}
-}
-func (m *MsgOracleOperator) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgOracleOperator) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgOracleOperator.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgOracleOperator) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgOracleOperator.Merge(m, src)
-}
-func (m *MsgOracleOperator) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgOracleOperator) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgOracleOperator.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgOracleOperator proto.InternalMessageInfo
-
-func (m *MsgOracleOperator) GetCreator() string {
-	if m != nil {
-		return m.Creator
-	}
-	return ""
-}
-
-func (m *MsgOracleOperator) GetReqId() string {
-	if m != nil {
-		return m.ReqId
-	}
-	return ""
-}
-
-func (m *MsgOracleOperator) GetOperatorType() string {
-	if m != nil {
-		return m.OperatorType
-	}
-	return ""
-}
-
-func (m *MsgOracleOperator) GetData() string {
-	if m != nil {
-		return m.Data
-	}
-	return ""
-}
-
-type MsgOracleOperatorResponse struct {
-}
-
-func (m *MsgOracleOperatorResponse) Reset()         { *m = MsgOracleOperatorResponse{} }
-func (m *MsgOracleOperatorResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgOracleOperatorResponse) ProtoMessage()    {}
-func (*MsgOracleOperatorResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_9a543266f07a0522, []int{13}
-}
-func (m *MsgOracleOperatorResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgOracleOperatorResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgOracleOperatorResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgOracleOperatorResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgOracleOperatorResponse.Merge(m, src)
-}
-func (m *MsgOracleOperatorResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgOracleOperatorResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgOracleOperatorResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgOracleOperatorResponse proto.InternalMessageInfo
-
 func init() {
 	proto.RegisterType((*MsgCreateKv)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKv")
 	proto.RegisterType((*MsgCreateKvResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKvResponse")
@@ -704,8 +600,6 @@ func init() {
 	proto.RegisterType((*MsgUpdateDeviceResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateDeviceResponse")
 	proto.RegisterType((*MsgDeleteDevice)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDevice")
 	proto.RegisterType((*MsgDeleteDeviceResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDeviceResponse")
-	proto.RegisterType((*MsgOracleOperator)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgOracleOperator")
-	proto.RegisterType((*MsgOracleOperatorResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.MsgOracleOperatorResponse")
 }
 
 func init() {
@@ -713,39 +607,34 @@ func init() {
 }
 
 var fileDescriptor_9a543266f07a0522 = []byte{
-	// 503 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x96, 0x4f, 0x8b, 0xd3, 0x40,
-	0x18, 0xc6, 0x3b, 0xee, 0xea, 0xae, 0xaf, 0x8b, 0xe2, 0xa8, 0x98, 0x8d, 0x10, 0xa4, 0x27, 0x11,
-	0x9a, 0x05, 0x3d, 0x8a, 0x14, 0xdd, 0x8a, 0x2c, 0x52, 0x16, 0x56, 0xbd, 0x28, 0x08, 0xd9, 0x99,
-	0x97, 0x1a, 0x6c, 0x3b, 0x31, 0x33, 0x0d, 0x2d, 0x7e, 0x05, 0x0f, 0x1e, 0x3d, 0x79, 0xf2, 0xc3,
-	0x78, 0xdc, 0xa3, 0x47, 0x69, 0xbf, 0x88, 0x74, 0x92, 0x19, 0x92, 0xb4, 0xf5, 0xcf, 0x44, 0x6f,
-	0x79, 0xdf, 0xce, 0xfb, 0x7b, 0x9e, 0x99, 0xe1, 0x49, 0x0a, 0x77, 0x63, 0xa1, 0x38, 0x26, 0xf1,
-	0x38, 0x49, 0x85, 0x12, 0x4c, 0x0c, 0x0f, 0x56, 0x1a, 0x6a, 0x1a, 0xea, 0x67, 0x1a, 0x4a, 0xc5,
-	0x98, 0x18, 0x8d, 0x26, 0xe3, 0x58, 0xcd, 0xc2, 0xfa, 0xba, 0x95, 0x86, 0xff, 0x07, 0xec, 0x77,
-	0x59, 0xce, 0xf6, 0xc3, 0xdf, 0xaf, 0xe5, 0x98, 0xc5, 0x0c, 0xf3, 0xf5, 0xed, 0xe7, 0x70, 0xa9,
-	0x2f, 0x07, 0x87, 0x29, 0x46, 0x0a, 0x9f, 0x65, 0xd4, 0x83, 0x1d, 0xb6, 0x7c, 0x16, 0xa9, 0x47,
-	0x6e, 0x93, 0x3b, 0x17, 0x4f, 0x4c, 0x49, 0xaf, 0xc3, 0xf9, 0x78, 0xcc, 0x71, 0xea, 0x9d, 0xd3,
-	0xfd, 0xbc, 0x58, 0x76, 0xb3, 0x68, 0x38, 0x41, 0x6f, 0x2b, 0xef, 0xea, 0xa2, 0x7d, 0x03, 0xae,
-	0x95, 0xa0, 0x27, 0x28, 0x13, 0x31, 0x96, 0x58, 0x68, 0xbd, 0x4c, 0xf8, 0xbf, 0xd7, 0x32, 0x50,
-	0xab, 0xf5, 0x50, 0x6b, 0xf5, 0x70, 0x88, 0x2e, 0x5a, 0x05, 0xd5, 0x8c, 0x5b, 0xea, 0x6b, 0xb8,
-	0x62, 0x37, 0xd6, 0xd3, 0xc7, 0xf8, 0x0b, 0xb2, 0x07, 0x3b, 0x11, 0xe7, 0x29, 0x4a, 0x59, 0xb0,
-	0x4d, 0xb9, 0x61, 0x27, 0xfb, 0x70, 0xb3, 0x06, 0xaf, 0xe9, 0xe6, 0x9b, 0xfc, 0x4f, 0xba, 0x65,
-	0xb8, 0xd5, 0x7d, 0xa2, 0x75, 0xf3, 0x63, 0x70, 0xd7, 0x2d, 0x14, 0xca, 0x18, 0xab, 0xf0, 0x01,
-	0xae, 0xf6, 0xe5, 0xe0, 0x38, 0x8d, 0xd8, 0x10, 0x8f, 0x13, 0x4c, 0x0d, 0x69, 0xf3, 0x6d, 0xa5,
-	0xf8, 0xfe, 0x88, 0x9b, 0xdb, 0xd2, 0x05, 0x6d, 0xc3, 0x9e, 0x28, 0x66, 0x5f, 0xcc, 0x12, 0xb3,
-	0xbd, 0x4a, 0x8f, 0x52, 0xd8, 0xe6, 0x91, 0x8a, 0xbc, 0x6d, 0xfd, 0x9b, 0x7e, 0x6e, 0xdf, 0x82,
-	0xfd, 0x15, 0x71, 0xe3, 0xec, 0xde, 0xd7, 0x5d, 0xd8, 0xea, 0xcb, 0x01, 0xfd, 0x48, 0x60, 0xd7,
-	0xe6, 0xe3, 0xc1, 0x5f, 0x66, 0x37, 0x2c, 0xe5, 0xc0, 0x3f, 0x6c, 0x30, 0x6c, 0x6c, 0x69, 0x3b,
-	0x36, 0x42, 0x2e, 0x76, 0xcc, 0xb0, 0x93, 0x9d, 0x7a, 0xce, 0xb4, 0x1d, 0x9b, 0x32, 0x17, 0x3b,
-	0x66, 0xd8, 0xc9, 0x4e, 0x3d, 0xa0, 0xf4, 0x33, 0x81, 0xbd, 0x4a, 0x3c, 0xbb, 0xce, 0x67, 0x9e,
-	0x03, 0xfc, 0xa7, 0x0d, 0x01, 0x15, 0x6b, 0x95, 0x04, 0x77, 0x9d, 0xcf, 0xbf, 0x81, 0xb5, 0x75,
-	0x31, 0xd7, 0xd6, 0x2a, 0x21, 0xef, 0x3a, 0xdf, 0x45, 0x03, 0x6b, 0xeb, 0xde, 0x0f, 0xf4, 0x0b,
-	0x81, 0xcb, 0xb5, 0xb7, 0xc3, 0x23, 0x07, 0x76, 0x15, 0xe1, 0x1f, 0x35, 0x46, 0x18, 0x83, 0x8f,
-	0xdf, 0x7c, 0x9b, 0x07, 0xe4, 0x6c, 0x1e, 0x90, 0x1f, 0xf3, 0x80, 0x7c, 0x5a, 0x04, 0xad, 0xb3,
-	0x45, 0xd0, 0xfa, 0xbe, 0x08, 0x5a, 0xaf, 0x7a, 0x83, 0x58, 0xbd, 0x9d, 0x9c, 0x86, 0x4c, 0x8c,
-	0x0e, 0xa4, 0x62, 0x1d, 0xab, 0xb7, 0xfc, 0x24, 0x77, 0x34, 0xbf, 0x63, 0x3f, 0xca, 0xd3, 0x35,
-	0xff, 0x17, 0x66, 0x09, 0xca, 0xd3, 0x0b, 0xba, 0xbe, 0xff, 0x33, 0x00, 0x00, 0xff, 0xff, 0x0b,
-	0x54, 0x0e, 0x90, 0x61, 0x08, 0x00, 0x00,
+	// 421 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x95, 0xcf, 0x4b, 0xc3, 0x30,
+	0x14, 0xc7, 0x17, 0x87, 0x4e, 0xa3, 0x20, 0x54, 0xc5, 0xda, 0x43, 0x91, 0x9d, 0x44, 0x58, 0x07,
+	0x7a, 0x14, 0x19, 0xb8, 0x89, 0x07, 0xd9, 0x65, 0xe2, 0x45, 0x41, 0xd8, 0xd2, 0x30, 0x8b, 0x5b,
+	0x53, 0x9a, 0xac, 0x6c, 0x67, 0xaf, 0x1e, 0x3c, 0xfa, 0x27, 0x79, 0xdc, 0xd1, 0xa3, 0x6c, 0xff,
+	0x88, 0x2c, 0x69, 0x42, 0xdb, 0xcd, 0x5f, 0xa9, 0xde, 0xfa, 0x1e, 0x79, 0x9f, 0xef, 0x37, 0xaf,
+	0xef, 0x11, 0x78, 0xe8, 0x11, 0xe6, 0xe2, 0xc0, 0xf3, 0x83, 0x90, 0x30, 0x82, 0x48, 0xaf, 0x3a,
+	0x97, 0x60, 0x43, 0x87, 0x7f, 0x1b, 0x0e, 0x65, 0x08, 0x91, 0x7e, 0x7f, 0xe0, 0x7b, 0x6c, 0xe4,
+	0x64, 0xcf, 0xcd, 0x25, 0xac, 0x1f, 0xb0, 0x1f, 0x22, 0xc1, 0xb6, 0x9c, 0xef, 0xcf, 0xba, 0x38,
+	0xf2, 0x10, 0x16, 0xe7, 0xcb, 0x57, 0x70, 0xbd, 0x49, 0xbb, 0xf5, 0x10, 0xb7, 0x19, 0xbe, 0x8c,
+	0x0c, 0x13, 0x96, 0xd0, 0xec, 0x9b, 0x84, 0x26, 0xd8, 0x07, 0x07, 0x6b, 0x2d, 0x19, 0x1a, 0xdb,
+	0x70, 0xd9, 0xf3, 0x5d, 0x3c, 0x34, 0x97, 0x78, 0x5e, 0x04, 0xb3, 0x6c, 0xd4, 0xee, 0x0d, 0xb0,
+	0x59, 0x14, 0x59, 0x1e, 0x94, 0x77, 0xe0, 0x56, 0x02, 0xda, 0xc2, 0x34, 0x20, 0x3e, 0xc5, 0xb1,
+	0xd6, 0x75, 0xe0, 0xfe, 0xbd, 0x96, 0x84, 0x2a, 0xad, 0x53, 0xae, 0xd5, 0xc0, 0x3d, 0xac, 0xa3,
+	0x15, 0x53, 0x65, 0xb9, 0xa2, 0xde, 0xc2, 0x4d, 0x75, 0xb1, 0x06, 0x6f, 0xe3, 0x17, 0x64, 0x13,
+	0x96, 0xda, 0xae, 0x1b, 0x62, 0x4a, 0x63, 0xb6, 0x0c, 0x3f, 0xb9, 0xc9, 0x1e, 0xdc, 0xcd, 0xc0,
+	0x33, 0xba, 0xe2, 0x92, 0xff, 0xa4, 0x9b, 0x84, 0x2b, 0xdd, 0x73, 0xae, 0x2b, 0xda, 0xa0, 0xaf,
+	0x1b, 0x2b, 0x24, 0x31, 0x52, 0xe1, 0xe8, 0xb1, 0x04, 0x8b, 0x4d, 0xda, 0x35, 0x9e, 0x00, 0x5c,
+	0x55, 0x53, 0x78, 0xf2, 0xcb, 0x0d, 0x71, 0x12, 0xd3, 0x66, 0xd5, 0x73, 0x14, 0x4b, 0x5b, 0xdc,
+	0x8e, 0x1a, 0x54, 0x1d, 0x3b, 0xb2, 0x58, 0xcb, 0x4e, 0x76, 0x9a, 0xb9, 0x1d, 0x35, 0xcb, 0x3a,
+	0x76, 0x64, 0xb1, 0x96, 0x9d, 0xec, 0x1a, 0x18, 0x2f, 0x00, 0x6e, 0xa4, 0x96, 0xa0, 0xa6, 0xdd,
+	0x73, 0x01, 0xb0, 0x2e, 0x72, 0x02, 0x52, 0xd6, 0x52, 0x7b, 0x52, 0xd3, 0xee, 0x7f, 0x0e, 0x6b,
+	0x8b, 0x96, 0x89, 0x5b, 0x4b, 0xad, 0x52, 0x4d, 0xfb, 0x5f, 0xe4, 0xb0, 0xb6, 0x68, 0x0b, 0xcf,
+	0xee, 0x5e, 0x27, 0x36, 0x18, 0x4f, 0x6c, 0xf0, 0x3e, 0xb1, 0xc1, 0xf3, 0xd4, 0x2e, 0x8c, 0xa7,
+	0x76, 0xe1, 0x6d, 0x6a, 0x17, 0x6e, 0x1a, 0x5d, 0x8f, 0xdd, 0x0f, 0x3a, 0x0e, 0x22, 0xfd, 0x2a,
+	0x65, 0xa8, 0xa2, 0xd4, 0x66, 0xef, 0x4a, 0x85, 0xd3, 0x2b, 0xea, 0x65, 0x19, 0x2e, 0x78, 0xf4,
+	0x46, 0x01, 0xa6, 0x9d, 0x15, 0x1e, 0x1f, 0x7f, 0x04, 0x00, 0x00, 0xff, 0xff, 0x5d, 0x41, 0x56,
+	0xb8, 0x26, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -766,7 +655,6 @@ type MsgClient interface {
 	CreateDevice(ctx context.Context, in *MsgCreateDevice, opts ...grpc.CallOption) (*MsgCreateDeviceResponse, error)
 	UpdateDevice(ctx context.Context, in *MsgUpdateDevice, opts ...grpc.CallOption) (*MsgUpdateDeviceResponse, error)
 	DeleteDevice(ctx context.Context, in *MsgDeleteDevice, opts ...grpc.CallOption) (*MsgDeleteDeviceResponse, error)
-	OracleOperator(ctx context.Context, in *MsgOracleOperator, opts ...grpc.CallOption) (*MsgOracleOperatorResponse, error)
 }
 
 type msgClient struct {
@@ -831,15 +719,6 @@ func (c *msgClient) DeleteDevice(ctx context.Context, in *MsgDeleteDevice, opts 
 	return out, nil
 }
 
-func (c *msgClient) OracleOperator(ctx context.Context, in *MsgOracleOperator, opts ...grpc.CallOption) (*MsgOracleOperatorResponse, error) {
-	out := new(MsgOracleOperatorResponse)
-	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Msg/OracleOperator", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	CreateKv(context.Context, *MsgCreateKv) (*MsgCreateKvResponse, error)
@@ -848,7 +727,6 @@ type MsgServer interface {
 	CreateDevice(context.Context, *MsgCreateDevice) (*MsgCreateDeviceResponse, error)
 	UpdateDevice(context.Context, *MsgUpdateDevice) (*MsgUpdateDeviceResponse, error)
 	DeleteDevice(context.Context, *MsgDeleteDevice) (*MsgDeleteDeviceResponse, error)
-	OracleOperator(context.Context, *MsgOracleOperator) (*MsgOracleOperatorResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -872,9 +750,6 @@ func (*UnimplementedMsgServer) UpdateDevice(ctx context.Context, req *MsgUpdateD
 }
 func (*UnimplementedMsgServer) DeleteDevice(ctx context.Context, req *MsgDeleteDevice) (*MsgDeleteDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteDevice not implemented")
-}
-func (*UnimplementedMsgServer) OracleOperator(ctx context.Context, req *MsgOracleOperator) (*MsgOracleOperatorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OracleOperator not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -989,24 +864,6 @@ func _Msg_DeleteDevice_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_OracleOperator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgOracleOperator)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).OracleOperator(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Msg/OracleOperator",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).OracleOperator(ctx, req.(*MsgOracleOperator))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "stccommunity.iotdepinprotocol.iotdepinprotocol.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -1034,10 +891,6 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteDevice",
 			Handler:    _Msg_DeleteDevice_Handler,
-		},
-		{
-			MethodName: "OracleOperator",
-			Handler:    _Msg_OracleOperator_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1432,80 +1285,6 @@ func (m *MsgDeleteDeviceResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgOracleOperator) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgOracleOperator) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgOracleOperator) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Data) > 0 {
-		i -= len(m.Data)
-		copy(dAtA[i:], m.Data)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Data)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.OperatorType) > 0 {
-		i -= len(m.OperatorType)
-		copy(dAtA[i:], m.OperatorType)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.OperatorType)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.ReqId) > 0 {
-		i -= len(m.ReqId)
-		copy(dAtA[i:], m.ReqId)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.ReqId)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *MsgOracleOperatorResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgOracleOperatorResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgOracleOperatorResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -1681,40 +1460,6 @@ func (m *MsgDeleteDevice) Size() (n int) {
 }
 
 func (m *MsgDeleteDeviceResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *MsgOracleOperator) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Creator)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.ReqId)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.OperatorType)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.Data)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	return n
-}
-
-func (m *MsgOracleOperatorResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -2818,234 +2563,6 @@ func (m *MsgDeleteDeviceResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgDeleteDeviceResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgOracleOperator) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgOracleOperator: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgOracleOperator: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ReqId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ReqId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OperatorType", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.OperatorType = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Data", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Data = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgOracleOperatorResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgOracleOperatorResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgOracleOperatorResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

@@ -15,7 +15,6 @@ service Msg {
   rpc CreateDevice   (MsgCreateDevice  ) returns (MsgCreateDeviceResponse  );
   rpc UpdateDevice   (MsgUpdateDevice  ) returns (MsgUpdateDeviceResponse  );
   rpc DeleteDevice   (MsgDeleteDevice  ) returns (MsgDeleteDeviceResponse  );
-  rpc OracleOperator (MsgOracleOperator) returns (MsgOracleOperatorResponse);
 }
 message MsgCreateKv {
   string creator = 1;
@@ -62,13 +61,4 @@ message MsgDeleteDevice {
 }
 
 message MsgDeleteDeviceResponse {}
-
-message MsgOracleOperator {
-  string creator      = 1;
-  string reqId        = 2;
-  string operatorType = 3;
-  string data         = 4;
-}
-
-message MsgOracleOperatorResponse {}
 

@@ -48,10 +48,6 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeleteDevice int = 100
 
-	opWeightMsgOracleOperator = "op_weight_msg_oracle_operator"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgOracleOperator int = 100
-
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -170,17 +166,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteDevice,
 		iotdepinprotocolsimulation.SimulateMsgDeleteDevice(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
-	var weightMsgOracleOperator int
-	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgOracleOperator, &weightMsgOracleOperator, nil,
-		func(_ *rand.Rand) {
-			weightMsgOracleOperator = defaultWeightMsgOracleOperator
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgOracleOperator,
-		iotdepinprotocolsimulation.SimulateMsgOracleOperator(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
