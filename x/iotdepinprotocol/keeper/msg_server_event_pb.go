@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -26,7 +27,7 @@ func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEven
 		Topic:   msg.Topic,
 		PubType: msg.PubType,
 		Payload: msg.Payload,
-		PubTime: msg.PubTime,
+		PubTime: time.Now().Unix(),
 	}
 	// Publish 事件
 	ctx.EventManager().EmitTypedEvent(&eventPb)
@@ -61,7 +62,7 @@ func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEven
 		Topic:   msg.Topic,
 		PubType: msg.PubType,
 		Payload: msg.Payload,
-		PubTime: msg.PubTime,
+		PubTime: valFound.PubTime,
 	}
 
 	k.SetEventPb(ctx, eventPb)

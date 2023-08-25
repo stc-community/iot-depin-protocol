@@ -22,7 +22,7 @@ func CmdCreateEventPb() *cobra.Command {
 			argTopic := args[1]
 			argPubType := args[2]
 			argPayload := args[3]
-			argPubTime, err := cast.ToUint64E(args[4])
+			argPubTime, err := cast.ToInt64E(args[4])
 			if err != nil {
 				return err
 			}
@@ -65,7 +65,7 @@ func CmdUpdateEventPb() *cobra.Command {
 			argTopic := args[1]
 			argPubType := args[2]
 			argPayload := args[3]
-			argPubTime, err := cast.ToUint64E(args[4])
+			argPubTime, err := cast.ToInt64E(args[4])
 			if err != nil {
 				return err
 			}

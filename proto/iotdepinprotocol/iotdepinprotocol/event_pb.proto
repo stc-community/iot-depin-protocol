@@ -8,7 +8,7 @@ message EventPb {
   string topic = 2; 
   string pubType = 3; 
   string payload = 4; 
-  uint64 pubTime = 5; 
+  int64  pubTime = 5;
   string creator = 6;
 }
 

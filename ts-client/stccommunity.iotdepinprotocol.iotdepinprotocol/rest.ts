@@ -21,7 +21,7 @@ export interface IotdepinprotocolEventPb {
   pubType?: string;
   payload?: string;
 
-  /** @format uint64 */
+  /** @format int64 */
   pubTime?: string;
   creator?: string;
 }

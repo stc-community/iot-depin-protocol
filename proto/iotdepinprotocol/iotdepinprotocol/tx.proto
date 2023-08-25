@@ -72,7 +72,7 @@ message MsgCreateEventPb {
   string topic   = 3;
   string pubType = 4;
   string payload = 5;
-  uint64 pubTime = 6;
+  int64  pubTime = 6;
 }
 
 message MsgCreateEventPbResponse {}
@@ -83,7 +83,7 @@ message MsgUpdateEventPb {
   string topic   = 3;
   string pubType = 4;
   string payload = 5;
-  uint64 pubTime = 6;
+  int64  pubTime = 6;
 }
 
 message MsgUpdateEventPbResponse {}

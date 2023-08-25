@@ -44065,7 +44065,7 @@ paths:
                       type: string
                     pubTime:
                       type: string
-                      format: uint64
+                      format: int64
                     creator:
                       type: string
               pagination:
@@ -44204,7 +44204,7 @@ paths:
                     type: string
                   pubTime:
                     type: string
-                    format: uint64
+                    format: int64
                   creator:
                     type: string
         default:
@@ -44229,64 +44229,6 @@ paths:
         - name: pubId
           in: path
           required: true
-          type: string
-        - name: topic
-          in: query
-          required: false
-          type: string
-      tags:
-        - Query
-  /stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{topic}:
-    get:
-      operationId: StccommunityIotdepinprotocolIotdepinprotocolEventPbTopic
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              eventPb:
-                type: object
-                properties:
-                  pubId:
-                    type: string
-                  topic:
-                    type: string
-                  pubType:
-                    type: string
-                  payload:
-                    type: string
-                  pubTime:
-                    type: string
-                    format: uint64
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: topic
-          in: path
-          required: true
-          type: string
-        - name: pubId
-          in: query
-          required: false
           type: string
       tags:
         - Query
@@ -72059,7 +72001,7 @@ definitions:
         type: string
       pubTime:
         type: string
-        format: uint64
+        format: int64
       creator:
         type: string
   stccommunity.iotdepinprotocol.iotdepinprotocol.Kv:
@@ -72150,7 +72092,7 @@ definitions:
               type: string
             pubTime:
               type: string
-              format: uint64
+              format: int64
             creator:
               type: string
       pagination:
@@ -72247,7 +72189,7 @@ definitions:
             type: string
           pubTime:
             type: string
-            format: uint64
+            format: int64
           creator:
             type: string
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvResponse:

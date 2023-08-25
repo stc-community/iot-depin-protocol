@@ -32,7 +32,7 @@ export const EventPb = {
       writer.uint32(34).string(message.payload);
     }
     if (message.pubTime !== 0) {
-      writer.uint32(40).uint64(message.pubTime);
+      writer.uint32(40).int64(message.pubTime);
     }
     if (message.creator !== "") {
       writer.uint32(50).string(message.creator);
@@ -60,7 +60,7 @@ export const EventPb = {
           message.payload = reader.string();
           break;
         case 5:
-          message.pubTime = longToNumber(reader.uint64() as Long);
+          message.pubTime = longToNumber(reader.int64() as Long);
           break;
         case 6:
           message.creator = reader.string();

@@ -19,7 +19,7 @@ func NewMsgCreateEventPb(
 	topic string,
 	pubType string,
 	payload string,
-	pubTime uint64,
+	pubTime int64,
 
 ) *MsgCreateEventPb {
 	return &MsgCreateEventPb{
@@ -69,7 +69,7 @@ func NewMsgUpdateEventPb(
 	topic string,
 	pubType string,
 	payload string,
-	pubTime uint64,
+	pubTime int64,
 
 ) *MsgUpdateEventPb {
 	return &MsgUpdateEventPb{
