@@ -15,6 +15,7 @@ func (k msgServer) CreateDevice(goCtx context.Context, msg *types.MsgCreateDevic
 	_, isFound := k.GetDevice(
 		ctx,
 		msg.Address,
+		msg.Creator,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
@@ -40,6 +41,7 @@ func (k msgServer) UpdateDevice(goCtx context.Context, msg *types.MsgUpdateDevic
 	valFound, isFound := k.GetDevice(
 		ctx,
 		msg.Address,
+		msg.Creator,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -68,6 +70,7 @@ func (k msgServer) DeleteDevice(goCtx context.Context, msg *types.MsgDeleteDevic
 	valFound, isFound := k.GetDevice(
 		ctx,
 		msg.Address,
+		msg.Creator,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -81,6 +84,7 @@ func (k msgServer) DeleteDevice(goCtx context.Context, msg *types.MsgDeleteDevic
 	k.RemoveDevice(
 		ctx,
 		msg.Address,
+		msg.Creator,
 	)
 
 	return &types.MsgDeleteDeviceResponse{}, nil

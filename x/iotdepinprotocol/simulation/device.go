@@ -31,7 +31,7 @@ func SimulateMsgCreateDevice(
 			Address: strconv.Itoa(i),
 		}
 
-		_, found := k.GetDevice(ctx, msg.Address)
+		_, found := k.GetDevice(ctx, msg.Address, msg.Creator)
 		if found {
 			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "Device already exist"), nil, nil
 		}
@@ -65,18 +65,15 @@ func SimulateMsgUpdateDevice(
 			simAccount = simtypes.Account{}
 			device     = types.Device{}
 			msg        = &types.MsgUpdateDevice{}
-			allDevice  = k.GetAllDevice(ctx)
-			found      = false
+			//allDevice  = k.GetAllDevice(ctx, msg.Creator)
+			//found      = false
 		)
-		for _, obj := range allDevice {
-			simAccount, found = FindAccount(accs, obj.Creator)
-			if found {
+		for _, account := range accs {
+			simAccount = account
+			for _, obj := range k.GetAllDevice(ctx, account.Address.String()) {
 				device = obj
 				break
 			}
-		}
-		if !found {
-			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "device creator not found"), nil, nil
 		}
 		msg.Creator = simAccount.Address.String()
 
@@ -111,18 +108,15 @@ func SimulateMsgDeleteDevice(
 			simAccount = simtypes.Account{}
 			device     = types.Device{}
 			msg        = &types.MsgUpdateDevice{}
-			allDevice  = k.GetAllDevice(ctx)
-			found      = false
+			//allDevice  = k.GetAllDevice(ctx, msg.Creator)
+			//found      = false
 		)
-		for _, obj := range allDevice {
-			simAccount, found = FindAccount(accs, obj.Creator)
-			if found {
+		for _, account := range accs {
+			simAccount = account
+			for _, obj := range k.GetAllDevice(ctx, account.Address.String()) {
 				device = obj
 				break
 			}
-		}
-		if !found {
-			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "device creator not found"), nil, nil
 		}
 		msg.Creator = simAccount.Address.String()
 

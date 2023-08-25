@@ -4,11 +4,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
+	"log"
 )
 
 // SetKv set a specific kv in the store from its index
 func (k Keeper) SetKv(ctx sdk.Context, kv types.Kv) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix))
+	log.Println("SetKv creator:", kv.Creator)
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+kv.Creator))
 	b := k.cdc.MustMarshal(&kv)
 	store.Set(types.KvKey(
 		kv.Index,
@@ -19,9 +21,10 @@ func (k Keeper) SetKv(ctx sdk.Context, kv types.Kv) {
 func (k Keeper) GetKv(
 	ctx sdk.Context,
 	index string,
+	creator string,
 
 ) (val types.Kv, found bool) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
 
 	b := store.Get(types.KvKey(
 		index,
@@ -38,17 +41,24 @@ func (k Keeper) GetKv(
 func (k Keeper) RemoveKv(
 	ctx sdk.Context,
 	index string,
+	creator string,
 
 ) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
 	store.Delete(types.KvKey(
 		index,
 	))
 }
 
 // GetAllKv returns all kv
-func (k Keeper) GetAllKv(ctx sdk.Context) (list []types.Kv) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix))
+func (k Keeper) GetAllKv(
+	ctx sdk.Context,
+	creator string,
+
+) (list []types.Kv) {
+	log.Println("GetAllKv-Creator:", creator)
+
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()

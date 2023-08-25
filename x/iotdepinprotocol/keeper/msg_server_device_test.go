@@ -29,6 +29,7 @@ func TestDeviceMsgServerCreate(t *testing.T) {
 		require.NoError(t, err)
 		rst, found := k.GetDevice(ctx,
 			expected.Address,
+			expected.Creator,
 		)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
@@ -81,6 +82,7 @@ func TestDeviceMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetDevice(ctx,
 					expected.Address,
+					expected.Creator,
 				)
 				require.True(t, found)
 				require.Equal(t, expected.Creator, rst.Creator)
@@ -134,6 +136,7 @@ func TestDeviceMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetDevice(ctx,
 					tc.request.Address,
+					tc.request.Creator,
 				)
 				require.False(t, found)
 			}

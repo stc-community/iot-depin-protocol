@@ -13,31 +13,31 @@ option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinproto
 
 // Query defines the gRPC querier service.
 service Query {
-  
+
   // Parameters queries the parameters of the module.
   rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/params";
-  
+
   }
-  
+
   // Queries a list of Kv items.
   rpc Kv    (QueryGetKvRequest) returns (QueryGetKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv/{index}";
-  
+
   }
   rpc KvAll (QueryAllKvRequest) returns (QueryAllKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv";
-  
+
   }
-  
+
   // Queries a list of Device items.
   rpc Device    (QueryGetDeviceRequest) returns (QueryGetDeviceResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}";
-  
+
   }
   rpc DeviceAll (QueryAllDeviceRequest) returns (QueryAllDeviceResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device";
-  
+
   }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -45,13 +45,14 @@ message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
-  
+
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
 message QueryGetKvRequest {
   string index = 1;
+  string creator = 2;
 }
 
 message QueryGetKvResponse {
@@ -60,6 +61,7 @@ message QueryGetKvResponse {
 
 message QueryAllKvRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string creator = 2;
 }
 
 message QueryAllKvResponse {
@@ -69,6 +71,7 @@ message QueryAllKvResponse {
 
 message QueryGetDeviceRequest {
   string address = 1;
+  string creator = 2;
 }
 
 message QueryGetDeviceResponse {
@@ -77,6 +80,7 @@ message QueryGetDeviceResponse {
 
 message QueryAllDeviceRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string creator = 2;
 }
 
 message QueryAllDeviceResponse {

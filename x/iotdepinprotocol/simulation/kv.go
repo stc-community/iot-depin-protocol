@@ -31,7 +31,7 @@ func SimulateMsgCreateKv(
 			Index:   strconv.Itoa(i),
 		}
 
-		_, found := k.GetKv(ctx, msg.Index)
+		_, found := k.GetKv(ctx, msg.Index, msg.Creator)
 		if found {
 			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "Kv already exist"), nil, nil
 		}
@@ -61,23 +61,31 @@ func SimulateMsgUpdateKv(
 ) simtypes.Operation {
 	return func(r *rand.Rand, app *baseapp.BaseApp, ctx sdk.Context, accs []simtypes.Account, chainID string,
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
+
 		var (
 			simAccount = simtypes.Account{}
 			kv         = types.Kv{}
 			msg        = &types.MsgUpdateKv{}
-			allKv      = k.GetAllKv(ctx)
-			found      = false
+			// allKv      = k.GetAllKv(ctx)
+			// found      = false
 		)
-		for _, obj := range allKv {
-			simAccount, found = FindAccount(accs, obj.Creator)
-			if found {
+		for _, account := range accs {
+			simAccount = account
+			for _, obj := range k.GetAllKv(ctx, account.Address.String()) {
 				kv = obj
 				break
 			}
 		}
-		if !found {
-			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "kv creator not found"), nil, nil
-		}
+		// for _, obj := range allKv {
+		// 	simAccount, found = FindAccount(accs, obj.Creator)
+		// 	if found {
+		// 		kv = obj
+		// 		break
+		// 	}
+		// }
+		// if !found {
+		// 	return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "kv creator not found"), nil, nil
+		// }
 		msg.Creator = simAccount.Address.String()
 
 		msg.Index = kv.Index
@@ -111,19 +119,26 @@ func SimulateMsgDeleteKv(
 			simAccount = simtypes.Account{}
 			kv         = types.Kv{}
 			msg        = &types.MsgUpdateKv{}
-			allKv      = k.GetAllKv(ctx)
-			found      = false
+			// allKv      = k.GetAllKv(ctx)
+			// found      = false
 		)
-		for _, obj := range allKv {
-			simAccount, found = FindAccount(accs, obj.Creator)
-			if found {
+		for _, account := range accs {
+			simAccount = account
+			for _, obj := range k.GetAllKv(ctx, account.Address.String()) {
 				kv = obj
 				break
 			}
 		}
-		if !found {
-			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "kv creator not found"), nil, nil
-		}
+		// for _, obj := range allKv {
+		// 	simAccount, found = FindAccount(accs, obj.Creator)
+		// 	if found {
+		// 		kv = obj
+		// 		break
+		// 	}
+		// }
+		// if !found {
+		// 	return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "kv creator not found"), nil, nil
+		// }
 		msg.Creator = simAccount.Address.String()
 
 		msg.Index = kv.Index

@@ -14,6 +14,7 @@ func (k msgServer) CreateKv(goCtx context.Context, msg *types.MsgCreateKv) (*typ
 	_, isFound := k.GetKv(
 		ctx,
 		msg.Index,
+		msg.Creator,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
@@ -39,6 +40,7 @@ func (k msgServer) UpdateKv(goCtx context.Context, msg *types.MsgUpdateKv) (*typ
 	valFound, isFound := k.GetKv(
 		ctx,
 		msg.Index,
+		msg.Creator,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -67,6 +69,7 @@ func (k msgServer) DeleteKv(goCtx context.Context, msg *types.MsgDeleteKv) (*typ
 	valFound, isFound := k.GetKv(
 		ctx,
 		msg.Index,
+		msg.Creator,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -80,6 +83,7 @@ func (k msgServer) DeleteKv(goCtx context.Context, msg *types.MsgDeleteKv) (*typ
 	k.RemoveKv(
 		ctx,
 		msg.Index,
+		msg.Creator,
 	)
 
 	return &types.MsgDeleteKvResponse{}, nil

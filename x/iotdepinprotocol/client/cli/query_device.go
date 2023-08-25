@@ -23,8 +23,11 @@ func CmdListDevice() *cobra.Command {
 
 			queryClient := types.NewQueryClient(clientCtx)
 
+			from, _ := cmd.Flags().GetString(flags.FlagFrom)
+
 			params := &types.QueryAllDeviceRequest{
 				Pagination: pageReq,
+				Creator:    from,
 			}
 
 			res, err := queryClient.DeviceAll(context.Background(), params)
@@ -38,7 +41,7 @@ func CmdListDevice() *cobra.Command {
 
 	flags.AddPaginationFlagsToCmd(cmd, cmd.Use)
 	flags.AddQueryFlagsToCmd(cmd)
-
+	cmd.Flags().String(flags.FlagFrom, "", "For query address")
 	return cmd
 }
 
@@ -54,8 +57,11 @@ func CmdShowDevice() *cobra.Command {
 
 			argAddress := args[0]
 
+			from, _ := cmd.Flags().GetString(flags.FlagFrom)
+
 			params := &types.QueryGetDeviceRequest{
 				Address: argAddress,
+				Creator: from,
 			}
 
 			res, err := queryClient.Device(context.Background(), params)
@@ -68,6 +74,6 @@ func CmdShowDevice() *cobra.Command {
 	}
 
 	flags.AddQueryFlagsToCmd(cmd)
-
+	cmd.Flags().String(flags.FlagFrom, "", "For query address")
 	return cmd
 }

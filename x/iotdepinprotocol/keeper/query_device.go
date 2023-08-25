@@ -20,7 +20,7 @@ func (k Keeper) DeviceAll(goCtx context.Context, req *types.QueryAllDeviceReques
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	store := ctx.KVStore(k.storeKey)
-	deviceStore := prefix.NewStore(store, types.KeyPrefix(types.DeviceKeyPrefix))
+	deviceStore := prefix.NewStore(store, types.KeyPrefix(types.DeviceKeyPrefix+req.Creator))
 
 	pageRes, err := query.Paginate(deviceStore, req.Pagination, func(key []byte, value []byte) error {
 		var device types.Device
@@ -48,6 +48,7 @@ func (k Keeper) Device(goCtx context.Context, req *types.QueryGetDeviceRequest) 
 	val, found := k.GetDevice(
 		ctx,
 		req.Address,
+		req.Creator,
 	)
 	if !found {
 		return nil, status.Error(codes.NotFound, "not found")
