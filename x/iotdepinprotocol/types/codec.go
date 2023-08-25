@@ -14,6 +14,7 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgCreateDevice{}, "iotdepinprotocol/CreateDevice", nil)
 	cdc.RegisterConcrete(&MsgUpdateDevice{}, "iotdepinprotocol/UpdateDevice", nil)
 	cdc.RegisterConcrete(&MsgDeleteDevice{}, "iotdepinprotocol/DeleteDevice", nil)
+	cdc.RegisterConcrete(&MsgOracleOperator{}, "iotdepinprotocol/OracleOperator", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -27,6 +28,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgCreateDevice{},
 		&MsgUpdateDevice{},
 		&MsgDeleteDevice{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgOracleOperator{},
 	)
 	// this line is used by starport scaffolding # 3
 

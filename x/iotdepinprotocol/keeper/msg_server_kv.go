@@ -10,7 +10,6 @@ import (
 
 func (k msgServer) CreateKv(goCtx context.Context, msg *types.MsgCreateKv) (*types.MsgCreateKvResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-
 	// Check if the value already exists
 	_, isFound := k.GetKv(
 		ctx,

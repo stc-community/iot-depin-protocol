@@ -71798,6 +71798,8 @@ definitions:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteKvResponse:
     type: object
+  stccommunity.iotdepinprotocol.iotdepinprotocol.MsgOracleOperatorResponse:
+    type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateDeviceResponse:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateKvResponse:
