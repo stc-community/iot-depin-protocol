@@ -728,7 +728,7 @@ export const MsgCreateEventPb = {
       writer.uint32(42).string(message.payload);
     }
     if (message.pubTime !== 0) {
-      writer.uint32(48).uint64(message.pubTime);
+      writer.uint32(48).int64(message.pubTime);
     }
     return writer;
   },
@@ -756,7 +756,7 @@ export const MsgCreateEventPb = {
           message.payload = reader.string();
           break;
         case 6:
-          message.pubTime = longToNumber(reader.uint64() as Long);
+          message.pubTime = longToNumber(reader.int64() as Long);
           break;
         default:
           reader.skipType(tag & 7);
@@ -861,7 +861,7 @@ export const MsgUpdateEventPb = {
       writer.uint32(42).string(message.payload);
     }
     if (message.pubTime !== 0) {
-      writer.uint32(48).uint64(message.pubTime);
+      writer.uint32(48).int64(message.pubTime);
     }
     return writer;
   },
@@ -889,7 +889,7 @@ export const MsgUpdateEventPb = {
           message.payload = reader.string();
           break;
         case 6:
-          message.pubTime = longToNumber(reader.uint64() as Long);
+          message.pubTime = longToNumber(reader.int64() as Long);
           break;
         default:
           reader.skipType(tag & 7);
