@@ -2,7 +2,6 @@ package cli
 
 import (
 	"context"
-	"log"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -30,7 +29,6 @@ func CmdListKv() *cobra.Command {
 				Pagination: pageReq,
 				Creator:    from,
 			}
-			log.Println("CmdListKv creator:", from)
 			res, err := queryClient.KvAll(context.Background(), params)
 			if err != nil {
 				return err

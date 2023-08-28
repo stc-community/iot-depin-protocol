@@ -4,12 +4,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
-	"log"
 )
 
 // SetKv set a specific kv in the store from its index
 func (k Keeper) SetKv(ctx sdk.Context, kv types.Kv) {
-	log.Println("SetKv creator:", kv.Creator)
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+kv.Creator))
 	b := k.cdc.MustMarshal(&kv)
 	store.Set(types.KvKey(
@@ -56,8 +54,6 @@ func (k Keeper) GetAllKv(
 	creator string,
 
 ) (list []types.Kv) {
-	log.Println("GetAllKv-Creator:", creator)
-
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 
