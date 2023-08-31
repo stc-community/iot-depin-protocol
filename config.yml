@@ -8,8 +8,12 @@ accounts:
   coins:
   - 10000token
   - 100000000stake
+- name: faucet
+  coins:
+  - 1000000000000000token
+  - 1000000000000000stake
 faucet:
-  name: bob
+  name: faucet
   coins:
   - 5token
   - 100000stake
