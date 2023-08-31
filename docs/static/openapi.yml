@@ -44050,22 +44050,18 @@ paths:
           schema:
             type: object
             properties:
-              eventPb:
+              EventPb:
                 type: array
                 items:
                   type: object
                   properties:
-                    pubId:
+                    id:
                       type: string
+                      format: uint64
                     topic:
-                      type: string
-                    pubType:
                       type: string
                     payload:
                       type: string
-                    pubTime:
-                      type: string
-                      format: int64
                     creator:
                       type: string
               pagination:
@@ -44171,17 +44167,13 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: pubId
-          in: query
-          required: false
-          type: string
         - name: topic
           in: query
           required: false
           type: string
       tags:
         - Query
-  /stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{pubId}:
+  /stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{id}:
     get:
       summary: Queries a list of EventPb items.
       operationId: StccommunityIotdepinprotocolIotdepinprotocolEventPb
@@ -44191,20 +44183,16 @@ paths:
           schema:
             type: object
             properties:
-              eventPb:
+              EventPb:
                 type: object
                 properties:
-                  pubId:
+                  id:
                     type: string
+                    format: uint64
                   topic:
-                    type: string
-                  pubType:
                     type: string
                   payload:
                     type: string
-                  pubTime:
-                    type: string
-                    format: int64
                   creator:
                     type: string
         default:
@@ -44226,10 +44214,11 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: pubId
+        - name: id
           in: path
           required: true
           type: string
+          format: uint64
       tags:
         - Query
   /stc-community/iot-depin-protocol/iotdepinprotocol/kv:
@@ -71991,17 +71980,13 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.EventPb:
     type: object
     properties:
-      pubId:
+      id:
         type: string
+        format: uint64
       topic:
-        type: string
-      pubType:
         type: string
       payload:
         type: string
-      pubTime:
-        type: string
-        format: int64
       creator:
         type: string
   stccommunity.iotdepinprotocol.iotdepinprotocol.Kv:
@@ -72017,6 +72002,10 @@ definitions:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateEventPbResponse:
     type: object
+    properties:
+      id:
+        type: string
+        format: uint64
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKvResponse:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDeviceResponse:
@@ -72077,22 +72066,18 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllEventPbResponse:
     type: object
     properties:
-      eventPb:
+      EventPb:
         type: array
         items:
           type: object
           properties:
-            pubId:
+            id:
               type: string
+              format: uint64
             topic:
-              type: string
-            pubType:
               type: string
             payload:
               type: string
-            pubTime:
-              type: string
-              format: int64
             creator:
               type: string
       pagination:
@@ -72176,20 +72161,16 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetEventPbResponse:
     type: object
     properties:
-      eventPb:
+      EventPb:
         type: object
         properties:
-          pubId:
+          id:
             type: string
+            format: uint64
           topic:
-            type: string
-          pubType:
             type: string
           payload:
             type: string
-          pubTime:
-            type: string
-            format: int64
           creator:
             type: string
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvResponse:

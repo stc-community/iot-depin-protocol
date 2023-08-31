@@ -41,15 +41,18 @@ func (gs GenesisState) Validate() error {
 		}
 		deviceIndexMap[index] = struct{}{}
 	}
-	// Check for duplicated index in eventPb
-	eventPbIndexMap := make(map[string]struct{})
 
+	// Check for duplicated ID in eventPb
+	eventPbIdMap := make(map[uint64]bool)
+	eventPbCount := gs.GetEventPbCount()
 	for _, elem := range gs.EventPbList {
-		index := string(EventPbKey(elem.PubId))
-		if _, ok := eventPbIndexMap[index]; ok {
-			return fmt.Errorf("duplicated index for eventPb")
+		if _, ok := eventPbIdMap[elem.Id]; ok {
+			return fmt.Errorf("duplicated id for eventPb")
 		}
-		eventPbIndexMap[index] = struct{}{}
+		if elem.Id >= eventPbCount {
+			return fmt.Errorf("eventPb id should be lower or equal than the last id")
+		}
+		eventPbIdMap[elem.Id] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

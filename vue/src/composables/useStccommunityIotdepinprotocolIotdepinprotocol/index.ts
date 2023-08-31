@@ -60,11 +60,11 @@ export default function useStccommunityIotdepinprotocolIotdepinprotocol() {
     );
   }
   
-  const QueryEventPb = (pubId: string,  options: any) => {
-    const key = { type: 'QueryEventPb',  pubId };    
+  const QueryEventPb = (id: string,  options: any) => {
+    const key = { type: 'QueryEventPb',  id };    
     return useQuery([key], () => {
-      const { pubId } = key
-      return  client.StccommunityIotdepinprotocolIotdepinprotocol.query.queryEventPb(pubId).then( res => res.data );
+      const { id } = key
+      return  client.StccommunityIotdepinprotocolIotdepinprotocol.query.queryEventPb(id).then( res => res.data );
     }, options);
   }
   

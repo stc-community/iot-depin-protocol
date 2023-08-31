@@ -4,11 +4,8 @@ package stccommunity.iotdepinprotocol.iotdepinprotocol;
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 message EventPb {
-  string pubId = 1; 
+  uint64 id = 1;
   string topic = 2; 
-  string pubType = 3; 
-  string payload = 4; 
-  int64  pubTime = 5;
-  string creator = 6;
+  string payload = 3; 
+  string creator = 4;
 }
-

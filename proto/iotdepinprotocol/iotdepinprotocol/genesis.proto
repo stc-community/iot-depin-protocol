@@ -12,9 +12,10 @@ option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinproto
 
 // GenesisState defines the iotdepinprotocol module's genesis state.
 message GenesisState {
-           Params  params      = 1 [(gogoproto.nullable) = false];
-  repeated Kv      kvList      = 2 [(gogoproto.nullable) = false];
-  repeated Device  deviceList  = 3 [(gogoproto.nullable) = false];
-  repeated EventPb eventPbList = 4 [(gogoproto.nullable) = false];
+           Params  params       = 1 [(gogoproto.nullable) = false];
+  repeated Kv      kvList       = 2 [(gogoproto.nullable) = false];
+  repeated Device  deviceList   = 3 [(gogoproto.nullable) = false];
+  repeated EventPb eventPbList  = 4 [(gogoproto.nullable) = false];
+           uint64  eventPbCount = 5;
 }
 

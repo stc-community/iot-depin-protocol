@@ -5,6 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -19,20 +20,14 @@ func (k Keeper) EventPbAll(goCtx context.Context, req *types.QueryAllEventPbRequ
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	store := ctx.KVStore(k.storeKey)
-	eventPbStore := prefix.NewStore(store, types.KeyPrefix(types.EventPbKeyPrefix))
+	eventPbStore := prefix.NewStore(store, types.KeyPrefix(types.EventPbKey))
 
-	// 使用自定义的 Paginate 查询
 	pageRes, err := types.Paginate(eventPbStore, req.Pagination, func(key []byte, value []byte) (bool, error) {
 		var eventPb types.EventPb
 		if err := k.cdc.Unmarshal(value, &eventPb); err != nil {
 			return false, err
 		}
 		// Filter
-		if req.PubId != "" {
-			if eventPb.PubId != req.PubId {
-				return false, nil
-			}
-		}
 		if req.Topic != "" {
 			if eventPb.Topic != req.Topic {
 				return false, nil
@@ -53,15 +48,12 @@ func (k Keeper) EventPb(goCtx context.Context, req *types.QueryGetEventPbRequest
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
-	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	val, found := k.GetEventPb(
-		ctx,
-		req.PubId,
-	)
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	eventPb, found := k.GetEventPb(ctx, req.Id)
 	if !found {
-		return nil, status.Error(codes.NotFound, "not found")
+		return nil, sdkerrors.ErrKeyNotFound
 	}
 
-	return &types.QueryGetEventPbResponse{EventPb: val}, nil
+	return &types.QueryGetEventPbResponse{EventPb: eventPb}, nil
 }

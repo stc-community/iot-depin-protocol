@@ -13,22 +13,11 @@ const (
 
 var _ sdk.Msg = &MsgCreateEventPb{}
 
-func NewMsgCreateEventPb(
-	creator string,
-	pubId string,
-	topic string,
-	pubType string,
-	payload string,
-	pubTime int64,
-
-) *MsgCreateEventPb {
+func NewMsgCreateEventPb(creator string, topic string, payload string) *MsgCreateEventPb {
 	return &MsgCreateEventPb{
 		Creator: creator,
-		PubId:   pubId,
 		Topic:   topic,
-		PubType: pubType,
 		Payload: payload,
-		PubTime: pubTime,
 	}
 }
 
@@ -63,22 +52,12 @@ func (msg *MsgCreateEventPb) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateEventPb{}
 
-func NewMsgUpdateEventPb(
-	creator string,
-	pubId string,
-	topic string,
-	pubType string,
-	payload string,
-	pubTime int64,
-
-) *MsgUpdateEventPb {
+func NewMsgUpdateEventPb(creator string, id uint64, topic string, payload string) *MsgUpdateEventPb {
 	return &MsgUpdateEventPb{
+		Id:      id,
 		Creator: creator,
-		PubId:   pubId,
 		Topic:   topic,
-		PubType: pubType,
 		Payload: payload,
-		PubTime: pubTime,
 	}
 }
 
@@ -113,14 +92,10 @@ func (msg *MsgUpdateEventPb) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgDeleteEventPb{}
 
-func NewMsgDeleteEventPb(
-	creator string,
-	pubId string,
-
-) *MsgDeleteEventPb {
+func NewMsgDeleteEventPb(creator string, id uint64) *MsgDeleteEventPb {
 	return &MsgDeleteEventPb{
+		Id:      id,
 		Creator: creator,
-		PubId:   pubId,
 	}
 }
 func (msg *MsgDeleteEventPb) Route() string {

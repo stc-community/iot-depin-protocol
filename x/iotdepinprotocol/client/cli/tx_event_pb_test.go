@@ -2,7 +2,6 @@ package cli_test
 
 import (
 	"fmt"
-	"strconv"
 	"testing"
 
 	sdkmath "cosmossdk.io/math"
@@ -16,26 +15,19 @@ import (
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/client/cli"
 )
 
-// Prevent strconv unused error
-var _ = strconv.IntSize
-
 func TestCreateEventPb(t *testing.T) {
 	net := network.New(t)
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz", "xyz", "xyz", "111"}
+	fields := []string{"xyz", "xyz"}
 	for _, tc := range []struct {
-		desc    string
-		idPubId string
-
+		desc string
 		args []string
 		err  error
 		code uint32
 	}{
 		{
-			idPubId: strconv.Itoa(0),
-
 			desc: "valid",
 			args: []string{
 				fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
@@ -46,9 +38,7 @@ func TestCreateEventPb(t *testing.T) {
 		},
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
-			args := []string{
-				tc.idPubId,
-			}
+			args := []string{}
 			args = append(args, fields...)
 			args = append(args, tc.args...)
 			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdCreateEventPb(), args)
@@ -66,50 +56,44 @@ func TestCreateEventPb(t *testing.T) {
 
 func TestUpdateEventPb(t *testing.T) {
 	net := network.New(t)
+
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz", "xyz", "xyz", "111"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 		fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
 		fmt.Sprintf("--%s=%s", flags.FlagFees, sdk.NewCoins(sdk.NewCoin(net.Config.BondDenom, sdkmath.NewInt(10))).String()),
 	}
-	args := []string{
-		"0",
-	}
+	args := []string{}
 	args = append(args, fields...)
 	args = append(args, common...)
 	_, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdCreateEventPb(), args)
 	require.NoError(t, err)
 
 	for _, tc := range []struct {
-		desc    string
-		idPubId string
-
+		desc string
+		id   string
 		args []string
 		code uint32
 		err  error
 	}{
 		{
-			desc:    "valid",
-			idPubId: strconv.Itoa(0),
-
+			desc: "valid",
+			id:   "0",
 			args: common,
 		},
 		{
-			desc:    "key not found",
-			idPubId: strconv.Itoa(100000),
-
+			desc: "key not found",
+			id:   "1",
 			args: common,
 			code: sdkerrors.ErrKeyNotFound.ABCICode(),
 		},
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
-			args := []string{
-				tc.idPubId,
-			}
+			args := []string{tc.id}
 			args = append(args, fields...)
 			args = append(args, tc.args...)
 			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdUpdateEventPb(), args)
@@ -131,49 +115,40 @@ func TestDeleteEventPb(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz", "xyz", "xyz", "111"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 		fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
 		fmt.Sprintf("--%s=%s", flags.FlagFees, sdk.NewCoins(sdk.NewCoin(net.Config.BondDenom, sdkmath.NewInt(10))).String()),
 	}
-	args := []string{
-		"0",
-	}
+	args := []string{}
 	args = append(args, fields...)
 	args = append(args, common...)
 	_, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdCreateEventPb(), args)
 	require.NoError(t, err)
 
 	for _, tc := range []struct {
-		desc    string
-		idPubId string
-
+		desc string
+		id   string
 		args []string
 		code uint32
 		err  error
 	}{
 		{
-			desc:    "valid",
-			idPubId: strconv.Itoa(0),
-
+			desc: "valid",
+			id:   "0",
 			args: common,
 		},
 		{
-			desc:    "key not found",
-			idPubId: strconv.Itoa(100000),
-
+			desc: "key not found",
+			id:   "1",
 			args: common,
 			code: sdkerrors.ErrKeyNotFound.ABCICode(),
 		},
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
-			args := []string{
-				tc.idPubId,
-			}
-			args = append(args, tc.args...)
-			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdDeleteEventPb(), args)
+			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdDeleteEventPb(), append([]string{tc.id}, tc.args...))
 			if tc.err != nil {
 				require.ErrorIs(t, err, tc.err)
 			} else {

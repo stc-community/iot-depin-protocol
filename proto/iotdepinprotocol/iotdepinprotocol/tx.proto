@@ -68,29 +68,26 @@ message MsgDeleteDeviceResponse {}
 
 message MsgCreateEventPb {
   string creator = 1;
-  string pubId   = 2;
-  string topic   = 3;
-  string pubType = 4;
-  string payload = 5;
-  int64  pubTime = 6;
+  string topic   = 2;
+  string payload = 3;
 }
 
-message MsgCreateEventPbResponse {}
+message MsgCreateEventPbResponse {
+  uint64 id = 1;
+}
 
 message MsgUpdateEventPb {
   string creator = 1;
-  string pubId   = 2;
+  uint64 id      = 2;
   string topic   = 3;
-  string pubType = 4;
-  string payload = 5;
-  int64  pubTime = 6;
+  string payload = 4;
 }
 
 message MsgUpdateEventPbResponse {}
 
 message MsgDeleteEventPb {
   string creator = 1;
-  string pubId   = 2;
+  uint64 id      = 2;
 }
 
 message MsgDeleteEventPbResponse {}

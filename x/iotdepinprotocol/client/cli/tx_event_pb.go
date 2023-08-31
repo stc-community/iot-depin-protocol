@@ -1,45 +1,30 @@
 package cli
 
 import (
+	"strconv"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 )
 
 func CmdCreateEventPb() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-event-pb [pub-id] [topic] [pub-type] [payload] [pub-time]",
+		Use:   "create-event-pb [topic] [payload]",
 		Short: "Create a new EventPb",
-		Args:  cobra.ExactArgs(5),
+		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			// Get indexes
-			indexPubId := args[0]
-
-			// Get value arguments
-			argTopic := args[1]
-			argPubType := args[2]
-			argPayload := args[3]
-			argPubTime, err := cast.ToInt64E(args[4])
-			if err != nil {
-				return err
-			}
+			argTopic := args[0]
+			argPayload := args[1]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
 			}
 
-			msg := types.NewMsgCreateEventPb(
-				clientCtx.GetFromAddress().String(),
-				indexPubId,
-				argTopic,
-				argPubType,
-				argPayload,
-				argPubTime,
-			)
+			msg := types.NewMsgCreateEventPb(clientCtx.GetFromAddress().String(), argTopic, argPayload)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}
@@ -54,35 +39,25 @@ func CmdCreateEventPb() *cobra.Command {
 
 func CmdUpdateEventPb() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-event-pb [pub-id] [topic] [pub-type] [payload] [pub-time]",
+		Use:   "update-event-pb [id] [topic] [payload]",
 		Short: "Update a EventPb",
-		Args:  cobra.ExactArgs(5),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			// Get indexes
-			indexPubId := args[0]
-
-			// Get value arguments
-			argTopic := args[1]
-			argPubType := args[2]
-			argPayload := args[3]
-			argPubTime, err := cast.ToInt64E(args[4])
+			id, err := strconv.ParseUint(args[0], 10, 64)
 			if err != nil {
 				return err
 			}
+
+			argTopic := args[1]
+
+			argPayload := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
 			}
 
-			msg := types.NewMsgUpdateEventPb(
-				clientCtx.GetFromAddress().String(),
-				indexPubId,
-				argTopic,
-				argPubType,
-				argPayload,
-				argPubTime,
-			)
+			msg := types.NewMsgUpdateEventPb(clientCtx.GetFromAddress().String(), id, argTopic, argPayload)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}
@@ -97,21 +72,21 @@ func CmdUpdateEventPb() *cobra.Command {
 
 func CmdDeleteEventPb() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "delete-event-pb [pub-id]",
-		Short: "Delete a EventPb",
+		Use:   "delete-event-pb [id]",
+		Short: "Delete a EventPb by id",
 		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			indexPubId := args[0]
+		RunE: func(cmd *cobra.Command, args []string) error {
+			id, err := strconv.ParseUint(args[0], 10, 64)
+			if err != nil {
+				return err
+			}
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
 			}
 
-			msg := types.NewMsgDeleteEventPb(
-				clientCtx.GetFromAddress().String(),
-				indexPubId,
-			)
+			msg := types.NewMsgDeleteEventPb(clientCtx.GetFromAddress().String(), id)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

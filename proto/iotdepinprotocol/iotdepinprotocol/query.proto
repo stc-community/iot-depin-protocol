@@ -43,7 +43,7 @@ service Query {
   
   // Queries a list of EventPb items.
   rpc EventPb    (QueryGetEventPbRequest) returns (QueryGetEventPbResponse) {
-    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{pubId}";
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{id}";
   
   }
   rpc EventPbAll (QueryAllEventPbRequest) returns (QueryAllEventPbResponse) {
@@ -100,21 +100,20 @@ message QueryAllDeviceResponse {
 }
 
 message QueryGetEventPbRequest {
-  string pubId = 1;
+  uint64 id = 1;
 }
 
 message QueryGetEventPbResponse {
-  EventPb eventPb = 1 [(gogoproto.nullable) = false];
+  EventPb EventPb = 1 [(gogoproto.nullable) = false];
 }
 
 message QueryAllEventPbRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string pubId = 2;
-  string topic = 3;
+  string topic = 2;
 }
 
 message QueryAllEventPbResponse {
-  repeated EventPb                                eventPb    = 1 [(gogoproto.nullable) = false];
+  repeated EventPb                                EventPb    = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

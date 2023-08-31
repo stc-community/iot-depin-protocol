@@ -23,12 +23,10 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type EventPb struct {
-	PubId   string `protobuf:"bytes,1,opt,name=pubId,proto3" json:"pubId,omitempty"`
+	Id      uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Topic   string `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
-	PubType string `protobuf:"bytes,3,opt,name=pubType,proto3" json:"pubType,omitempty"`
-	Payload string `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty"`
-	PubTime int64  `protobuf:"varint,5,opt,name=pubTime,proto3" json:"pubTime,omitempty"`
-	Creator string `protobuf:"bytes,6,opt,name=creator,proto3" json:"creator,omitempty"`
+	Payload string `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	Creator string `protobuf:"bytes,4,opt,name=creator,proto3" json:"creator,omitempty"`
 }
 
 func (m *EventPb) Reset()         { *m = EventPb{} }
@@ -64,11 +62,11 @@ func (m *EventPb) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_EventPb proto.InternalMessageInfo
 
-func (m *EventPb) GetPubId() string {
+func (m *EventPb) GetId() uint64 {
 	if m != nil {
-		return m.PubId
+		return m.Id
 	}
-	return ""
+	return 0
 }
 
 func (m *EventPb) GetTopic() string {
@@ -78,25 +76,11 @@ func (m *EventPb) GetTopic() string {
 	return ""
 }
 
-func (m *EventPb) GetPubType() string {
-	if m != nil {
-		return m.PubType
-	}
-	return ""
-}
-
 func (m *EventPb) GetPayload() string {
 	if m != nil {
 		return m.Payload
 	}
 	return ""
-}
-
-func (m *EventPb) GetPubTime() int64 {
-	if m != nil {
-		return m.PubTime
-	}
-	return 0
 }
 
 func (m *EventPb) GetCreator() string {
@@ -115,23 +99,21 @@ func init() {
 }
 
 var fileDescriptor_4e5711a30d9e13a8 = []byte{
-	// 243 bytes of a gzipped FileDescriptorProto
+	// 218 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x32, 0xc8, 0xcc, 0x2f, 0x49,
 	0x49, 0x2d, 0xc8, 0xcc, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x4f, 0xce, 0xcf, 0xd1, 0xc7, 0x10, 0x48,
 	0x2d, 0x4b, 0xcd, 0x2b, 0x89, 0x2f, 0x48, 0xd2, 0x03, 0x8b, 0x08, 0xe9, 0x15, 0x97, 0x24, 0x27,
-	0xe7, 0xe7, 0xe6, 0x96, 0xe6, 0x65, 0x96, 0x54, 0xea, 0xa1, 0xab, 0xc6, 0x10, 0x50, 0x9a, 0xcb,
-	0xc8, 0xc5, 0xee, 0x0a, 0x32, 0x22, 0x20, 0x49, 0x48, 0x84, 0x8b, 0xb5, 0xa0, 0x34, 0xc9, 0x33,
-	0x45, 0x82, 0x51, 0x81, 0x51, 0x83, 0x33, 0x08, 0xc2, 0x01, 0x89, 0x96, 0xe4, 0x17, 0x64, 0x26,
-	0x4b, 0x30, 0x41, 0x44, 0xc1, 0x1c, 0x21, 0x09, 0x2e, 0xf6, 0x82, 0xd2, 0xa4, 0x90, 0xca, 0x82,
-	0x54, 0x09, 0x66, 0xb0, 0x38, 0x8c, 0x0b, 0x96, 0x49, 0xac, 0xcc, 0xc9, 0x4f, 0x4c, 0x91, 0x60,
-	0x81, 0xca, 0x40, 0xb8, 0x30, 0x3d, 0x99, 0xb9, 0xa9, 0x12, 0xac, 0x0a, 0x8c, 0x1a, 0xcc, 0x41,
-	0x30, 0x2e, 0x48, 0x26, 0xb9, 0x28, 0x35, 0xb1, 0x24, 0xbf, 0x48, 0x82, 0x0d, 0xa2, 0x07, 0xca,
-	0x75, 0x8a, 0x3b, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27,
-	0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39, 0x86, 0x28, 0x97, 0xf4, 0xcc,
-	0x92, 0x8c, 0xd2, 0x24, 0xbd, 0xe4, 0xfc, 0x5c, 0xfd, 0xe2, 0x92, 0x64, 0x5d, 0xb8, 0xaf, 0x41,
-	0x61, 0xa4, 0x0b, 0xf6, 0xa5, 0x2e, 0x3c, 0x94, 0x2a, 0x30, 0x03, 0xae, 0xa4, 0xb2, 0x20, 0xb5,
-	0x38, 0x89, 0x0d, 0xcc, 0x37, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf9, 0x5a, 0x36, 0x7c, 0x6a,
-	0x01, 0x00, 0x00,
+	0xe7, 0xe7, 0xe6, 0x96, 0xe6, 0x65, 0x96, 0x54, 0xea, 0xa1, 0xab, 0xc6, 0x10, 0x50, 0x4a, 0xe6,
+	0x62, 0x77, 0x05, 0x99, 0x10, 0x90, 0x24, 0xc4, 0xc7, 0xc5, 0x94, 0x99, 0x22, 0xc1, 0xa8, 0xc0,
+	0xa8, 0xc1, 0x12, 0xc4, 0x94, 0x99, 0x22, 0x24, 0xc2, 0xc5, 0x5a, 0x92, 0x5f, 0x90, 0x99, 0x2c,
+	0xc1, 0xa4, 0xc0, 0xa8, 0xc1, 0x19, 0x04, 0xe1, 0x08, 0x49, 0x70, 0xb1, 0x17, 0x24, 0x56, 0xe6,
+	0xe4, 0x27, 0xa6, 0x48, 0x30, 0x83, 0xc5, 0x61, 0x5c, 0x90, 0x4c, 0x72, 0x51, 0x6a, 0x62, 0x49,
+	0x7e, 0x91, 0x04, 0x0b, 0x44, 0x06, 0xca, 0x75, 0x8a, 0x3b, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23,
+	0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6,
+	0x63, 0x39, 0x86, 0x28, 0x97, 0xf4, 0xcc, 0x92, 0x8c, 0xd2, 0x24, 0xbd, 0xe4, 0xfc, 0x5c, 0xfd,
+	0xe2, 0x92, 0x64, 0x5d, 0xb8, 0xd3, 0x41, 0x1e, 0xd5, 0x05, 0x3b, 0x55, 0x17, 0xee, 0xd5, 0x0a,
+	0x4c, 0xdf, 0x97, 0x54, 0x16, 0xa4, 0x16, 0x27, 0xb1, 0x81, 0xf9, 0xc6, 0x80, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xf0, 0x81, 0x71, 0xea, 0x2f, 0x01, 0x00, 0x00,
 }
 
 func (m *EventPb) Marshal() (dAtA []byte, err error) {
@@ -159,24 +141,12 @@ func (m *EventPb) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Creator)
 		i = encodeVarintEventPb(dAtA, i, uint64(len(m.Creator)))
 		i--
-		dAtA[i] = 0x32
-	}
-	if m.PubTime != 0 {
-		i = encodeVarintEventPb(dAtA, i, uint64(m.PubTime))
-		i--
-		dAtA[i] = 0x28
+		dAtA[i] = 0x22
 	}
 	if len(m.Payload) > 0 {
 		i -= len(m.Payload)
 		copy(dAtA[i:], m.Payload)
 		i = encodeVarintEventPb(dAtA, i, uint64(len(m.Payload)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.PubType) > 0 {
-		i -= len(m.PubType)
-		copy(dAtA[i:], m.PubType)
-		i = encodeVarintEventPb(dAtA, i, uint64(len(m.PubType)))
 		i--
 		dAtA[i] = 0x1a
 	}
@@ -187,12 +157,10 @@ func (m *EventPb) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.PubId) > 0 {
-		i -= len(m.PubId)
-		copy(dAtA[i:], m.PubId)
-		i = encodeVarintEventPb(dAtA, i, uint64(len(m.PubId)))
+	if m.Id != 0 {
+		i = encodeVarintEventPb(dAtA, i, uint64(m.Id))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -214,24 +182,16 @@ func (m *EventPb) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.PubId)
-	if l > 0 {
-		n += 1 + l + sovEventPb(uint64(l))
+	if m.Id != 0 {
+		n += 1 + sovEventPb(uint64(m.Id))
 	}
 	l = len(m.Topic)
-	if l > 0 {
-		n += 1 + l + sovEventPb(uint64(l))
-	}
-	l = len(m.PubType)
 	if l > 0 {
 		n += 1 + l + sovEventPb(uint64(l))
 	}
 	l = len(m.Payload)
 	if l > 0 {
 		n += 1 + l + sovEventPb(uint64(l))
-	}
-	if m.PubTime != 0 {
-		n += 1 + sovEventPb(uint64(m.PubTime))
 	}
 	l = len(m.Creator)
 	if l > 0 {
@@ -276,10 +236,10 @@ func (m *EventPb) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PubId", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
-			var stringLen uint64
+			m.Id = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowEventPb
@@ -289,24 +249,11 @@ func (m *EventPb) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.Id |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthEventPb
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthEventPb
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PubId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Topic", wireType)
@@ -341,38 +288,6 @@ func (m *EventPb) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PubType", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowEventPb
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthEventPb
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthEventPb
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PubType = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Payload", wireType)
 			}
 			var stringLen uint64
@@ -403,26 +318,7 @@ func (m *EventPb) Unmarshal(dAtA []byte) error {
 			}
 			m.Payload = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PubTime", wireType)
-			}
-			m.PubTime = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowEventPb
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.PubTime |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 6:
+		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 			}

@@ -93,14 +93,15 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		},
 		EventPbList: []types.EventPb{
 			{
+				Id:      0,
 				Creator: sample.AccAddress(),
-				PubId:   "0",
 			},
 			{
+				Id:      1,
 				Creator: sample.AccAddress(),
-				PubId:   "1",
 			},
 		},
+		EventPbCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&iotdepinprotocolGenesis)

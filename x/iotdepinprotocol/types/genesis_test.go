@@ -40,12 +40,13 @@ func TestGenesisState_Validate(t *testing.T) {
 				},
 				EventPbList: []types.EventPb{
 					{
-						PubId: "0",
+						Id: 0,
 					},
 					{
-						PubId: "1",
+						Id: 1,
 					},
 				},
+				EventPbCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -83,12 +84,24 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: &types.GenesisState{
 				EventPbList: []types.EventPb{
 					{
-						PubId: "0",
+						Id: 0,
 					},
 					{
-						PubId: "0",
+						Id: 0,
 					},
 				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid eventPb count",
+			genState: &types.GenesisState{
+				EventPbList: []types.EventPb{
+					{
+						Id: 1,
+					},
+				},
+				EventPbCount: 0,
 			},
 			valid: false,
 		},

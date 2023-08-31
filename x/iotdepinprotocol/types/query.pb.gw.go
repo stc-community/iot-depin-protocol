@@ -278,15 +278,15 @@ func request_Query_EventPb_0(ctx context.Context, marshaler runtime.Marshaler, c
 		_   = err
 	)
 
-	val, ok = pathParams["pubId"]
+	val, ok = pathParams["id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "pubId")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
 
-	protoReq.PubId, err = runtime.String(val)
+	protoReq.Id, err = runtime.Uint64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "pubId", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := client.EventPb(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -305,15 +305,15 @@ func local_request_Query_EventPb_0(ctx context.Context, marshaler runtime.Marsha
 		_   = err
 	)
 
-	val, ok = pathParams["pubId"]
+	val, ok = pathParams["id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "pubId")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
 
-	protoReq.PubId, err = runtime.String(val)
+	protoReq.Id, err = runtime.Uint64(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "pubId", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
 	msg, err := server.EventPb(ctx, &protoReq)
@@ -719,7 +719,7 @@ var (
 
 	pattern_Query_DeviceAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"stc-community", "iot-depin-protocol", "iotdepinprotocol", "device"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_EventPb_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"stc-community", "iot-depin-protocol", "iotdepinprotocol", "event_pb", "pubId"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_EventPb_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"stc-community", "iot-depin-protocol", "iotdepinprotocol", "event_pb", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_EventPbAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"stc-community", "iot-depin-protocol", "iotdepinprotocol", "event_pb"}, "", runtime.AssumeColonVerbOpt(true)))
 )
