@@ -20,10 +20,6 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	for _, elem := range genState.EventPbList {
 		k.SetEventPb(ctx, elem)
 	}
-	// Set all the eventPb
-	for _, elem := range genState.EventPbList {
-		k.SetEventPb(ctx, elem)
-	}
 
 	// Set eventPb count
 	k.SetEventPbCount(ctx, genState.EventPbCount)
