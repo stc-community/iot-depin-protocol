@@ -18,7 +18,7 @@ var _ = strconv.IntSize
 func createNDevice(keeper *keeper.Keeper, ctx sdk.Context, n int) []types.Device {
 	items := make([]types.Device, n)
 	for i := range items {
-		items[i].Address = strconv.Itoa(i)
+		items[i].DeviceName = strconv.Itoa(i)
 
 		keeper.SetDevice(ctx, items[i])
 	}
@@ -30,8 +30,7 @@ func TestDeviceGet(t *testing.T) {
 	items := createNDevice(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetDevice(ctx,
-			item.Address,
-			items[0].Creator,
+			item.DeviceName,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -45,12 +44,10 @@ func TestDeviceRemove(t *testing.T) {
 	items := createNDevice(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveDevice(ctx,
-			item.Address,
-			items[0].Creator,
+			item.DeviceName,
 		)
 		_, found := keeper.GetDevice(ctx,
-			item.Address,
-			items[0].Creator,
+			item.DeviceName,
 		)
 		require.False(t, found)
 	}
@@ -61,6 +58,6 @@ func TestDeviceGetAll(t *testing.T) {
 	items := createNDevice(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),
-		nullify.Fill(keeper.GetAllDevice(ctx, items[0].Creator)),
+		nullify.Fill(keeper.GetAllDevice(ctx)),
 	)
 }

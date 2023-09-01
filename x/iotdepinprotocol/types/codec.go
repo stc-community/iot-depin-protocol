@@ -8,12 +8,12 @@ import (
 )
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
-	cdc.RegisterConcrete(&MsgCreateKv{}, "iotdepinprotocol/CreateKv", nil)
-	cdc.RegisterConcrete(&MsgUpdateKv{}, "iotdepinprotocol/UpdateKv", nil)
-	cdc.RegisterConcrete(&MsgDeleteKv{}, "iotdepinprotocol/DeleteKv", nil)
 	cdc.RegisterConcrete(&MsgCreateDevice{}, "iotdepinprotocol/CreateDevice", nil)
 	cdc.RegisterConcrete(&MsgUpdateDevice{}, "iotdepinprotocol/UpdateDevice", nil)
 	cdc.RegisterConcrete(&MsgDeleteDevice{}, "iotdepinprotocol/DeleteDevice", nil)
+	cdc.RegisterConcrete(&MsgCreateKv{}, "iotdepinprotocol/CreateKv", nil)
+	cdc.RegisterConcrete(&MsgUpdateKv{}, "iotdepinprotocol/UpdateKv", nil)
+	cdc.RegisterConcrete(&MsgDeleteKv{}, "iotdepinprotocol/DeleteKv", nil)
 	cdc.RegisterConcrete(&MsgCreateEventPb{}, "iotdepinprotocol/CreateEventPb", nil)
 	cdc.RegisterConcrete(&MsgUpdateEventPb{}, "iotdepinprotocol/UpdateEventPb", nil)
 	cdc.RegisterConcrete(&MsgDeleteEventPb{}, "iotdepinprotocol/DeleteEventPb", nil)
@@ -22,14 +22,14 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateKv{},
-		&MsgUpdateKv{},
-		&MsgDeleteKv{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateDevice{},
 		&MsgUpdateDevice{},
 		&MsgDeleteDevice{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateKv{},
+		&MsgUpdateKv{},
+		&MsgDeleteKv{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateEventPb{},

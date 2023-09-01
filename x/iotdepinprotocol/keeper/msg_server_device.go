@@ -14,17 +14,17 @@ func (k msgServer) CreateDevice(goCtx context.Context, msg *types.MsgCreateDevic
 	// Check if the value already exists
 	_, isFound := k.GetDevice(
 		ctx,
-		msg.Address,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
 	var device = types.Device{
-		Creator: msg.Creator,
-		Address: msg.Address,
-		Value:   msg.Value,
+		Creator:    msg.Creator,
+		DeviceName: msg.DeviceName,
+		Address:    msg.Address,
+		Value:      msg.Value,
 	}
 
 	k.SetDevice(
@@ -40,8 +40,7 @@ func (k msgServer) UpdateDevice(goCtx context.Context, msg *types.MsgUpdateDevic
 	// Check if the value exists
 	valFound, isFound := k.GetDevice(
 		ctx,
-		msg.Address,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -53,9 +52,10 @@ func (k msgServer) UpdateDevice(goCtx context.Context, msg *types.MsgUpdateDevic
 	}
 
 	var device = types.Device{
-		Creator: msg.Creator,
-		Address: msg.Address,
-		Value:   msg.Value,
+		Creator:    msg.Creator,
+		DeviceName: msg.DeviceName,
+		Address:    msg.Address,
+		Value:      msg.Value,
 	}
 
 	k.SetDevice(ctx, device)
@@ -69,8 +69,7 @@ func (k msgServer) DeleteDevice(goCtx context.Context, msg *types.MsgDeleteDevic
 	// Check if the value exists
 	valFound, isFound := k.GetDevice(
 		ctx,
-		msg.Address,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -83,8 +82,7 @@ func (k msgServer) DeleteDevice(goCtx context.Context, msg *types.MsgDeleteDevic
 
 	k.RemoveDevice(
 		ctx,
-		msg.Address,
-		msg.Creator,
+		msg.DeviceName,
 	)
 
 	return &types.MsgDeleteDeviceResponse{}, nil

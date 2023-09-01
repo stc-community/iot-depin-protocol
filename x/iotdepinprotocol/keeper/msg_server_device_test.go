@@ -23,13 +23,12 @@ func TestDeviceMsgServerCreate(t *testing.T) {
 	creator := "A"
 	for i := 0; i < 5; i++ {
 		expected := &types.MsgCreateDevice{Creator: creator,
-			Address: strconv.Itoa(i),
+			DeviceName: strconv.Itoa(i),
 		}
 		_, err := srv.CreateDevice(wctx, expected)
 		require.NoError(t, err)
 		rst, found := k.GetDevice(ctx,
-			expected.Address,
-			expected.Creator,
+			expected.DeviceName,
 		)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
@@ -47,20 +46,20 @@ func TestDeviceMsgServerUpdate(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgUpdateDevice{Creator: creator,
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgUpdateDevice{Creator: "B",
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgUpdateDevice{Creator: creator,
-				Address: strconv.Itoa(100000),
+				DeviceName: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -70,7 +69,7 @@ func TestDeviceMsgServerUpdate(t *testing.T) {
 			srv := keeper.NewMsgServerImpl(*k)
 			wctx := sdk.WrapSDKContext(ctx)
 			expected := &types.MsgCreateDevice{Creator: creator,
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			}
 			_, err := srv.CreateDevice(wctx, expected)
 			require.NoError(t, err)
@@ -81,8 +80,7 @@ func TestDeviceMsgServerUpdate(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				rst, found := k.GetDevice(ctx,
-					expected.Address,
-					expected.Creator,
+					expected.DeviceName,
 				)
 				require.True(t, found)
 				require.Equal(t, expected.Creator, rst.Creator)
@@ -102,20 +100,20 @@ func TestDeviceMsgServerDelete(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgDeleteDevice{Creator: creator,
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgDeleteDevice{Creator: "B",
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgDeleteDevice{Creator: creator,
-				Address: strconv.Itoa(100000),
+				DeviceName: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -126,7 +124,7 @@ func TestDeviceMsgServerDelete(t *testing.T) {
 			wctx := sdk.WrapSDKContext(ctx)
 
 			_, err := srv.CreateDevice(wctx, &types.MsgCreateDevice{Creator: creator,
-				Address: strconv.Itoa(0),
+				DeviceName: strconv.Itoa(0),
 			})
 			require.NoError(t, err)
 			_, err = srv.DeleteDevice(wctx, tc.request)
@@ -135,8 +133,7 @@ func TestDeviceMsgServerDelete(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				_, found := k.GetDevice(ctx,
-					tc.request.Address,
-					tc.request.Creator,
+					tc.request.DeviceName,
 				)
 				require.False(t, found)
 			}

@@ -113,216 +113,15 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
-type QueryGetKvRequest struct {
-	Index   string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
-	Creator string `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
-}
-
-func (m *QueryGetKvRequest) Reset()         { *m = QueryGetKvRequest{} }
-func (m *QueryGetKvRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetKvRequest) ProtoMessage()    {}
-func (*QueryGetKvRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{2}
-}
-func (m *QueryGetKvRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetKvRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetKvRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetKvRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetKvRequest.Merge(m, src)
-}
-func (m *QueryGetKvRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetKvRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetKvRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetKvRequest proto.InternalMessageInfo
-
-func (m *QueryGetKvRequest) GetIndex() string {
-	if m != nil {
-		return m.Index
-	}
-	return ""
-}
-
-func (m *QueryGetKvRequest) GetCreator() string {
-	if m != nil {
-		return m.Creator
-	}
-	return ""
-}
-
-type QueryGetKvResponse struct {
-	Kv Kv `protobuf:"bytes,1,opt,name=kv,proto3" json:"kv"`
-}
-
-func (m *QueryGetKvResponse) Reset()         { *m = QueryGetKvResponse{} }
-func (m *QueryGetKvResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetKvResponse) ProtoMessage()    {}
-func (*QueryGetKvResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{3}
-}
-func (m *QueryGetKvResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetKvResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetKvResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetKvResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetKvResponse.Merge(m, src)
-}
-func (m *QueryGetKvResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetKvResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetKvResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetKvResponse proto.InternalMessageInfo
-
-func (m *QueryGetKvResponse) GetKv() Kv {
-	if m != nil {
-		return m.Kv
-	}
-	return Kv{}
-}
-
-type QueryAllKvRequest struct {
-	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Creator    string             `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
-}
-
-func (m *QueryAllKvRequest) Reset()         { *m = QueryAllKvRequest{} }
-func (m *QueryAllKvRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllKvRequest) ProtoMessage()    {}
-func (*QueryAllKvRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{4}
-}
-func (m *QueryAllKvRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryAllKvRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryAllKvRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryAllKvRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllKvRequest.Merge(m, src)
-}
-func (m *QueryAllKvRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryAllKvRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllKvRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryAllKvRequest proto.InternalMessageInfo
-
-func (m *QueryAllKvRequest) GetPagination() *query.PageRequest {
-	if m != nil {
-		return m.Pagination
-	}
-	return nil
-}
-
-func (m *QueryAllKvRequest) GetCreator() string {
-	if m != nil {
-		return m.Creator
-	}
-	return ""
-}
-
-type QueryAllKvResponse struct {
-	Kv         []Kv                `protobuf:"bytes,1,rep,name=kv,proto3" json:"kv"`
-	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (m *QueryAllKvResponse) Reset()         { *m = QueryAllKvResponse{} }
-func (m *QueryAllKvResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllKvResponse) ProtoMessage()    {}
-func (*QueryAllKvResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{5}
-}
-func (m *QueryAllKvResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryAllKvResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryAllKvResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryAllKvResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllKvResponse.Merge(m, src)
-}
-func (m *QueryAllKvResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryAllKvResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllKvResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryAllKvResponse proto.InternalMessageInfo
-
-func (m *QueryAllKvResponse) GetKv() []Kv {
-	if m != nil {
-		return m.Kv
-	}
-	return nil
-}
-
-func (m *QueryAllKvResponse) GetPagination() *query.PageResponse {
-	if m != nil {
-		return m.Pagination
-	}
-	return nil
-}
-
 type QueryGetDeviceRequest struct {
-	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Creator string `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
+	DeviceName string `protobuf:"bytes,1,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
 }
 
 func (m *QueryGetDeviceRequest) Reset()         { *m = QueryGetDeviceRequest{} }
 func (m *QueryGetDeviceRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryGetDeviceRequest) ProtoMessage()    {}
 func (*QueryGetDeviceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{6}
+	return fileDescriptor_2c8017fed7be7367, []int{2}
 }
 func (m *QueryGetDeviceRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -351,16 +150,9 @@ func (m *QueryGetDeviceRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryGetDeviceRequest proto.InternalMessageInfo
 
-func (m *QueryGetDeviceRequest) GetAddress() string {
+func (m *QueryGetDeviceRequest) GetDeviceName() string {
 	if m != nil {
-		return m.Address
-	}
-	return ""
-}
-
-func (m *QueryGetDeviceRequest) GetCreator() string {
-	if m != nil {
-		return m.Creator
+		return m.DeviceName
 	}
 	return ""
 }
@@ -373,7 +165,7 @@ func (m *QueryGetDeviceResponse) Reset()         { *m = QueryGetDeviceResponse{}
 func (m *QueryGetDeviceResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryGetDeviceResponse) ProtoMessage()    {}
 func (*QueryGetDeviceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{7}
+	return fileDescriptor_2c8017fed7be7367, []int{3}
 }
 func (m *QueryGetDeviceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -411,14 +203,14 @@ func (m *QueryGetDeviceResponse) GetDevice() Device {
 
 type QueryAllDeviceRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Creator    string             `protobuf:"bytes,2,opt,name=creator,proto3" json:"creator,omitempty"`
+	DeviceName string             `protobuf:"bytes,2,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
 }
 
 func (m *QueryAllDeviceRequest) Reset()         { *m = QueryAllDeviceRequest{} }
 func (m *QueryAllDeviceRequest) String() string { return proto.CompactTextString(m) }
 func (*QueryAllDeviceRequest) ProtoMessage()    {}
 func (*QueryAllDeviceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{8}
+	return fileDescriptor_2c8017fed7be7367, []int{4}
 }
 func (m *QueryAllDeviceRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -454,9 +246,9 @@ func (m *QueryAllDeviceRequest) GetPagination() *query.PageRequest {
 	return nil
 }
 
-func (m *QueryAllDeviceRequest) GetCreator() string {
+func (m *QueryAllDeviceRequest) GetDeviceName() string {
 	if m != nil {
-		return m.Creator
+		return m.DeviceName
 	}
 	return ""
 }
@@ -470,7 +262,7 @@ func (m *QueryAllDeviceResponse) Reset()         { *m = QueryAllDeviceResponse{}
 func (m *QueryAllDeviceResponse) String() string { return proto.CompactTextString(m) }
 func (*QueryAllDeviceResponse) ProtoMessage()    {}
 func (*QueryAllDeviceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2c8017fed7be7367, []int{9}
+	return fileDescriptor_2c8017fed7be7367, []int{5}
 }
 func (m *QueryAllDeviceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -513,8 +305,209 @@ func (m *QueryAllDeviceResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryGetKvRequest struct {
+	Index      string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+	DeviceName string `protobuf:"bytes,2,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
+}
+
+func (m *QueryGetKvRequest) Reset()         { *m = QueryGetKvRequest{} }
+func (m *QueryGetKvRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetKvRequest) ProtoMessage()    {}
+func (*QueryGetKvRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{6}
+}
+func (m *QueryGetKvRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetKvRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetKvRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetKvRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetKvRequest.Merge(m, src)
+}
+func (m *QueryGetKvRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetKvRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetKvRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetKvRequest proto.InternalMessageInfo
+
+func (m *QueryGetKvRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+func (m *QueryGetKvRequest) GetDeviceName() string {
+	if m != nil {
+		return m.DeviceName
+	}
+	return ""
+}
+
+type QueryGetKvResponse struct {
+	Kv Kv `protobuf:"bytes,1,opt,name=kv,proto3" json:"kv"`
+}
+
+func (m *QueryGetKvResponse) Reset()         { *m = QueryGetKvResponse{} }
+func (m *QueryGetKvResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetKvResponse) ProtoMessage()    {}
+func (*QueryGetKvResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{7}
+}
+func (m *QueryGetKvResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetKvResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetKvResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetKvResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetKvResponse.Merge(m, src)
+}
+func (m *QueryGetKvResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetKvResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetKvResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetKvResponse proto.InternalMessageInfo
+
+func (m *QueryGetKvResponse) GetKv() Kv {
+	if m != nil {
+		return m.Kv
+	}
+	return Kv{}
+}
+
+type QueryAllKvRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	DeviceName string             `protobuf:"bytes,2,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
+}
+
+func (m *QueryAllKvRequest) Reset()         { *m = QueryAllKvRequest{} }
+func (m *QueryAllKvRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllKvRequest) ProtoMessage()    {}
+func (*QueryAllKvRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{8}
+}
+func (m *QueryAllKvRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllKvRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllKvRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllKvRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllKvRequest.Merge(m, src)
+}
+func (m *QueryAllKvRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllKvRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllKvRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllKvRequest proto.InternalMessageInfo
+
+func (m *QueryAllKvRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+func (m *QueryAllKvRequest) GetDeviceName() string {
+	if m != nil {
+		return m.DeviceName
+	}
+	return ""
+}
+
+type QueryAllKvResponse struct {
+	Kv         []Kv                `protobuf:"bytes,1,rep,name=kv,proto3" json:"kv"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllKvResponse) Reset()         { *m = QueryAllKvResponse{} }
+func (m *QueryAllKvResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllKvResponse) ProtoMessage()    {}
+func (*QueryAllKvResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{9}
+}
+func (m *QueryAllKvResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllKvResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllKvResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllKvResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllKvResponse.Merge(m, src)
+}
+func (m *QueryAllKvResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllKvResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllKvResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllKvResponse proto.InternalMessageInfo
+
+func (m *QueryAllKvResponse) GetKv() []Kv {
+	if m != nil {
+		return m.Kv
+	}
+	return nil
+}
+
+func (m *QueryAllKvResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 type QueryGetEventPbRequest struct {
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Index      string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+	DeviceName string `protobuf:"bytes,2,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
 }
 
 func (m *QueryGetEventPbRequest) Reset()         { *m = QueryGetEventPbRequest{} }
@@ -550,15 +543,22 @@ func (m *QueryGetEventPbRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryGetEventPbRequest proto.InternalMessageInfo
 
-func (m *QueryGetEventPbRequest) GetId() uint64 {
+func (m *QueryGetEventPbRequest) GetIndex() string {
 	if m != nil {
-		return m.Id
+		return m.Index
 	}
-	return 0
+	return ""
+}
+
+func (m *QueryGetEventPbRequest) GetDeviceName() string {
+	if m != nil {
+		return m.DeviceName
+	}
+	return ""
 }
 
 type QueryGetEventPbResponse struct {
-	EventPb EventPb `protobuf:"bytes,1,opt,name=EventPb,proto3" json:"EventPb"`
+	EventPb EventPb `protobuf:"bytes,1,opt,name=eventPb,proto3" json:"eventPb"`
 }
 
 func (m *QueryGetEventPbResponse) Reset()         { *m = QueryGetEventPbResponse{} }
@@ -603,7 +603,7 @@ func (m *QueryGetEventPbResponse) GetEventPb() EventPb {
 
 type QueryAllEventPbRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Topic      string             `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
+	DeviceName string             `protobuf:"bytes,2,opt,name=deviceName,proto3" json:"deviceName,omitempty"`
 }
 
 func (m *QueryAllEventPbRequest) Reset()         { *m = QueryAllEventPbRequest{} }
@@ -646,15 +646,15 @@ func (m *QueryAllEventPbRequest) GetPagination() *query.PageRequest {
 	return nil
 }
 
-func (m *QueryAllEventPbRequest) GetTopic() string {
+func (m *QueryAllEventPbRequest) GetDeviceName() string {
 	if m != nil {
-		return m.Topic
+		return m.DeviceName
 	}
 	return ""
 }
 
 type QueryAllEventPbResponse struct {
-	EventPb    []EventPb           `protobuf:"bytes,1,rep,name=EventPb,proto3" json:"EventPb"`
+	EventPb    []EventPb           `protobuf:"bytes,1,rep,name=eventPb,proto3" json:"eventPb"`
 	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
@@ -708,14 +708,14 @@ func (m *QueryAllEventPbResponse) GetPagination() *query.PageResponse {
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryParamsResponse")
-	proto.RegisterType((*QueryGetKvRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvRequest")
-	proto.RegisterType((*QueryGetKvResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvResponse")
-	proto.RegisterType((*QueryAllKvRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllKvRequest")
-	proto.RegisterType((*QueryAllKvResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllKvResponse")
 	proto.RegisterType((*QueryGetDeviceRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetDeviceRequest")
 	proto.RegisterType((*QueryGetDeviceResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetDeviceResponse")
 	proto.RegisterType((*QueryAllDeviceRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllDeviceRequest")
 	proto.RegisterType((*QueryAllDeviceResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllDeviceResponse")
+	proto.RegisterType((*QueryGetKvRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvRequest")
+	proto.RegisterType((*QueryGetKvResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetKvResponse")
+	proto.RegisterType((*QueryAllKvRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllKvRequest")
+	proto.RegisterType((*QueryAllKvResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllKvResponse")
 	proto.RegisterType((*QueryGetEventPbRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetEventPbRequest")
 	proto.RegisterType((*QueryGetEventPbResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetEventPbResponse")
 	proto.RegisterType((*QueryAllEventPbRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllEventPbRequest")
@@ -727,58 +727,56 @@ func init() {
 }
 
 var fileDescriptor_2c8017fed7be7367 = []byte{
-	// 808 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x96, 0x5f, 0x6b, 0x13, 0x4b,
-	0x18, 0xc6, 0x33, 0xdb, 0x26, 0xa5, 0x73, 0x0e, 0x07, 0xce, 0x9c, 0x1c, 0x0d, 0x41, 0xa2, 0xec,
-	0x85, 0x16, 0x21, 0xbb, 0xb6, 0xa2, 0x45, 0x4a, 0xd1, 0x24, 0x4d, 0x5b, 0xc8, 0x4d, 0x0d, 0x82,
-	0xe0, 0x45, 0x65, 0xb3, 0x3b, 0xc4, 0x25, 0x9b, 0x9d, 0x6d, 0x76, 0xb2, 0x34, 0x94, 0xde, 0xf8,
-	0x09, 0x04, 0xc1, 0xaf, 0xe0, 0x47, 0xf0, 0xc2, 0x2f, 0xd0, 0x1b, 0xa1, 0xa8, 0x17, 0xde, 0x28,
-	0x92, 0xf6, 0x83, 0x48, 0x66, 0xde, 0x6d, 0xfe, 0x95, 0xc6, 0xec, 0xae, 0x77, 0x99, 0xc9, 0xcc,
-	0xf3, 0x3e, 0xbf, 0x79, 0xdf, 0xbc, 0x6f, 0x70, 0xd1, 0x66, 0xdc, 0xa2, 0x9e, 0xed, 0x7a, 0x1d,
-	0xc6, 0x99, 0xc9, 0x1c, 0x7d, 0x6a, 0xe3, 0xa0, 0x4b, 0x3b, 0x3d, 0x4d, 0x2c, 0x89, 0xe6, 0x73,
-	0xd3, 0x64, 0xed, 0x76, 0xd7, 0xb5, 0x79, 0x4f, 0x9b, 0x3c, 0x3a, 0xb5, 0x91, 0xcf, 0x36, 0x59,
-	0x93, 0x89, 0x95, 0x3e, 0xf8, 0x24, 0x55, 0xf2, 0x37, 0x9a, 0x8c, 0x35, 0x1d, 0xaa, 0x1b, 0x9e,
-	0xad, 0x1b, 0xae, 0xcb, 0xb8, 0xc1, 0x6d, 0xe6, 0xfa, 0xf0, 0xed, 0x5d, 0x93, 0xf9, 0x6d, 0xe6,
-	0xeb, 0x0d, 0xc3, 0xa7, 0x32, 0xb8, 0x1e, 0xac, 0x36, 0x28, 0x37, 0x56, 0x75, 0xcf, 0x68, 0xda,
-	0xae, 0x38, 0x0c, 0x67, 0xb5, 0xd9, 0xf6, 0x3d, 0xa3, 0x63, 0xb4, 0x2f, 0xb4, 0x67, 0x9f, 0x6f,
-	0x05, 0xbf, 0xaf, 0x6d, 0xd1, 0xc0, 0x36, 0x29, 0x9c, 0xbf, 0x37, 0xfb, 0x3c, 0x0d, 0xa8, 0xcb,
-	0x5f, 0x7a, 0x0d, 0x79, 0x43, 0xcd, 0x62, 0xf2, 0x74, 0xc0, 0xb7, 0x27, 0x2c, 0xd6, 0xe9, 0x41,
-	0x97, 0xfa, 0x5c, 0x6d, 0xe1, 0xff, 0xc6, 0x76, 0x7d, 0x8f, 0xb9, 0x3e, 0x25, 0xcf, 0x70, 0x46,
-	0xa2, 0xe4, 0xd0, 0x2d, 0xb4, 0xf2, 0xd7, 0xda, 0xc3, 0x39, 0x73, 0xa1, 0x49, 0xbd, 0xf2, 0xe2,
-	0xc9, 0x8f, 0x9b, 0xa9, 0x3a, 0x68, 0xa9, 0x15, 0xfc, 0xaf, 0x08, 0xb6, 0x43, 0x79, 0x2d, 0x00,
-	0x07, 0x24, 0x8b, 0xd3, 0xb6, 0x6b, 0xd1, 0x43, 0x11, 0x69, 0xb9, 0x2e, 0x17, 0x24, 0x87, 0x97,
-	0xcc, 0x0e, 0x35, 0x38, 0xeb, 0xe4, 0x14, 0xb1, 0x1f, 0x2e, 0xd5, 0x7d, 0xe0, 0x00, 0x11, 0x30,
-	0xbc, 0x8b, 0x95, 0x56, 0x00, 0x66, 0xd7, 0xe6, 0x35, 0x5b, 0x0b, 0xc0, 0xa8, 0xd2, 0x0a, 0xd4,
-	0x2e, 0x98, 0x2c, 0x39, 0xce, 0xd0, 0xe4, 0x36, 0xc6, 0xc3, 0x72, 0x80, 0x30, 0xb7, 0x35, 0x59,
-	0x3b, 0xda, 0xa0, 0x76, 0x34, 0x59, 0xb8, 0x50, 0x3b, 0xda, 0x9e, 0xd1, 0xa4, 0x70, 0xb7, 0x3e,
-	0x72, 0xf3, 0x0a, 0xac, 0xf7, 0x08, 0xb8, 0x20, 0xee, 0x04, 0xd7, 0x42, 0x5c, 0x2e, 0xb2, 0x33,
-	0x86, 0xa0, 0x08, 0x84, 0x3b, 0x33, 0x11, 0xa4, 0x8d, 0x51, 0x06, 0xb5, 0x86, 0xff, 0x0f, 0x13,
-	0xb0, 0x25, 0x4a, 0x32, 0x7c, 0xa4, 0x1c, 0x5e, 0x32, 0x2c, 0xab, 0x43, 0x7d, 0x1f, 0x72, 0x19,
-	0x2e, 0xaf, 0xc0, 0x76, 0xf1, 0xb5, 0x49, 0xb1, 0x61, 0x09, 0xca, 0x8a, 0x8f, 0x5a, 0x82, 0x52,
-	0x2f, 0x2c, 0x41, 0xa9, 0xa5, 0xf6, 0xc0, 0x7c, 0xc9, 0x71, 0xc6, 0xcd, 0xff, 0xf9, 0x0c, 0x7f,
-	0x40, 0xc0, 0x3a, 0x12, 0xfb, 0x12, 0xd6, 0x85, 0xa4, 0x58, 0x93, 0xcb, 0xf8, 0xca, 0x30, 0x49,
-	0xd5, 0x41, 0x53, 0xd9, 0x6b, 0x84, 0xaf, 0xf6, 0x0f, 0x56, 0x6c, 0x4b, 0xbc, 0xd6, 0x62, 0x5d,
-	0xb1, 0x2d, 0xb5, 0x83, 0xaf, 0x4f, 0x9d, 0x04, 0xc6, 0xe7, 0x78, 0x09, 0xb6, 0xe0, 0x75, 0xd7,
-	0xe7, 0x85, 0x84, 0xeb, 0x40, 0x19, 0xaa, 0xa9, 0xc1, 0xf0, 0x59, 0x27, 0xdc, 0x25, 0x95, 0xd3,
-	0x2c, 0x4e, 0x73, 0xe6, 0xd9, 0x26, 0x64, 0x54, 0x2e, 0xd4, 0x8f, 0x08, 0x60, 0x47, 0x03, 0x5f,
-	0x06, 0xbb, 0x90, 0x1c, 0x6c, 0x62, 0x39, 0x5d, 0x7b, 0xf7, 0x37, 0x4e, 0x0b, 0xf7, 0xe4, 0x2b,
-	0xc2, 0x19, 0xd9, 0xae, 0x49, 0x79, 0x5e, 0x97, 0xd3, 0x13, 0x25, 0x5f, 0x89, 0xa5, 0x21, 0x9d,
-	0xaa, 0xa5, 0xd7, 0x5f, 0xce, 0xdf, 0x2a, 0x1b, 0xe4, 0x91, 0xee, 0x73, 0xb3, 0x78, 0xa1, 0x36,
-	0x18, 0x72, 0x45, 0x71, 0xbb, 0x38, 0x6b, 0x06, 0x93, 0xcf, 0x08, 0x2b, 0xb5, 0x80, 0x94, 0x22,
-	0xd9, 0x19, 0x9d, 0x50, 0xf9, 0x72, 0x1c, 0x09, 0x00, 0xaa, 0x0a, 0xa0, 0xc7, 0x64, 0x33, 0x02,
-	0x50, 0x2b, 0xd0, 0x8f, 0xc4, 0x54, 0x3c, 0x26, 0x9f, 0x10, 0x4e, 0xd7, 0x82, 0x92, 0xe3, 0x44,
-	0xe4, 0x1a, 0x1d, 0x6a, 0x11, 0xb9, 0xc6, 0xe6, 0x93, 0xba, 0x29, 0xb8, 0xd6, 0xc9, 0x83, 0x48,
-	0x5c, 0xe4, 0x1c, 0xe1, 0x8c, 0xec, 0x5d, 0xa4, 0x1a, 0xf5, 0x95, 0xc7, 0xfa, 0x78, 0x7e, 0x3b,
-	0xae, 0x0c, 0x80, 0xd5, 0x04, 0x58, 0x95, 0x54, 0x22, 0x80, 0xc9, 0xfe, 0xab, 0x1f, 0xc1, 0xf8,
-	0x3b, 0x26, 0xdf, 0x11, 0x5e, 0x96, 0xfa, 0x83, 0xd4, 0x55, 0xa3, 0xbe, 0x7b, 0x12, 0xa4, 0x53,
-	0xc3, 0x27, 0xd6, 0x6f, 0x0d, 0x26, 0xcd, 0x39, 0xba, 0xe8, 0x77, 0x24, 0x72, 0x02, 0xc6, 0x9b,
-	0x77, 0x7e, 0x27, 0xb6, 0x0e, 0xf0, 0xed, 0x0a, 0xbe, 0x32, 0x79, 0x12, 0x81, 0x2f, 0xfc, 0x0f,
-	0xad, 0x1f, 0xd9, 0xd6, 0x31, 0xe9, 0x23, 0x8c, 0x41, 0x7d, 0x90, 0xc7, 0xc8, 0x09, 0x48, 0x84,
-	0x74, 0x7a, 0xea, 0xa8, 0x15, 0x41, 0xba, 0x49, 0x36, 0x62, 0x90, 0x96, 0xf7, 0x4f, 0xfa, 0x05,
-	0x74, 0xda, 0x2f, 0xa0, 0x9f, 0xfd, 0x02, 0x7a, 0x73, 0x56, 0x48, 0x9d, 0x9e, 0x15, 0x52, 0xdf,
-	0xce, 0x0a, 0xa9, 0x17, 0x5b, 0x4d, 0x9b, 0xbf, 0xea, 0x36, 0x34, 0x93, 0xb5, 0x67, 0x07, 0x38,
-	0x9c, 0x0e, 0xc1, 0x7b, 0x1e, 0xf5, 0x1b, 0x19, 0xb1, 0xbe, 0xff, 0x2b, 0x00, 0x00, 0xff, 0xff,
-	0x22, 0xad, 0x21, 0xbd, 0x0d, 0x0e, 0x00, 0x00,
+	// 778 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x96, 0x5d, 0x6b, 0x13, 0x4d,
+	0x14, 0xc7, 0x33, 0xe9, 0xd3, 0x94, 0xce, 0xf3, 0xdc, 0x3c, 0x63, 0x7d, 0x21, 0xc8, 0x2a, 0x7b,
+	0xa1, 0x22, 0x64, 0xd7, 0x56, 0xb4, 0x48, 0x29, 0x92, 0xb4, 0x69, 0x2b, 0x81, 0x52, 0x83, 0x20,
+	0x78, 0x51, 0xd9, 0x6c, 0x87, 0x75, 0xc9, 0x66, 0x67, 0x9b, 0x9d, 0x2c, 0x2d, 0xa5, 0x28, 0x7e,
+	0x02, 0xc1, 0x5b, 0xef, 0xfd, 0x08, 0x5e, 0xf8, 0x05, 0x7a, 0x23, 0x14, 0xf5, 0xc2, 0x1b, 0x45,
+	0x52, 0xc1, 0xaf, 0x21, 0x3b, 0x73, 0xb6, 0x49, 0x76, 0x0b, 0x6b, 0x76, 0x43, 0xef, 0x32, 0x93,
+	0x33, 0xe7, 0xfc, 0x7f, 0xe7, 0x9c, 0x99, 0xb3, 0xb8, 0x62, 0x33, 0xbe, 0x43, 0x3d, 0xdb, 0xf5,
+	0xba, 0x8c, 0x33, 0x93, 0x39, 0x7a, 0x62, 0x63, 0xb7, 0x47, 0xbb, 0xfb, 0x9a, 0x58, 0x12, 0xcd,
+	0xe7, 0xa6, 0xc9, 0x3a, 0x9d, 0x9e, 0x6b, 0xf3, 0x7d, 0x2d, 0x6e, 0x9a, 0xd8, 0x28, 0xcf, 0x59,
+	0xcc, 0x62, 0x62, 0xa5, 0x87, 0xbf, 0xa4, 0x97, 0xf2, 0x55, 0x8b, 0x31, 0xcb, 0xa1, 0xba, 0xe1,
+	0xd9, 0xba, 0xe1, 0xba, 0x8c, 0x1b, 0xdc, 0x66, 0xae, 0x0f, 0xff, 0xde, 0x36, 0x99, 0xdf, 0x61,
+	0xbe, 0xde, 0x32, 0x7c, 0x2a, 0x83, 0xeb, 0xc1, 0x7c, 0x8b, 0x72, 0x63, 0x5e, 0xf7, 0x0c, 0xcb,
+	0x76, 0x85, 0x31, 0xd8, 0x6a, 0xe9, 0xf2, 0x3d, 0xa3, 0x6b, 0x74, 0xfc, 0xbf, 0xb7, 0xdf, 0xa1,
+	0x81, 0x6d, 0xd2, 0x48, 0x4b, 0xba, 0x7d, 0x3b, 0x00, 0xdb, 0x3b, 0xe9, 0xb6, 0x34, 0xa0, 0x2e,
+	0x7f, 0xee, 0xb5, 0xe4, 0x09, 0x75, 0x0e, 0x93, 0xc7, 0x21, 0xdf, 0x96, 0x90, 0xd8, 0xa4, 0xbb,
+	0x3d, 0xea, 0x73, 0xb5, 0x8d, 0x2f, 0x8c, 0xec, 0xfa, 0x1e, 0x73, 0x7d, 0x4a, 0x9e, 0xe0, 0x92,
+	0x44, 0xb9, 0x82, 0xae, 0xa3, 0x5b, 0xff, 0x2e, 0xdc, 0x1f, 0xb3, 0x16, 0x9a, 0xf4, 0x57, 0xfb,
+	0xe7, 0xe8, 0xc7, 0xb5, 0x42, 0x13, 0x7c, 0xa9, 0x8b, 0xf8, 0xa2, 0x08, 0xb6, 0x4e, 0xf9, 0xaa,
+	0x00, 0x07, 0x15, 0x44, 0xc1, 0x58, 0x66, 0x62, 0xd3, 0xe8, 0x50, 0x11, 0x72, 0xb6, 0x39, 0xb4,
+	0xa3, 0xba, 0xf8, 0x52, 0xfc, 0xe0, 0x40, 0xa8, 0xb4, 0xcb, 0x2a, 0x54, 0xfa, 0x8b, 0x84, 0x4a,
+	0x5f, 0xea, 0x4b, 0x10, 0x5a, 0x75, 0x9c, 0x51, 0xa1, 0x6b, 0x18, 0x0f, 0xda, 0x02, 0x42, 0xde,
+	0xd0, 0x64, 0x0f, 0x69, 0x61, 0x0f, 0x69, 0xb2, 0x81, 0xa1, 0x87, 0xb4, 0x2d, 0xc3, 0x8a, 0xce,
+	0x36, 0x87, 0x4e, 0xc6, 0x80, 0x8b, 0x09, 0xe0, 0x0f, 0x08, 0x88, 0x87, 0x14, 0x9c, 0x41, 0x3c,
+	0x35, 0x29, 0x62, 0xb2, 0x3e, 0x02, 0x56, 0x14, 0x60, 0x37, 0x53, 0xc1, 0xa4, 0xa4, 0x61, 0x32,
+	0xf5, 0x11, 0xfe, 0x3f, 0x2a, 0x55, 0x23, 0x88, 0xd2, 0x36, 0x87, 0xa7, 0x6d, 0x77, 0x87, 0xee,
+	0x41, 0x69, 0xe5, 0x22, 0x35, 0x09, 0xdb, 0xd0, 0xb1, 0xe0, 0x0a, 0xf8, 0x37, 0x70, 0xb1, 0x1d,
+	0x40, 0xea, 0x17, 0xc6, 0x65, 0x6f, 0x04, 0xc0, 0x5d, 0x6c, 0x07, 0xea, 0x01, 0x48, 0xad, 0x3a,
+	0xce, 0x40, 0xea, 0x79, 0x55, 0xf8, 0x3d, 0x02, 0x3a, 0x88, 0x1e, 0xa3, 0x9b, 0xca, 0x4b, 0x37,
+	0xb9, 0x8a, 0x6e, 0x0e, 0x2e, 0x5f, 0x3d, 0x7c, 0x52, 0xb6, 0x5a, 0xf9, 0xca, 0xda, 0xc5, 0x97,
+	0x13, 0xfe, 0x80, 0xfe, 0x29, 0x9e, 0xa1, 0x72, 0x0b, 0x32, 0xbf, 0x38, 0x6e, 0x0a, 0xc0, 0x23,
+	0xe4, 0x21, 0xf2, 0xa6, 0xbe, 0x1a, 0xba, 0x4f, 0x31, 0x88, 0xf3, 0x2a, 0xf8, 0x47, 0x04, 0xdc,
+	0xc3, 0x12, 0xce, 0xe2, 0x9e, 0x9a, 0x1c, 0xf7, 0xc4, 0x9a, 0x60, 0xe1, 0xdd, 0x7f, 0x78, 0x5a,
+	0xa8, 0x27, 0x5f, 0x11, 0x2e, 0xc9, 0xd7, 0x9d, 0xd4, 0xc6, 0x55, 0x99, 0x1c, 0x40, 0xe5, 0x95,
+	0x5c, 0x3e, 0xa4, 0x52, 0xb5, 0xfa, 0xfa, 0xcb, 0xaf, 0xb7, 0xc5, 0x25, 0xf2, 0x40, 0xf7, 0xb9,
+	0x59, 0x39, 0xf5, 0x16, 0xce, 0xc4, 0x8a, 0x38, 0x5d, 0x49, 0x1b, 0xd9, 0xe4, 0x37, 0xc2, 0x25,
+	0xf9, 0x32, 0x92, 0x7a, 0x26, 0x49, 0xf1, 0xa1, 0x56, 0x5e, 0xcb, 0xeb, 0x06, 0xe0, 0x36, 0x05,
+	0xdc, 0x06, 0x59, 0xcb, 0x00, 0x27, 0xfb, 0x4f, 0x3f, 0x18, 0xf4, 0xe1, 0x21, 0xf9, 0x8e, 0xf0,
+	0xac, 0x0c, 0x51, 0x75, 0x9c, 0x8c, 0xb0, 0xf1, 0xc1, 0x98, 0x11, 0x36, 0x31, 0xdd, 0x72, 0x55,
+	0x12, 0x46, 0xd9, 0x67, 0x84, 0x8b, 0x8d, 0x80, 0x54, 0xb3, 0xa6, 0xff, 0x74, 0x16, 0x94, 0x6b,
+	0x79, 0x5c, 0x00, 0x50, 0x5d, 0x00, 0x3d, 0x24, 0xcb, 0x19, 0x80, 0xda, 0x81, 0x7e, 0x20, 0xde,
+	0xd4, 0x43, 0xf2, 0x09, 0xe1, 0xe9, 0x46, 0x10, 0x16, 0xac, 0x9a, 0x35, 0xd3, 0x79, 0xb9, 0x46,
+	0x06, 0x95, 0xba, 0x2c, 0xb8, 0x16, 0xc9, 0xbd, 0x4c, 0x5c, 0xe1, 0x75, 0x9b, 0x81, 0x37, 0x8b,
+	0x64, 0xbe, 0x28, 0xa3, 0x2f, 0x79, 0x79, 0x3d, 0xb7, 0x1f, 0x60, 0x6b, 0x08, 0xb6, 0x3a, 0x59,
+	0xc9, 0xc0, 0x16, 0x7d, 0x75, 0x9f, 0x56, 0xae, 0x8f, 0x30, 0x86, 0x00, 0x61, 0xf9, 0x32, 0x5f,
+	0x94, 0x89, 0xc0, 0x26, 0x67, 0x8f, 0xba, 0x22, 0x60, 0x97, 0xc9, 0x52, 0x0e, 0xd8, 0xda, 0xf6,
+	0x51, 0x5f, 0x41, 0xc7, 0x7d, 0x05, 0xfd, 0xec, 0x2b, 0xe8, 0xcd, 0x89, 0x52, 0x38, 0x3e, 0x51,
+	0x0a, 0xdf, 0x4e, 0x94, 0xc2, 0xb3, 0x55, 0xcb, 0xe6, 0x2f, 0x7a, 0x2d, 0xcd, 0x64, 0x9d, 0xf4,
+	0x00, 0x7b, 0xc9, 0x10, 0x7c, 0xdf, 0xa3, 0x7e, 0xab, 0x24, 0xd6, 0x77, 0xff, 0x04, 0x00, 0x00,
+	0xff, 0xff, 0x78, 0x9a, 0x06, 0xe8, 0x42, 0x0e, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -795,12 +793,12 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Kv items.
-	Kv(ctx context.Context, in *QueryGetKvRequest, opts ...grpc.CallOption) (*QueryGetKvResponse, error)
-	KvAll(ctx context.Context, in *QueryAllKvRequest, opts ...grpc.CallOption) (*QueryAllKvResponse, error)
 	// Queries a list of Device items.
 	Device(ctx context.Context, in *QueryGetDeviceRequest, opts ...grpc.CallOption) (*QueryGetDeviceResponse, error)
 	DeviceAll(ctx context.Context, in *QueryAllDeviceRequest, opts ...grpc.CallOption) (*QueryAllDeviceResponse, error)
+	// Queries a list of Kv items.
+	Kv(ctx context.Context, in *QueryGetKvRequest, opts ...grpc.CallOption) (*QueryGetKvResponse, error)
+	KvAll(ctx context.Context, in *QueryAllKvRequest, opts ...grpc.CallOption) (*QueryAllKvResponse, error)
 	// Queries a list of EventPb items.
 	EventPb(ctx context.Context, in *QueryGetEventPbRequest, opts ...grpc.CallOption) (*QueryGetEventPbResponse, error)
 	EventPbAll(ctx context.Context, in *QueryAllEventPbRequest, opts ...grpc.CallOption) (*QueryAllEventPbResponse, error)
@@ -823,24 +821,6 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) Kv(ctx context.Context, in *QueryGetKvRequest, opts ...grpc.CallOption) (*QueryGetKvResponse, error) {
-	out := new(QueryGetKvResponse)
-	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/Kv", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) KvAll(ctx context.Context, in *QueryAllKvRequest, opts ...grpc.CallOption) (*QueryAllKvResponse, error) {
-	out := new(QueryAllKvResponse)
-	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/KvAll", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *queryClient) Device(ctx context.Context, in *QueryGetDeviceRequest, opts ...grpc.CallOption) (*QueryGetDeviceResponse, error) {
 	out := new(QueryGetDeviceResponse)
 	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/Device", in, out, opts...)
@@ -853,6 +833,24 @@ func (c *queryClient) Device(ctx context.Context, in *QueryGetDeviceRequest, opt
 func (c *queryClient) DeviceAll(ctx context.Context, in *QueryAllDeviceRequest, opts ...grpc.CallOption) (*QueryAllDeviceResponse, error) {
 	out := new(QueryAllDeviceResponse)
 	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/DeviceAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) Kv(ctx context.Context, in *QueryGetKvRequest, opts ...grpc.CallOption) (*QueryGetKvResponse, error) {
+	out := new(QueryGetKvResponse)
+	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/Kv", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) KvAll(ctx context.Context, in *QueryAllKvRequest, opts ...grpc.CallOption) (*QueryAllKvResponse, error) {
+	out := new(QueryAllKvResponse)
+	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/KvAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -881,12 +879,12 @@ func (c *queryClient) EventPbAll(ctx context.Context, in *QueryAllEventPbRequest
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Kv items.
-	Kv(context.Context, *QueryGetKvRequest) (*QueryGetKvResponse, error)
-	KvAll(context.Context, *QueryAllKvRequest) (*QueryAllKvResponse, error)
 	// Queries a list of Device items.
 	Device(context.Context, *QueryGetDeviceRequest) (*QueryGetDeviceResponse, error)
 	DeviceAll(context.Context, *QueryAllDeviceRequest) (*QueryAllDeviceResponse, error)
+	// Queries a list of Kv items.
+	Kv(context.Context, *QueryGetKvRequest) (*QueryGetKvResponse, error)
+	KvAll(context.Context, *QueryAllKvRequest) (*QueryAllKvResponse, error)
 	// Queries a list of EventPb items.
 	EventPb(context.Context, *QueryGetEventPbRequest) (*QueryGetEventPbResponse, error)
 	EventPbAll(context.Context, *QueryAllEventPbRequest) (*QueryAllEventPbResponse, error)
@@ -899,17 +897,17 @@ type UnimplementedQueryServer struct {
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (*UnimplementedQueryServer) Kv(ctx context.Context, req *QueryGetKvRequest) (*QueryGetKvResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Kv not implemented")
-}
-func (*UnimplementedQueryServer) KvAll(ctx context.Context, req *QueryAllKvRequest) (*QueryAllKvResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method KvAll not implemented")
-}
 func (*UnimplementedQueryServer) Device(ctx context.Context, req *QueryGetDeviceRequest) (*QueryGetDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Device not implemented")
 }
 func (*UnimplementedQueryServer) DeviceAll(ctx context.Context, req *QueryAllDeviceRequest) (*QueryAllDeviceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeviceAll not implemented")
+}
+func (*UnimplementedQueryServer) Kv(ctx context.Context, req *QueryGetKvRequest) (*QueryGetKvResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Kv not implemented")
+}
+func (*UnimplementedQueryServer) KvAll(ctx context.Context, req *QueryAllKvRequest) (*QueryAllKvResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KvAll not implemented")
 }
 func (*UnimplementedQueryServer) EventPb(ctx context.Context, req *QueryGetEventPbRequest) (*QueryGetEventPbResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EventPb not implemented")
@@ -936,42 +934,6 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_Kv_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetKvRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).Kv(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/Kv",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Kv(ctx, req.(*QueryGetKvRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_KvAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllKvRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).KvAll(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/KvAll",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).KvAll(ctx, req.(*QueryAllKvRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1008,6 +970,42 @@ func _Query_DeviceAll_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(QueryServer).DeviceAll(ctx, req.(*QueryAllDeviceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_Kv_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetKvRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Kv(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/Kv",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Kv(ctx, req.(*QueryGetKvRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_KvAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllKvRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).KvAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/KvAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).KvAll(ctx, req.(*QueryAllKvRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1057,20 +1055,20 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "Kv",
-			Handler:    _Query_Kv_Handler,
-		},
-		{
-			MethodName: "KvAll",
-			Handler:    _Query_KvAll_Handler,
-		},
-		{
 			MethodName: "Device",
 			Handler:    _Query_Device_Handler,
 		},
 		{
 			MethodName: "DeviceAll",
 			Handler:    _Query_DeviceAll_Handler,
+		},
+		{
+			MethodName: "Kv",
+			Handler:    _Query_Kv_Handler,
+		},
+		{
+			MethodName: "KvAll",
+			Handler:    _Query_KvAll_Handler,
 		},
 		{
 			MethodName: "EventPb",
@@ -1141,167 +1139,6 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetKvRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetKvRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetKvRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Index) > 0 {
-		i -= len(m.Index)
-		copy(dAtA[i:], m.Index)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetKvResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetKvResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetKvResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.Kv.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintQuery(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryAllKvRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryAllKvRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryAllKvRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if m.Pagination != nil {
-		{
-			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryAllKvResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryAllKvResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryAllKvResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Pagination != nil {
-		{
-			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Kv) > 0 {
-		for iNdEx := len(m.Kv) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Kv[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintQuery(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
 func (m *QueryGetDeviceRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1322,17 +1159,10 @@ func (m *QueryGetDeviceRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Address) > 0 {
-		i -= len(m.Address)
-		copy(dAtA[i:], m.Address)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Address)))
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1392,10 +1222,10 @@ func (m *QueryAllDeviceRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Creator) > 0 {
-		i -= len(m.Creator)
-		copy(dAtA[i:], m.Creator)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Creator)))
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -1463,6 +1293,167 @@ func (m *QueryAllDeviceResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetKvRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetKvRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetKvRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetKvResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetKvResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetKvResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Kv.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllKvRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllKvRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllKvRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllKvResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllKvResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllKvResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Kv) > 0 {
+		for iNdEx := len(m.Kv) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Kv[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *QueryGetEventPbRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1483,10 +1474,19 @@ func (m *QueryGetEventPbRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.Id))
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0x12
+	}
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -1544,10 +1544,10 @@ func (m *QueryAllEventPbRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	_ = i
 	var l int
 	_ = l
-	if len(m.Topic) > 0 {
-		i -= len(m.Topic)
-		copy(dAtA[i:], m.Topic)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Topic)))
+	if len(m.DeviceName) > 0 {
+		i -= len(m.DeviceName)
+		copy(dAtA[i:], m.DeviceName)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.DeviceName)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -1646,81 +1646,13 @@ func (m *QueryParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetKvRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Index)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Creator)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryGetKvResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.Kv.Size()
-	n += 1 + l + sovQuery(uint64(l))
-	return n
-}
-
-func (m *QueryAllKvRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Pagination != nil {
-		l = m.Pagination.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Creator)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryAllKvResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Kv) > 0 {
-		for _, e := range m.Kv {
-			l = e.Size()
-			n += 1 + l + sovQuery(uint64(l))
-		}
-	}
-	if m.Pagination != nil {
-		l = m.Pagination.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
 func (m *QueryGetDeviceRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Address)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Creator)
+	l = len(m.DeviceName)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
@@ -1748,7 +1680,7 @@ func (m *QueryAllDeviceRequest) Size() (n int) {
 		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Creator)
+	l = len(m.DeviceName)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
@@ -1774,14 +1706,83 @@ func (m *QueryAllDeviceResponse) Size() (n int) {
 	return n
 }
 
+func (m *QueryGetKvRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.DeviceName)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetKvResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Kv.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllKvRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.DeviceName)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllKvResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Kv) > 0 {
+		for _, e := range m.Kv {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
 func (m *QueryGetEventPbRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovQuery(uint64(m.Id))
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.DeviceName)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
@@ -1807,7 +1808,7 @@ func (m *QueryAllEventPbRequest) Size() (n int) {
 		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Topic)
+	l = len(m.DeviceName)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
@@ -1972,441 +1973,6 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetKvRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetKvRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetKvRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Index = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetKvResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetKvResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetKvResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Kv", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Kv.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryAllKvRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllKvRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllKvRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Pagination == nil {
-				m.Pagination = &query.PageRequest{}
-			}
-			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryAllKvResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllKvResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllKvResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Kv", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Kv = append(m.Kv, Kv{})
-			if err := m.Kv[len(m.Kv)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Pagination == nil {
-				m.Pagination = &query.PageResponse{}
-			}
-			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
 func (m *QueryGetDeviceRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2438,7 +2004,7 @@ func (m *QueryGetDeviceRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2466,39 +2032,7 @@ func (m *QueryGetDeviceRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Address = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2671,7 +2205,7 @@ func (m *QueryAllDeviceRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2699,7 +2233,7 @@ func (m *QueryAllDeviceRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Creator = string(dAtA[iNdEx:postIndex])
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2842,6 +2376,441 @@ func (m *QueryAllDeviceResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *QueryGetKvRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetKvRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetKvRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetKvResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetKvResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetKvResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Kv", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Kv.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllKvRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllKvRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllKvRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllKvResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllKvResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllKvResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Kv", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Kv = append(m.Kv, Kv{})
+			if err := m.Kv[len(m.Kv)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func (m *QueryGetEventPbRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2872,10 +2841,10 @@ func (m *QueryGetEventPbRequest) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
 			}
-			m.Id = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowQuery
@@ -2885,11 +2854,56 @@ func (m *QueryGetEventPbRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])
@@ -3061,7 +3075,7 @@ func (m *QueryAllEventPbRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Topic", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -3089,7 +3103,7 @@ func (m *QueryAllEventPbRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Topic = string(dAtA[iNdEx:postIndex])
+			m.DeviceName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

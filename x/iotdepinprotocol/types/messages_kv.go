@@ -17,12 +17,14 @@ func NewMsgCreateKv(
 	creator string,
 	index string,
 	value string,
+	deviceName string,
 
 ) *MsgCreateKv {
 	return &MsgCreateKv{
-		Creator: creator,
-		Index:   index,
-		Value:   value,
+		Creator:    creator,
+		Index:      index,
+		Value:      value,
+		DeviceName: deviceName,
 	}
 }
 
@@ -61,12 +63,14 @@ func NewMsgUpdateKv(
 	creator string,
 	index string,
 	value string,
+	deviceName string,
 
 ) *MsgUpdateKv {
 	return &MsgUpdateKv{
-		Creator: creator,
-		Index:   index,
-		Value:   value,
+		Creator:    creator,
+		Index:      index,
+		Value:      value,
+		DeviceName: deviceName,
 	}
 }
 

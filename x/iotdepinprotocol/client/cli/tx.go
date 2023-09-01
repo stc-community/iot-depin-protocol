@@ -30,15 +30,12 @@ func GetTxCmd() *cobra.Command {
 		RunE:                       client.ValidateCmd,
 	}
 
-	cmd.AddCommand(CmdCreateKv())
-	cmd.AddCommand(CmdUpdateKv())
-	cmd.AddCommand(CmdDeleteKv())
 	cmd.AddCommand(CmdCreateDevice())
 	cmd.AddCommand(CmdUpdateDevice())
 	cmd.AddCommand(CmdDeleteDevice())
-	cmd.AddCommand(CmdCreateEventPb())
-	cmd.AddCommand(CmdUpdateEventPb())
-	cmd.AddCommand(CmdDeleteEventPb())
+	cmd.AddCommand(CmdCreateKv())
+	cmd.AddCommand(CmdUpdateKv())
+	cmd.AddCommand(CmdDeleteKv())
 	cmd.AddCommand(CmdCreateEventPb())
 	cmd.AddCommand(CmdUpdateEventPb())
 	cmd.AddCommand(CmdDeleteEventPb())

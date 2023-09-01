@@ -27,11 +27,11 @@ func SimulateMsgCreateDevice(
 
 		i := r.Int()
 		msg := &types.MsgCreateDevice{
-			Creator: simAccount.Address.String(),
-			Address: strconv.Itoa(i),
+			Creator:    simAccount.Address.String(),
+			DeviceName: strconv.Itoa(i),
 		}
 
-		_, found := k.GetDevice(ctx, msg.Address, msg.Creator)
+		_, found := k.GetDevice(ctx, msg.DeviceName)
 		if found {
 			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "Device already exist"), nil, nil
 		}
@@ -65,19 +65,22 @@ func SimulateMsgUpdateDevice(
 			simAccount = simtypes.Account{}
 			device     = types.Device{}
 			msg        = &types.MsgUpdateDevice{}
-			//allDevice  = k.GetAllDevice(ctx, msg.Creator)
-			//found      = false
+			allDevice  = k.GetAllDevice(ctx)
+			found      = false
 		)
-		for _, account := range accs {
-			simAccount = account
-			for _, obj := range k.GetAllDevice(ctx, account.Address.String()) {
+		for _, obj := range allDevice {
+			simAccount, found = FindAccount(accs, obj.Creator)
+			if found {
 				device = obj
 				break
 			}
 		}
+		if !found {
+			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "device creator not found"), nil, nil
+		}
 		msg.Creator = simAccount.Address.String()
 
-		msg.Address = device.Address
+		msg.DeviceName = device.DeviceName
 
 		txCtx := simulation.OperationInput{
 			R:               r,
@@ -108,19 +111,22 @@ func SimulateMsgDeleteDevice(
 			simAccount = simtypes.Account{}
 			device     = types.Device{}
 			msg        = &types.MsgUpdateDevice{}
-			//allDevice  = k.GetAllDevice(ctx, msg.Creator)
-			//found      = false
+			allDevice  = k.GetAllDevice(ctx)
+			found      = false
 		)
-		for _, account := range accs {
-			simAccount = account
-			for _, obj := range k.GetAllDevice(ctx, account.Address.String()) {
+		for _, obj := range allDevice {
+			simAccount, found = FindAccount(accs, obj.Creator)
+			if found {
 				device = obj
 				break
 			}
 		}
+		if !found {
+			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "device creator not found"), nil, nil
+		}
 		msg.Creator = simAccount.Address.String()
 
-		msg.Address = device.Address
+		msg.DeviceName = device.DeviceName
 
 		txCtx := simulation.OperationInput{
 			R:               r,

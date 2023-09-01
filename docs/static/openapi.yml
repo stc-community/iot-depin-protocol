@@ -43878,6 +43878,8 @@ paths:
                 items:
                   type: object
                   properties:
+                    deviceName:
+                      type: string
                     address:
                       type: string
                     value:
@@ -43987,13 +43989,13 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: creator
+        - name: deviceName
           in: query
           required: false
           type: string
       tags:
         - Query
-  /stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}:
+  /stc-community/iot-depin-protocol/iotdepinprotocol/device/{deviceName}:
     get:
       summary: Queries a list of Device items.
       operationId: StccommunityIotdepinprotocolIotdepinprotocolDevice
@@ -44006,6 +44008,8 @@ paths:
               device:
                 type: object
                 properties:
+                  deviceName:
+                    type: string
                   address:
                     type: string
                   value:
@@ -44031,13 +44035,9 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: address
+        - name: deviceName
           in: path
           required: true
-          type: string
-        - name: creator
-          in: query
-          required: false
           type: string
       tags:
         - Query
@@ -44050,15 +44050,14 @@ paths:
           schema:
             type: object
             properties:
-              EventPb:
+              eventPb:
                 type: array
                 items:
                   type: object
                   properties:
-                    id:
+                    index:
                       type: string
-                      format: uint64
-                    topic:
+                    deviceName:
                       type: string
                     payload:
                       type: string
@@ -44167,13 +44166,13 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: topic
+        - name: deviceName
           in: query
           required: false
           type: string
       tags:
         - Query
-  /stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{id}:
+  /stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{index}:
     get:
       summary: Queries a list of EventPb items.
       operationId: StccommunityIotdepinprotocolIotdepinprotocolEventPb
@@ -44183,13 +44182,12 @@ paths:
           schema:
             type: object
             properties:
-              EventPb:
+              eventPb:
                 type: object
                 properties:
-                  id:
+                  index:
                     type: string
-                    format: uint64
-                  topic:
+                  deviceName:
                     type: string
                   payload:
                     type: string
@@ -44214,11 +44212,14 @@ paths:
                       type: string
                   additionalProperties: {}
       parameters:
-        - name: id
+        - name: index
           in: path
           required: true
           type: string
-          format: uint64
+        - name: deviceName
+          in: query
+          required: false
+          type: string
       tags:
         - Query
   /stc-community/iot-depin-protocol/iotdepinprotocol/kv:
@@ -44238,6 +44239,8 @@ paths:
                     index:
                       type: string
                     value:
+                      type: string
+                    deviceName:
                       type: string
                     creator:
                       type: string
@@ -44344,7 +44347,7 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: creator
+        - name: deviceName
           in: query
           required: false
           type: string
@@ -44366,6 +44369,8 @@ paths:
                   index:
                     type: string
                   value:
+                    type: string
+                  deviceName:
                     type: string
                   creator:
                     type: string
@@ -44392,7 +44397,7 @@ paths:
           in: path
           required: true
           type: string
-        - name: creator
+        - name: deviceName
           in: query
           required: false
           type: string
@@ -71971,6 +71976,8 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.Device:
     type: object
     properties:
+      deviceName:
+        type: string
       address:
         type: string
       value:
@@ -71980,10 +71987,9 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.EventPb:
     type: object
     properties:
-      id:
+      index:
         type: string
-        format: uint64
-      topic:
+      deviceName:
         type: string
       payload:
         type: string
@@ -71996,16 +72002,14 @@ definitions:
         type: string
       value:
         type: string
+      deviceName:
+        type: string
       creator:
         type: string
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateDeviceResponse:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateEventPbResponse:
     type: object
-    properties:
-      id:
-        type: string
-        format: uint64
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKvResponse:
     type: object
   stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDeviceResponse:
@@ -72031,6 +72035,8 @@ definitions:
         items:
           type: object
           properties:
+            deviceName:
+              type: string
             address:
               type: string
             value:
@@ -72066,15 +72072,14 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllEventPbResponse:
     type: object
     properties:
-      EventPb:
+      eventPb:
         type: array
         items:
           type: object
           properties:
-            id:
+            index:
               type: string
-              format: uint64
-            topic:
+            deviceName:
               type: string
             payload:
               type: string
@@ -72118,6 +72123,8 @@ definitions:
               type: string
             value:
               type: string
+            deviceName:
+              type: string
             creator:
               type: string
       pagination:
@@ -72152,6 +72159,8 @@ definitions:
       device:
         type: object
         properties:
+          deviceName:
+            type: string
           address:
             type: string
           value:
@@ -72161,13 +72170,12 @@ definitions:
   stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetEventPbResponse:
     type: object
     properties:
-      EventPb:
+      eventPb:
         type: object
         properties:
-          id:
+          index:
             type: string
-            format: uint64
-          topic:
+          deviceName:
             type: string
           payload:
             type: string
@@ -72182,6 +72190,8 @@ definitions:
           index:
             type: string
           value:
+            type: string
+          deviceName:
             type: string
           creator:
             type: string

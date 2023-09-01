@@ -23,12 +23,10 @@ func CmdListKv() *cobra.Command {
 
 			queryClient := types.NewQueryClient(clientCtx)
 
-			from, _ := cmd.Flags().GetString(flags.FlagFrom)
-
 			params := &types.QueryAllKvRequest{
 				Pagination: pageReq,
-				Creator:    from,
 			}
+
 			res, err := queryClient.KvAll(context.Background(), params)
 			if err != nil {
 				return err
@@ -40,7 +38,7 @@ func CmdListKv() *cobra.Command {
 
 	flags.AddPaginationFlagsToCmd(cmd, cmd.Use)
 	flags.AddQueryFlagsToCmd(cmd)
-	cmd.Flags().String(flags.FlagFrom, "", "For query address")
+
 	return cmd
 }
 
@@ -55,11 +53,9 @@ func CmdShowKv() *cobra.Command {
 			queryClient := types.NewQueryClient(clientCtx)
 
 			argIndex := args[0]
-			from, _ := cmd.Flags().GetString(flags.FlagFrom)
 
 			params := &types.QueryGetKvRequest{
-				Index:   argIndex,
-				Creator: from,
+				Index: argIndex,
 			}
 
 			res, err := queryClient.Kv(context.Background(), params)
@@ -72,7 +68,6 @@ func CmdShowKv() *cobra.Command {
 	}
 
 	flags.AddQueryFlagsToCmd(cmd)
-	cmd.Flags().String(flags.FlagFrom, "", "For query address")
 
 	return cmd
 }

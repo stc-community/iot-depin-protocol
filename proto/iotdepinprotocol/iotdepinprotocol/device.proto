@@ -4,8 +4,9 @@ package stccommunity.iotdepinprotocol.iotdepinprotocol;
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 message Device {
-  string address = 1; 
-  string value = 2; 
-  string creator = 3;
+  string deviceName = 1; 
+  string address = 2; 
+  string value = 3; 
+  string creator = 4;
 }
 

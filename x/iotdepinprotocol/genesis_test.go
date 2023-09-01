@@ -14,6 +14,14 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		DeviceList: []types.Device{
+			{
+				DeviceName: "0",
+			},
+			{
+				DeviceName: "1",
+			},
+		},
 		KvList: []types.Kv{
 			{
 				Index: "0",
@@ -22,23 +30,14 @@ func TestGenesis(t *testing.T) {
 				Index: "1",
 			},
 		},
-		DeviceList: []types.Device{
-			{
-				Address: "0",
-			},
-			{
-				Address: "1",
-			},
-		},
 		EventPbList: []types.EventPb{
 			{
-				Id: 0,
+				Index: "0",
 			},
 			{
-				Id: 1,
+				Index: "1",
 			},
 		},
-		EventPbCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -50,9 +49,8 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
-	require.ElementsMatch(t, genesisState.KvList, got.KvList)
 	require.ElementsMatch(t, genesisState.DeviceList, got.DeviceList)
+	require.ElementsMatch(t, genesisState.KvList, got.KvList)
 	require.ElementsMatch(t, genesisState.EventPbList, got.EventPbList)
-	require.Equal(t, genesisState.EventPbCount, got.EventPbCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -10,15 +10,16 @@ import (
 
 func CmdCreateDevice() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-device [address] [value]",
+		Use:   "create-device [device-name] [address] [value]",
 		Short: "Create a new device",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
-			indexAddress := args[0]
+			indexDeviceName := args[0]
 
 			// Get value arguments
-			argValue := args[1]
+			argAddress := args[1]
+			argValue := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -27,7 +28,8 @@ func CmdCreateDevice() *cobra.Command {
 
 			msg := types.NewMsgCreateDevice(
 				clientCtx.GetFromAddress().String(),
-				indexAddress,
+				indexDeviceName,
+				argAddress,
 				argValue,
 			)
 			if err := msg.ValidateBasic(); err != nil {
@@ -44,15 +46,16 @@ func CmdCreateDevice() *cobra.Command {
 
 func CmdUpdateDevice() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-device [address] [value]",
+		Use:   "update-device [device-name] [address] [value]",
 		Short: "Update a device",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
-			indexAddress := args[0]
+			indexDeviceName := args[0]
 
 			// Get value arguments
-			argValue := args[1]
+			argAddress := args[1]
+			argValue := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -61,7 +64,8 @@ func CmdUpdateDevice() *cobra.Command {
 
 			msg := types.NewMsgUpdateDevice(
 				clientCtx.GetFromAddress().String(),
-				indexAddress,
+				indexDeviceName,
+				argAddress,
 				argValue,
 			)
 			if err := msg.ValidateBasic(); err != nil {
@@ -78,11 +82,11 @@ func CmdUpdateDevice() *cobra.Command {
 
 func CmdDeleteDevice() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "delete-device [address]",
+		Use:   "delete-device [device-name]",
 		Short: "Delete a device",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
-			indexAddress := args[0]
+			indexDeviceName := args[0]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -91,7 +95,7 @@ func CmdDeleteDevice() *cobra.Command {
 
 			msg := types.NewMsgDeleteDevice(
 				clientCtx.GetFromAddress().String(),
-				indexAddress,
+				indexDeviceName,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

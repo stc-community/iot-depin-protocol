@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -11,55 +10,65 @@ import (
 
 func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEventPb) (*types.MsgCreateEventPbResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	var eventPb = types.EventPb{
-		Creator: msg.Creator,
-		Topic:   msg.Topic,
-		Payload: msg.Payload,
+	// 自动生成 Index
+	if msg.Index == "" {
+		//msg.Index = hex.EncodeToString(tmhash.Sum(ctx.TxBytes()))
+		msg.Index = ctx.HeaderHash().String()
+	}
+	// Check if the value already exists
+	_, isFound := k.GetEventPb(
+		ctx,
+		msg.Index,
+		msg.DeviceName,
+	)
+	if isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
-	id := k.AppendEventPb(
+	var eventPb = types.EventPb{
+		Creator:    msg.Creator,
+		Index:      msg.Index,
+		DeviceName: msg.DeviceName,
+		Payload:    msg.Payload,
+	}
+
+	k.SetEventPb(
 		ctx,
 		eventPb,
 	)
-	eventPb.Id = id
+	// publish 事件
 	err := ctx.EventManager().EmitTypedEvent(&eventPb)
 	if err != nil {
 		return nil, err
 	}
 
-	return &types.MsgCreateEventPbResponse{
-		Id: id,
-	}, nil
+	return &types.MsgCreateEventPbResponse{}, nil
 }
 
 func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEventPb) (*types.MsgUpdateEventPbResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	var eventPb = types.EventPb{
-		Creator: msg.Creator,
-		Id:      msg.Id,
-		Topic:   msg.Topic,
-		Payload: msg.Payload,
+	// Check if the value exists
+	valFound, isFound := k.GetEventPb(
+		ctx,
+		msg.Index,
+		msg.DeviceName,
+	)
+	if !isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
 	}
 
-	// Checks that the element exists
-	val, found := k.GetEventPb(ctx, msg.Id)
-	if !found {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
-	}
-
-	// 只有设备管理者可以修改
-	if msg.Creator != eventPb.Topic {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
-	// 还原创建者
-	eventPb.Creator = val.Creator
-
-	//// Checks if the msg creator is the same as the current owner
-	//if msg.Creator != val.Creator {
+	// Checks if the the msg creator is the same as the current owner
+	//if msg.Creator != valFound.Creator {
 	//	return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	//}
+
+	var eventPb = types.EventPb{
+		Creator:    valFound.Creator,
+		Index:      msg.Index,
+		DeviceName: msg.DeviceName,
+		Payload:    msg.Payload,
+	}
 
 	k.SetEventPb(ctx, eventPb)
 
@@ -69,18 +78,26 @@ func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEven
 func (k msgServer) DeleteEventPb(goCtx context.Context, msg *types.MsgDeleteEventPb) (*types.MsgDeleteEventPbResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// Checks that the element exists
-	val, found := k.GetEventPb(ctx, msg.Id)
-	if !found {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
+	// Check if the value exists
+	valFound, isFound := k.GetEventPb(
+		ctx,
+		msg.Index,
+		msg.DeviceName,
+	)
+	if !isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
 	}
 
-	// Checks if the msg creator is the same as the current owner
-	if msg.Creator != val.Creator {
+	// Checks if the the msg creator is the same as the current owner
+	if msg.Creator != valFound.Creator {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
-	k.RemoveEventPb(ctx, msg.Id)
+	k.RemoveEventPb(
+		ctx,
+		msg.Index,
+		msg.DeviceName,
+	)
 
 	return &types.MsgDeleteEventPbResponse{}, nil
 }

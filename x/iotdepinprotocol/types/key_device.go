@@ -11,12 +11,12 @@ const (
 
 // DeviceKey returns the store key to retrieve a Device from the index fields
 func DeviceKey(
-	address string,
+	deviceName string,
 ) []byte {
 	var key []byte
 
-	addressBytes := []byte(address)
-	key = append(key, addressBytes...)
+	deviceNameBytes := []byte(deviceName)
+	key = append(key, deviceNameBytes...)
 	key = append(key, []byte("/")...)
 
 	return key

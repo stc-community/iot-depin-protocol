@@ -10,15 +10,16 @@ import (
 
 func CmdCreateKv() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-kv [index] [value]",
+		Use:   "create-kv [index] [value] [device-name]",
 		Short: "Create a new kv",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexIndex := args[0]
 
 			// Get value arguments
 			argValue := args[1]
+			argDeviceName := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -29,6 +30,7 @@ func CmdCreateKv() *cobra.Command {
 				clientCtx.GetFromAddress().String(),
 				indexIndex,
 				argValue,
+				argDeviceName,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
@@ -44,15 +46,16 @@ func CmdCreateKv() *cobra.Command {
 
 func CmdUpdateKv() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-kv [index] [value]",
+		Use:   "update-kv [index] [value] [device-name]",
 		Short: "Update a kv",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexIndex := args[0]
 
 			// Get value arguments
 			argValue := args[1]
+			argDeviceName := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -63,6 +66,7 @@ func CmdUpdateKv() *cobra.Command {
 				clientCtx.GetFromAddress().String(),
 				indexIndex,
 				argValue,
+				argDeviceName,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

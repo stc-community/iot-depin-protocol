@@ -8,23 +8,23 @@ import (
 
 // SetDevice set a specific device in the store from its index
 func (k Keeper) SetDevice(ctx sdk.Context, device types.Device) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix+device.Creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix))
 	b := k.cdc.MustMarshal(&device)
 	store.Set(types.DeviceKey(
-		device.Address,
+		device.DeviceName,
 	), b)
 }
 
 // GetDevice returns a device from its index
 func (k Keeper) GetDevice(
 	ctx sdk.Context,
-	address string,
-	creator string,
+	deviceName string,
+
 ) (val types.Device, found bool) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix+creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix))
 
 	b := store.Get(types.DeviceKey(
-		address,
+		deviceName,
 	))
 	if b == nil {
 		return val, false
@@ -37,19 +37,18 @@ func (k Keeper) GetDevice(
 // RemoveDevice removes a device from the store
 func (k Keeper) RemoveDevice(
 	ctx sdk.Context,
-	address string,
-	creator string,
+	deviceName string,
+
 ) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix+creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix))
 	store.Delete(types.DeviceKey(
-		address,
+		deviceName,
 	))
 }
 
 // GetAllDevice returns all device
-func (k Keeper) GetAllDevice(ctx sdk.Context, creator string) (list []types.Device) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix+creator))
-
+func (k Keeper) GetAllDevice(ctx sdk.Context) (list []types.Device) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.DeviceKeyPrefix))
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()

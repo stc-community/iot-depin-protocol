@@ -1,21 +1,37 @@
 package keeper_test
 
 import (
+	"strconv"
 	"testing"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
+	keepertest "github.com/stc-community/iot-depin-protocol/testutil/keeper"
+	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/keeper"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 )
 
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
 func TestEventPbMsgServerCreate(t *testing.T) {
-	srv, ctx := setupMsgServer(t)
+	k, ctx := keepertest.IotdepinprotocolKeeper(t)
+	srv := keeper.NewMsgServerImpl(*k)
+	wctx := sdk.WrapSDKContext(ctx)
 	creator := "A"
 	for i := 0; i < 5; i++ {
-		resp, err := srv.CreateEventPb(ctx, &types.MsgCreateEventPb{Creator: creator})
+		expected := &types.MsgCreateEventPb{Creator: creator,
+			Index: strconv.Itoa(i),
+		}
+		_, err := srv.CreateEventPb(wctx, expected)
 		require.NoError(t, err)
-		require.Equal(t, i, int(resp.Id))
+		rst, found := k.GetEventPb(ctx,
+			expected.Index,
+		)
+		require.True(t, found)
+		require.Equal(t, expected.Creator, rst.Creator)
 	}
 }
 
@@ -28,30 +44,46 @@ func TestEventPbMsgServerUpdate(t *testing.T) {
 		err     error
 	}{
 		{
-			desc:    "Completed",
-			request: &types.MsgUpdateEventPb{Creator: creator},
+			desc: "Completed",
+			request: &types.MsgUpdateEventPb{Creator: creator,
+				Index: strconv.Itoa(0),
+			},
 		},
 		{
-			desc:    "Unauthorized",
-			request: &types.MsgUpdateEventPb{Creator: "B"},
-			err:     sdkerrors.ErrUnauthorized,
+			desc: "Unauthorized",
+			request: &types.MsgUpdateEventPb{Creator: "B",
+				Index: strconv.Itoa(0),
+			},
+			err: sdkerrors.ErrUnauthorized,
 		},
 		{
-			desc:    "Unauthorized",
-			request: &types.MsgUpdateEventPb{Creator: creator, Id: 10},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.MsgUpdateEventPb{Creator: creator,
+				Index: strconv.Itoa(100000),
+			},
+			err: sdkerrors.ErrKeyNotFound,
 		},
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
-			srv, ctx := setupMsgServer(t)
-			_, err := srv.CreateEventPb(ctx, &types.MsgCreateEventPb{Creator: creator})
+			k, ctx := keepertest.IotdepinprotocolKeeper(t)
+			srv := keeper.NewMsgServerImpl(*k)
+			wctx := sdk.WrapSDKContext(ctx)
+			expected := &types.MsgCreateEventPb{Creator: creator,
+				Index: strconv.Itoa(0),
+			}
+			_, err := srv.CreateEventPb(wctx, expected)
 			require.NoError(t, err)
 
-			_, err = srv.UpdateEventPb(ctx, tc.request)
+			_, err = srv.UpdateEventPb(wctx, tc.request)
 			if tc.err != nil {
 				require.ErrorIs(t, err, tc.err)
 			} else {
 				require.NoError(t, err)
+				rst, found := k.GetEventPb(ctx,
+					expected.Index,
+				)
+				require.True(t, found)
+				require.Equal(t, expected.Creator, rst.Creator)
 			}
 		})
 	}
@@ -66,30 +98,44 @@ func TestEventPbMsgServerDelete(t *testing.T) {
 		err     error
 	}{
 		{
-			desc:    "Completed",
-			request: &types.MsgDeleteEventPb{Creator: creator},
+			desc: "Completed",
+			request: &types.MsgDeleteEventPb{Creator: creator,
+				Index: strconv.Itoa(0),
+			},
 		},
 		{
-			desc:    "Unauthorized",
-			request: &types.MsgDeleteEventPb{Creator: "B"},
-			err:     sdkerrors.ErrUnauthorized,
+			desc: "Unauthorized",
+			request: &types.MsgDeleteEventPb{Creator: "B",
+				Index: strconv.Itoa(0),
+			},
+			err: sdkerrors.ErrUnauthorized,
 		},
 		{
-			desc:    "KeyNotFound",
-			request: &types.MsgDeleteEventPb{Creator: creator, Id: 10},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.MsgDeleteEventPb{Creator: creator,
+				Index: strconv.Itoa(100000),
+			},
+			err: sdkerrors.ErrKeyNotFound,
 		},
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
-			srv, ctx := setupMsgServer(t)
+			k, ctx := keepertest.IotdepinprotocolKeeper(t)
+			srv := keeper.NewMsgServerImpl(*k)
+			wctx := sdk.WrapSDKContext(ctx)
 
-			_, err := srv.CreateEventPb(ctx, &types.MsgCreateEventPb{Creator: creator})
+			_, err := srv.CreateEventPb(wctx, &types.MsgCreateEventPb{Creator: creator,
+				Index: strconv.Itoa(0),
+			})
 			require.NoError(t, err)
-			_, err = srv.DeleteEventPb(ctx, tc.request)
+			_, err = srv.DeleteEventPb(wctx, tc.request)
 			if tc.err != nil {
 				require.ErrorIs(t, err, tc.err)
 			} else {
 				require.NoError(t, err)
+				_, found := k.GetEventPb(ctx,
+					tc.request.Index,
+				)
+				require.False(t, found)
 			}
 		})
 	}

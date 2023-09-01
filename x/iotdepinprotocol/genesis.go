@@ -8,21 +8,18 @@ import (
 
 // InitGenesis initializes the module's state from a provided genesis state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
-	// Set all the kv
-	for _, elem := range genState.KvList {
-		k.SetKv(ctx, elem)
-	}
 	// Set all the device
 	for _, elem := range genState.DeviceList {
 		k.SetDevice(ctx, elem)
+	}
+	// Set all the kv
+	for _, elem := range genState.KvList {
+		k.SetKv(ctx, elem)
 	}
 	// Set all the eventPb
 	for _, elem := range genState.EventPbList {
 		k.SetEventPb(ctx, elem)
 	}
-
-	// Set eventPb count
-	k.SetEventPbCount(ctx, genState.EventPbCount)
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 }
@@ -32,10 +29,9 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 	genesis.Params = k.GetParams(ctx)
 
-	genesis.KvList = k.GetAllKv(ctx, "")
-	genesis.DeviceList = k.GetAllDevice(ctx, "")
+	genesis.DeviceList = k.GetAllDevice(ctx)
+	genesis.KvList = k.GetAllKv(ctx)
 	genesis.EventPbList = k.GetAllEventPb(ctx)
-	genesis.EventPbCount = k.GetEventPbCount(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

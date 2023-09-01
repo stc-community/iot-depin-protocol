@@ -29,7 +29,6 @@ func TestKvMsgServerCreate(t *testing.T) {
 		require.NoError(t, err)
 		rst, found := k.GetKv(ctx,
 			expected.Index,
-			expected.Creator,
 		)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
@@ -82,7 +81,6 @@ func TestKvMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetKv(ctx,
 					expected.Index,
-					expected.Creator,
 				)
 				require.True(t, found)
 				require.Equal(t, expected.Creator, rst.Creator)
@@ -136,7 +134,6 @@ func TestKvMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetKv(ctx,
 					tc.request.Index,
-					tc.request.Creator,
 				)
 				require.False(t, found)
 			}

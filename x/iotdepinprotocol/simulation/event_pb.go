@@ -2,6 +2,7 @@ package simulation
 
 import (
 	"math/rand"
+	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
@@ -12,6 +13,9 @@ import (
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 )
 
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
 func SimulateMsgCreateEventPb(
 	ak types.AccountKeeper,
 	bk types.BankKeeper,
@@ -21,8 +25,15 @@ func SimulateMsgCreateEventPb(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
+		i := r.Int()
 		msg := &types.MsgCreateEventPb{
 			Creator: simAccount.Address.String(),
+			Index:   strconv.Itoa(i),
+		}
+
+		_, found := k.GetEventPb(ctx, msg.Index, msg.DeviceName)
+		if found {
+			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "EventPb already exist"), nil, nil
 		}
 
 		txCtx := simulation.OperationInput{
@@ -68,7 +79,8 @@ func SimulateMsgUpdateEventPb(
 			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "eventPb creator not found"), nil, nil
 		}
 		msg.Creator = simAccount.Address.String()
-		msg.Id = eventPb.Id
+
+		msg.Index = eventPb.Index
 
 		txCtx := simulation.OperationInput{
 			R:               r,
@@ -113,7 +125,8 @@ func SimulateMsgDeleteEventPb(
 			return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "eventPb creator not found"), nil, nil
 		}
 		msg.Creator = simAccount.Address.String()
-		msg.Id = eventPb.Id
+
+		msg.Index = eventPb.Index
 
 		txCtx := simulation.OperationInput{
 			R:               r,

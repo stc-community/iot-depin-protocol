@@ -2,7 +2,6 @@ package cli
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -13,7 +12,7 @@ import (
 func CmdListEventPb() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list-event-pb",
-		Short: "list all EventPb",
+		Short: "list all eventPb",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx := client.GetClientContextFromCmd(cmd)
 
@@ -45,21 +44,18 @@ func CmdListEventPb() *cobra.Command {
 
 func CmdShowEventPb() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "show-event-pb [id]",
-		Short: "shows a EventPb",
+		Use:   "show-event-pb [index]",
+		Short: "shows a eventPb",
 		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) error {
+		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			clientCtx := client.GetClientContextFromCmd(cmd)
 
 			queryClient := types.NewQueryClient(clientCtx)
 
-			id, err := strconv.ParseUint(args[0], 10, 64)
-			if err != nil {
-				return err
-			}
+			argIndex := args[0]
 
 			params := &types.QueryGetEventPbRequest{
-				Id: id,
+				Index: argIndex,
 			}
 
 			res, err := queryClient.EventPb(context.Background(), params)

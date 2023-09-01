@@ -22,6 +22,14 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				DeviceList: []types.Device{
+					{
+						DeviceName: "0",
+					},
+					{
+						DeviceName: "1",
+					},
+				},
 				KvList: []types.Kv{
 					{
 						Index: "0",
@@ -30,26 +38,31 @@ func TestGenesisState_Validate(t *testing.T) {
 						Index: "1",
 					},
 				},
-				DeviceList: []types.Device{
-					{
-						Address: "0",
-					},
-					{
-						Address: "1",
-					},
-				},
 				EventPbList: []types.EventPb{
 					{
-						Id: 0,
+						Index: "0",
 					},
 					{
-						Id: 1,
+						Index: "1",
 					},
 				},
-				EventPbCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated device",
+			genState: &types.GenesisState{
+				DeviceList: []types.Device{
+					{
+						DeviceName: "0",
+					},
+					{
+						DeviceName: "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		{
 			desc: "duplicated kv",
@@ -66,42 +79,16 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid: false,
 		},
 		{
-			desc: "duplicated device",
-			genState: &types.GenesisState{
-				DeviceList: []types.Device{
-					{
-						Address: "0",
-					},
-					{
-						Address: "0",
-					},
-				},
-			},
-			valid: false,
-		},
-		{
 			desc: "duplicated eventPb",
 			genState: &types.GenesisState{
 				EventPbList: []types.EventPb{
 					{
-						Id: 0,
+						Index: "0",
 					},
 					{
-						Id: 0,
+						Index: "0",
 					},
 				},
-			},
-			valid: false,
-		},
-		{
-			desc: "invalid eventPb count",
-			genState: &types.GenesisState{
-				EventPbList: []types.EventPb{
-					{
-						Id: 1,
-					},
-				},
-				EventPbCount: 0,
 			},
 			valid: false,
 		},

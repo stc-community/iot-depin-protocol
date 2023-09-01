@@ -17,8 +17,3 @@ const (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
-
-const (
-	EventPbKey      = "EventPb/value/"
-	EventPbCountKey = "EventPb/count/"
-)

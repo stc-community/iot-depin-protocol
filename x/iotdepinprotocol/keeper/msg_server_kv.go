@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
@@ -14,16 +13,17 @@ func (k msgServer) CreateKv(goCtx context.Context, msg *types.MsgCreateKv) (*typ
 	_, isFound := k.GetKv(
 		ctx,
 		msg.Index,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
 	var kv = types.Kv{
-		Creator: msg.Creator,
-		Index:   msg.Index,
-		Value:   msg.Value,
+		Creator:    msg.Creator,
+		Index:      msg.Index,
+		Value:      msg.Value,
+		DeviceName: msg.DeviceName,
 	}
 
 	k.SetKv(
@@ -40,7 +40,7 @@ func (k msgServer) UpdateKv(goCtx context.Context, msg *types.MsgUpdateKv) (*typ
 	valFound, isFound := k.GetKv(
 		ctx,
 		msg.Index,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -52,9 +52,10 @@ func (k msgServer) UpdateKv(goCtx context.Context, msg *types.MsgUpdateKv) (*typ
 	}
 
 	var kv = types.Kv{
-		Creator: msg.Creator,
-		Index:   msg.Index,
-		Value:   msg.Value,
+		Creator:    msg.Creator,
+		Index:      msg.Index,
+		Value:      msg.Value,
+		DeviceName: msg.DeviceName,
 	}
 
 	k.SetKv(ctx, kv)
@@ -69,7 +70,7 @@ func (k msgServer) DeleteKv(goCtx context.Context, msg *types.MsgDeleteKv) (*typ
 	valFound, isFound := k.GetKv(
 		ctx,
 		msg.Index,
-		msg.Creator,
+		msg.DeviceName,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -83,7 +84,7 @@ func (k msgServer) DeleteKv(goCtx context.Context, msg *types.MsgDeleteKv) (*typ
 	k.RemoveKv(
 		ctx,
 		msg.Index,
-		msg.Creator,
+		msg.DeviceName,
 	)
 
 	return &types.MsgDeleteKvResponse{}, nil

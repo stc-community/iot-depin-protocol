@@ -13,11 +13,18 @@ const (
 
 var _ sdk.Msg = &MsgCreateEventPb{}
 
-func NewMsgCreateEventPb(creator string, topic string, payload string) *MsgCreateEventPb {
+func NewMsgCreateEventPb(
+	creator string,
+	index string,
+	deviceName string,
+	payload string,
+
+) *MsgCreateEventPb {
 	return &MsgCreateEventPb{
-		Creator: creator,
-		Topic:   topic,
-		Payload: payload,
+		Creator:    creator,
+		Index:      index,
+		DeviceName: deviceName,
+		Payload:    payload,
 	}
 }
 
@@ -52,12 +59,18 @@ func (msg *MsgCreateEventPb) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgUpdateEventPb{}
 
-func NewMsgUpdateEventPb(creator string, id uint64, topic string, payload string) *MsgUpdateEventPb {
+func NewMsgUpdateEventPb(
+	creator string,
+	index string,
+	deviceName string,
+	payload string,
+
+) *MsgUpdateEventPb {
 	return &MsgUpdateEventPb{
-		Id:      id,
-		Creator: creator,
-		Topic:   topic,
-		Payload: payload,
+		Creator:    creator,
+		Index:      index,
+		DeviceName: deviceName,
+		Payload:    payload,
 	}
 }
 
@@ -92,10 +105,14 @@ func (msg *MsgUpdateEventPb) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgDeleteEventPb{}
 
-func NewMsgDeleteEventPb(creator string, id uint64) *MsgDeleteEventPb {
+func NewMsgDeleteEventPb(
+	creator string,
+	index string,
+
+) *MsgDeleteEventPb {
 	return &MsgDeleteEventPb{
-		Id:      id,
 		Creator: creator,
+		Index:   index,
 	}
 }
 func (msg *MsgDeleteEventPb) Route() string {

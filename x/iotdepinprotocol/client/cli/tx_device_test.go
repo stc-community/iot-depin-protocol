@@ -24,17 +24,17 @@ func TestCreateDevice(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	for _, tc := range []struct {
-		desc      string
-		idAddress string
+		desc         string
+		idDeviceName string
 
 		args []string
 		err  error
 		code uint32
 	}{
 		{
-			idAddress: strconv.Itoa(0),
+			idDeviceName: strconv.Itoa(0),
 
 			desc: "valid",
 			args: []string{
@@ -47,7 +47,7 @@ func TestCreateDevice(t *testing.T) {
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
 			args := []string{
-				tc.idAddress,
+				tc.idDeviceName,
 			}
 			args = append(args, fields...)
 			args = append(args, tc.args...)
@@ -69,7 +69,7 @@ func TestUpdateDevice(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
@@ -85,22 +85,22 @@ func TestUpdateDevice(t *testing.T) {
 	require.NoError(t, err)
 
 	for _, tc := range []struct {
-		desc      string
-		idAddress string
+		desc         string
+		idDeviceName string
 
 		args []string
 		code uint32
 		err  error
 	}{
 		{
-			desc:      "valid",
-			idAddress: strconv.Itoa(0),
+			desc:         "valid",
+			idDeviceName: strconv.Itoa(0),
 
 			args: common,
 		},
 		{
-			desc:      "key not found",
-			idAddress: strconv.Itoa(100000),
+			desc:         "key not found",
+			idDeviceName: strconv.Itoa(100000),
 
 			args: common,
 			code: sdkerrors.ErrKeyNotFound.ABCICode(),
@@ -108,7 +108,7 @@ func TestUpdateDevice(t *testing.T) {
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
 			args := []string{
-				tc.idAddress,
+				tc.idDeviceName,
 			}
 			args = append(args, fields...)
 			args = append(args, tc.args...)
@@ -131,7 +131,7 @@ func TestDeleteDevice(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
@@ -147,22 +147,22 @@ func TestDeleteDevice(t *testing.T) {
 	require.NoError(t, err)
 
 	for _, tc := range []struct {
-		desc      string
-		idAddress string
+		desc         string
+		idDeviceName string
 
 		args []string
 		code uint32
 		err  error
 	}{
 		{
-			desc:      "valid",
-			idAddress: strconv.Itoa(0),
+			desc:         "valid",
+			idDeviceName: strconv.Itoa(0),
 
 			args: common,
 		},
 		{
-			desc:      "key not found",
-			idAddress: strconv.Itoa(100000),
+			desc:         "key not found",
+			idDeviceName: strconv.Itoa(100000),
 
 			args: common,
 			code: sdkerrors.ErrKeyNotFound.ABCICode(),
@@ -170,7 +170,7 @@ func TestDeleteDevice(t *testing.T) {
 	} {
 		t.Run(tc.desc, func(t *testing.T) {
 			args := []string{
-				tc.idAddress,
+				tc.idDeviceName,
 			}
 			args = append(args, tc.args...)
 			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdDeleteDevice(), args)

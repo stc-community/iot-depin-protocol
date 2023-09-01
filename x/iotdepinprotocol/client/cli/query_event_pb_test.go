@@ -2,6 +2,7 @@ package cli_test
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -17,6 +18,9 @@ import (
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 )
 
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
 func networkWithEventPbObjects(t *testing.T, n int) (*network.Network, []types.EventPb) {
 	t.Helper()
 	cfg := network.DefaultConfig()
@@ -25,7 +29,7 @@ func networkWithEventPbObjects(t *testing.T, n int) (*network.Network, []types.E
 
 	for i := 0; i < n; i++ {
 		eventPb := types.EventPb{
-			Id: uint64(i),
+			Index: strconv.Itoa(i),
 		}
 		nullify.Fill(&eventPb)
 		state.EventPbList = append(state.EventPbList, eventPb)
@@ -44,28 +48,32 @@ func TestShowEventPb(t *testing.T) {
 		fmt.Sprintf("--%s=json", tmcli.OutputFlag),
 	}
 	for _, tc := range []struct {
-		desc string
-		id   string
+		desc    string
+		idIndex string
+
 		args []string
 		err  error
 		obj  types.EventPb
 	}{
 		{
-			desc: "found",
-			id:   fmt.Sprintf("%d", objs[0].Id),
+			desc:    "found",
+			idIndex: objs[0].Index,
+
 			args: common,
 			obj:  objs[0],
 		},
 		{
-			desc: "not found",
-			id:   "not_found",
+			desc:    "not found",
+			idIndex: strconv.Itoa(100000),
+
 			args: common,
 			err:  status.Error(codes.NotFound, "not found"),
 		},
 	} {
-		tc := tc
 		t.Run(tc.desc, func(t *testing.T) {
-			args := []string{tc.id}
+			args := []string{
+				tc.idIndex,
+			}
 			args = append(args, tc.args...)
 			out, err := clitestutil.ExecTestCLICmd(ctx, cli.CmdShowEventPb(), args)
 			if tc.err != nil {

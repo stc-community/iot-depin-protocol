@@ -6,8 +6,8 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "iotdepinprotocol/iotdepinprotocol/params.proto";
-import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
+import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
@@ -21,6 +21,16 @@ service Query {
   
   }
   
+  // Queries a list of Device items.
+  rpc Device    (QueryGetDeviceRequest) returns (QueryGetDeviceResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device/{deviceName}";
+  
+  }
+  rpc DeviceAll (QueryAllDeviceRequest) returns (QueryAllDeviceResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device";
+  
+  }
+  
   // Queries a list of Kv items.
   rpc Kv    (QueryGetKvRequest) returns (QueryGetKvResponse) {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/kv/{index}";
@@ -31,19 +41,9 @@ service Query {
   
   }
   
-  // Queries a list of Device items.
-  rpc Device    (QueryGetDeviceRequest) returns (QueryGetDeviceResponse) {
-    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device/{address}";
-  
-  }
-  rpc DeviceAll (QueryAllDeviceRequest) returns (QueryAllDeviceResponse) {
-    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device";
-  
-  }
-  
   // Queries a list of EventPb items.
   rpc EventPb    (QueryGetEventPbRequest) returns (QueryGetEventPbResponse) {
-    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{id}";
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb/{index}";
   
   }
   rpc EventPbAll (QueryAllEventPbRequest) returns (QueryAllEventPbResponse) {
@@ -61,28 +61,8 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryGetKvRequest {
-  string index   = 1;
-  string creator = 2;
-}
-
-message QueryGetKvResponse {
-  Kv kv = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryAllKvRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string                                creator    = 2;
-}
-
-message QueryAllKvResponse {
-  repeated Kv                                     kv         = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
 message QueryGetDeviceRequest {
-  string address = 1;
-  string creator = 2;
+  string deviceName = 1;
 }
 
 message QueryGetDeviceResponse {
@@ -91,7 +71,7 @@ message QueryGetDeviceResponse {
 
 message QueryAllDeviceRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string                                creator    = 2;
+  string deviceName = 2;
 }
 
 message QueryAllDeviceResponse {
@@ -99,21 +79,41 @@ message QueryAllDeviceResponse {
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
+message QueryGetKvRequest {
+  string index = 1;
+  string deviceName = 2;
+}
+
+message QueryGetKvResponse {
+  Kv kv = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllKvRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string deviceName = 2;
+}
+
+message QueryAllKvResponse {
+  repeated Kv                                     kv         = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
 message QueryGetEventPbRequest {
-  uint64 id = 1;
+  string index = 1;
+  string deviceName = 2;
 }
 
 message QueryGetEventPbResponse {
-  EventPb EventPb = 1 [(gogoproto.nullable) = false];
+  EventPb eventPb = 1 [(gogoproto.nullable) = false];
 }
 
 message QueryAllEventPbRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string topic = 2;
+  string deviceName = 2;
 }
 
 message QueryAllEventPbResponse {
-  repeated EventPb                                EventPb    = 1 [(gogoproto.nullable) = false];
+  repeated EventPb                                eventPb    = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

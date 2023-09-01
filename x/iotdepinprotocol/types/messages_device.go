@@ -15,14 +15,16 @@ var _ sdk.Msg = &MsgCreateDevice{}
 
 func NewMsgCreateDevice(
 	creator string,
+	deviceName string,
 	address string,
 	value string,
 
 ) *MsgCreateDevice {
 	return &MsgCreateDevice{
-		Creator: creator,
-		Address: address,
-		Value:   value,
+		Creator:    creator,
+		DeviceName: deviceName,
+		Address:    address,
+		Value:      value,
 	}
 }
 
@@ -59,14 +61,16 @@ var _ sdk.Msg = &MsgUpdateDevice{}
 
 func NewMsgUpdateDevice(
 	creator string,
+	deviceName string,
 	address string,
 	value string,
 
 ) *MsgUpdateDevice {
 	return &MsgUpdateDevice{
-		Creator: creator,
-		Address: address,
-		Value:   value,
+		Creator:    creator,
+		DeviceName: deviceName,
+		Address:    address,
+		Value:      value,
 	}
 }
 
@@ -103,12 +107,12 @@ var _ sdk.Msg = &MsgDeleteDevice{}
 
 func NewMsgDeleteDevice(
 	creator string,
-	address string,
+	deviceName string,
 
 ) *MsgDeleteDevice {
 	return &MsgDeleteDevice{
-		Creator: creator,
-		Address: address,
+		Creator:    creator,
+		DeviceName: deviceName,
 	}
 }
 func (msg *MsgDeleteDevice) Route() string {

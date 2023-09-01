@@ -10,8 +10,8 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		KvList:      []Kv{},
 		DeviceList:  []Device{},
+		KvList:      []Kv{},
 		EventPbList: []EventPb{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
@@ -21,6 +21,16 @@ func DefaultGenesis() *GenesisState {
 // Validate performs basic genesis state validation returning an error upon any
 // failure.
 func (gs GenesisState) Validate() error {
+	// Check for duplicated index in device
+	deviceIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.DeviceList {
+		index := string(DeviceKey(elem.DeviceName))
+		if _, ok := deviceIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for device")
+		}
+		deviceIndexMap[index] = struct{}{}
+	}
 	// Check for duplicated index in kv
 	kvIndexMap := make(map[string]struct{})
 
@@ -31,28 +41,15 @@ func (gs GenesisState) Validate() error {
 		}
 		kvIndexMap[index] = struct{}{}
 	}
-	// Check for duplicated index in device
-	deviceIndexMap := make(map[string]struct{})
+	// Check for duplicated index in eventPb
+	eventPbIndexMap := make(map[string]struct{})
 
-	for _, elem := range gs.DeviceList {
-		index := string(DeviceKey(elem.Address))
-		if _, ok := deviceIndexMap[index]; ok {
-			return fmt.Errorf("duplicated index for device")
-		}
-		deviceIndexMap[index] = struct{}{}
-	}
-
-	// Check for duplicated ID in eventPb
-	eventPbIdMap := make(map[uint64]bool)
-	eventPbCount := gs.GetEventPbCount()
 	for _, elem := range gs.EventPbList {
-		if _, ok := eventPbIdMap[elem.Id]; ok {
-			return fmt.Errorf("duplicated id for eventPb")
+		index := string(EventPbKey(elem.Index))
+		if _, ok := eventPbIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for eventPb")
 		}
-		if elem.Id >= eventPbCount {
-			return fmt.Errorf("eventPb id should be lower or equal than the last id")
-		}
-		eventPbIdMap[elem.Id] = true
+		eventPbIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

@@ -5,7 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -20,21 +20,16 @@ func (k Keeper) EventPbAll(goCtx context.Context, req *types.QueryAllEventPbRequ
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	store := ctx.KVStore(k.storeKey)
-	eventPbStore := prefix.NewStore(store, types.KeyPrefix(types.EventPbKey))
+	eventPbStore := prefix.NewStore(store, types.KeyPrefix(types.EventPbKeyPrefix+req.DeviceName))
 
-	pageRes, err := types.Paginate(eventPbStore, req.Pagination, func(key []byte, value []byte) (bool, error) {
+	pageRes, err := query.Paginate(eventPbStore, req.Pagination, func(key []byte, value []byte) error {
 		var eventPb types.EventPb
 		if err := k.cdc.Unmarshal(value, &eventPb); err != nil {
-			return false, err
+			return err
 		}
-		// Filter
-		if req.Topic != "" {
-			if eventPb.Topic != req.Topic {
-				return false, nil
-			}
-		}
+
 		eventPbs = append(eventPbs, eventPb)
-		return true, nil
+		return nil
 	})
 
 	if err != nil {
@@ -48,12 +43,16 @@ func (k Keeper) EventPb(goCtx context.Context, req *types.QueryGetEventPbRequest
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
-
 	ctx := sdk.UnwrapSDKContext(goCtx)
-	eventPb, found := k.GetEventPb(ctx, req.Id)
+
+	val, found := k.GetEventPb(
+		ctx,
+		req.Index,
+		req.DeviceName,
+	)
 	if !found {
-		return nil, sdkerrors.ErrKeyNotFound
+		return nil, status.Error(codes.NotFound, "not found")
 	}
 
-	return &types.QueryGetEventPbResponse{EventPb: eventPb}, nil
+	return &types.QueryGetEventPbResponse{EventPb: val}, nil
 }

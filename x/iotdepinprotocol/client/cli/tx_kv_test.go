@@ -24,7 +24,7 @@ func TestCreateKv(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	for _, tc := range []struct {
 		desc    string
 		idIndex string
@@ -69,7 +69,7 @@ func TestUpdateKv(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
@@ -131,7 +131,7 @@ func TestDeleteKv(t *testing.T) {
 	val := net.Validators[0]
 	ctx := val.ClientCtx
 
-	fields := []string{"xyz"}
+	fields := []string{"xyz", "xyz"}
 	common := []string{
 		fmt.Sprintf("--%s=%s", flags.FlagFrom, val.Address.String()),
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),

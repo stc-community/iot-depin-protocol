@@ -8,7 +8,7 @@ import (
 
 // SetKv set a specific kv in the store from its index
 func (k Keeper) SetKv(ctx sdk.Context, kv types.Kv) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+kv.Creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+kv.DeviceName))
 	b := k.cdc.MustMarshal(&kv)
 	store.Set(types.KvKey(
 		kv.Index,
@@ -19,10 +19,10 @@ func (k Keeper) SetKv(ctx sdk.Context, kv types.Kv) {
 func (k Keeper) GetKv(
 	ctx sdk.Context,
 	index string,
-	creator string,
+	deviceName string,
 
 ) (val types.Kv, found bool) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+deviceName))
 
 	b := store.Get(types.KvKey(
 		index,
@@ -39,22 +39,18 @@ func (k Keeper) GetKv(
 func (k Keeper) RemoveKv(
 	ctx sdk.Context,
 	index string,
-	creator string,
+	deviceName string,
 
 ) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+deviceName))
 	store.Delete(types.KvKey(
 		index,
 	))
 }
 
 // GetAllKv returns all kv
-func (k Keeper) GetAllKv(
-	ctx sdk.Context,
-	creator string,
-
-) (list []types.Kv) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix+creator))
+func (k Keeper) GetAllKv(ctx sdk.Context) (list []types.Kv) {
+	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.KvKeyPrefix))
 	iterator := sdk.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()

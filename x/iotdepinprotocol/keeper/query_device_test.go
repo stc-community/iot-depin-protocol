@@ -31,21 +31,21 @@ func TestDeviceQuerySingle(t *testing.T) {
 		{
 			desc: "First",
 			request: &types.QueryGetDeviceRequest{
-				Address: msgs[0].Address,
+				DeviceName: msgs[0].DeviceName,
 			},
 			response: &types.QueryGetDeviceResponse{Device: msgs[0]},
 		},
 		{
 			desc: "Second",
 			request: &types.QueryGetDeviceRequest{
-				Address: msgs[1].Address,
+				DeviceName: msgs[1].DeviceName,
 			},
 			response: &types.QueryGetDeviceResponse{Device: msgs[1]},
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.QueryGetDeviceRequest{
-				Address: strconv.Itoa(100000),
+				DeviceName: strconv.Itoa(100000),
 			},
 			err: status.Error(codes.NotFound, "not found"),
 		},

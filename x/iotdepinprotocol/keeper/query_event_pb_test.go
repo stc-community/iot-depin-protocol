@@ -1,10 +1,10 @@
 package keeper_test
 
 import (
+	"strconv"
 	"testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc/codes"
@@ -14,6 +14,9 @@ import (
 	"github.com/stc-community/iot-depin-protocol/testutil/nullify"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 )
+
+// Prevent strconv unused error
+var _ = strconv.IntSize
 
 func TestEventPbQuerySingle(t *testing.T) {
 	keeper, ctx := keepertest.IotdepinprotocolKeeper(t)
@@ -26,19 +29,25 @@ func TestEventPbQuerySingle(t *testing.T) {
 		err      error
 	}{
 		{
-			desc:     "First",
-			request:  &types.QueryGetEventPbRequest{Id: msgs[0].Id},
+			desc: "First",
+			request: &types.QueryGetEventPbRequest{
+				Index: msgs[0].Index,
+			},
 			response: &types.QueryGetEventPbResponse{EventPb: msgs[0]},
 		},
 		{
-			desc:     "Second",
-			request:  &types.QueryGetEventPbRequest{Id: msgs[1].Id},
+			desc: "Second",
+			request: &types.QueryGetEventPbRequest{
+				Index: msgs[1].Index,
+			},
 			response: &types.QueryGetEventPbResponse{EventPb: msgs[1]},
 		},
 		{
-			desc:    "KeyNotFound",
-			request: &types.QueryGetEventPbRequest{Id: uint64(len(msgs))},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.QueryGetEventPbRequest{
+				Index: strconv.Itoa(100000),
+			},
+			err: status.Error(codes.NotFound, "not found"),
 		},
 		{
 			desc: "InvalidRequest",

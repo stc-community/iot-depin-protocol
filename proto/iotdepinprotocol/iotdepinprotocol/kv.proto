@@ -6,6 +6,7 @@ option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinproto
 message Kv {
   string index = 1; 
   string value = 2; 
-  string creator = 3;
+  string deviceName = 3; 
+  string creator = 4;
 }
 

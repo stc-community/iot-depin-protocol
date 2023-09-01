@@ -2,36 +2,63 @@ syntax = "proto3";
 
 package stccommunity.iotdepinprotocol.iotdepinprotocol;
 
-import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
+import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Msg defines the Msg service.
 service Msg {
-  rpc CreateKv      (MsgCreateKv     ) returns (MsgCreateKvResponse     );
-  rpc UpdateKv      (MsgUpdateKv     ) returns (MsgUpdateKvResponse     );
-  rpc DeleteKv      (MsgDeleteKv     ) returns (MsgDeleteKvResponse     );
   rpc CreateDevice  (MsgCreateDevice ) returns (MsgCreateDeviceResponse );
   rpc UpdateDevice  (MsgUpdateDevice ) returns (MsgUpdateDeviceResponse );
   rpc DeleteDevice  (MsgDeleteDevice ) returns (MsgDeleteDeviceResponse );
+  rpc CreateKv      (MsgCreateKv     ) returns (MsgCreateKvResponse     );
+  rpc UpdateKv      (MsgUpdateKv     ) returns (MsgUpdateKvResponse     );
+  rpc DeleteKv      (MsgDeleteKv     ) returns (MsgDeleteKvResponse     );
   rpc CreateEventPb (MsgCreateEventPb) returns (MsgCreateEventPbResponse);
   rpc UpdateEventPb (MsgUpdateEventPb) returns (MsgUpdateEventPbResponse);
   rpc DeleteEventPb (MsgDeleteEventPb) returns (MsgDeleteEventPbResponse);
 }
+message MsgCreateDevice {
+  string creator    = 1;
+  string deviceName = 2;
+  string address    = 3;
+  string value      = 4;
+}
+
+message MsgCreateDeviceResponse {}
+
+message MsgUpdateDevice {
+  string creator    = 1;
+  string deviceName = 2;
+  string address    = 3;
+  string value      = 4;
+}
+
+message MsgUpdateDeviceResponse {}
+
+message MsgDeleteDevice {
+  string creator    = 1;
+  string deviceName = 2;
+}
+
+message MsgDeleteDeviceResponse {}
+
 message MsgCreateKv {
-  string creator = 1;
-  string index   = 2;
-  string value   = 3;
+  string creator    = 1;
+  string index      = 2;
+  string value      = 3;
+  string deviceName = 4;
 }
 
 message MsgCreateKvResponse {}
 
 message MsgUpdateKv {
-  string creator = 1;
-  string index   = 2;
-  string value   = 3;
+  string creator    = 1;
+  string index      = 2;
+  string value      = 3;
+  string deviceName = 4;
 }
 
 message MsgUpdateKvResponse {}
@@ -39,55 +66,33 @@ message MsgUpdateKvResponse {}
 message MsgDeleteKv {
   string creator = 1;
   string index   = 2;
+  string deviceName = 3;
 }
 
 message MsgDeleteKvResponse {}
 
-message MsgCreateDevice {
-  string creator = 1;
-  string address = 2;
-  string value   = 3;
-}
-
-message MsgCreateDeviceResponse {}
-
-message MsgUpdateDevice {
-  string creator = 1;
-  string address = 2;
-  string value   = 3;
-}
-
-message MsgUpdateDeviceResponse {}
-
-message MsgDeleteDevice {
-  string creator = 1;
-  string address = 2;
-}
-
-message MsgDeleteDeviceResponse {}
-
 message MsgCreateEventPb {
-  string creator = 1;
-  string topic   = 2;
-  string payload = 3;
+  string creator    = 1;
+  string index      = 2;
+  string deviceName = 3;
+  string payload    = 4;
 }
 
-message MsgCreateEventPbResponse {
-  uint64 id = 1;
-}
+message MsgCreateEventPbResponse {}
 
 message MsgUpdateEventPb {
-  string creator = 1;
-  uint64 id      = 2;
-  string topic   = 3;
-  string payload = 4;
+  string creator    = 1;
+  string index      = 2;
+  string deviceName = 3;
+  string payload    = 4;
 }
 
 message MsgUpdateEventPbResponse {}
 
 message MsgDeleteEventPb {
   string creator = 1;
-  uint64 id      = 2;
+  string index   = 2;
+  string deviceName = 3;
 }
 
 message MsgDeleteEventPbResponse {}
