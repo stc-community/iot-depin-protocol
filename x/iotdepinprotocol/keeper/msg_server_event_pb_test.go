@@ -29,6 +29,7 @@ func TestEventPbMsgServerCreate(t *testing.T) {
 		require.NoError(t, err)
 		rst, found := k.GetEventPb(ctx,
 			expected.Index,
+			expected.DeviceName,
 		)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
@@ -81,6 +82,7 @@ func TestEventPbMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetEventPb(ctx,
 					expected.Index,
+					expected.DeviceName,
 				)
 				require.True(t, found)
 				require.Equal(t, expected.Creator, rst.Creator)
@@ -134,6 +136,7 @@ func TestEventPbMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetEventPb(ctx,
 					tc.request.Index,
+					tc.request.DeviceName,
 				)
 				require.False(t, found)
 			}
