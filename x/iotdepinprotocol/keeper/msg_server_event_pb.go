@@ -15,8 +15,16 @@ func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEven
 		//msg.Index = hex.EncodeToString(tmhash.Sum(ctx.TxBytes()))
 		msg.Index = ctx.HeaderHash().String()
 	}
+	// 验证设备
+	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
+	if !isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
+	}
+	if deviceFound.Creator != msg.Creator {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device creator can create events")
+	}
 	// Check if the value already exists
-	_, isFound := k.GetEventPb(
+	_, isFound = k.GetEventPb(
 		ctx,
 		msg.Index,
 		msg.DeviceName,
@@ -56,6 +64,16 @@ func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEven
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
+	}
+
+	// 验证设备
+	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
+	if !isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
+	}
+	// 只有设备钱包账户可以修改事件
+	if msg.Creator != deviceFound.Address {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device wallet accounts can modify events")
 	}
 
 	// Checks if the the msg creator is the same as the current owner

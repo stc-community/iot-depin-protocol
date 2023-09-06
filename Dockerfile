@@ -22,15 +22,15 @@ RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz | tar -C $LOCAL
 # Install Ignite
 RUN curl -L https://get.ignite.com/cli@v${IGNITE_VERSION}! | bash
 
-# copy 源码
-RUN git clone https://github.com/stc-community/iot-depin-protocol.git && cd iot-depin-protocol
-RUN ignite chain init
+# git clone 源码
+RUN git clone https://github.com/stc-community/iot-depin-protocol.git
+RUN cd iot-depin-protocol && ignite chain init
 
 FROM debian:latest
 
-ENV PATH=$LOCAL/bin
+ENV LOCAL=/usr/local
 
-COPY --from=build /root/go/bin/iot-depin-protocold $LOCAL/
+COPY --from=build /root/go/bin/iot-depin-protocold ${LOCAL}/bin/checkersd/iot-depin-protocold
 COPY --from=build /root/.iot-depin-protocol /root/.iot-depin-protocol
 
 EXPOSE 1317 26657
@@ -38,4 +38,4 @@ EXPOSE 1317 26657
 ENTRYPOINT ["iot-depin-protocold", "start"]
 
 
-# docker build --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.4 .
+# docker build --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.6 .
