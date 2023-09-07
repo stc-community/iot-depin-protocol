@@ -2,18 +2,18 @@ package keeper
 
 import (
 	"context"
-
+	"encoding/hex"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
+	"github.com/tendermint/tendermint/crypto/tmhash"
 )
 
 func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEventPb) (*types.MsgCreateEventPbResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 	// 自动生成 Index
 	if msg.Index == "" {
-		//msg.Index = hex.EncodeToString(tmhash.Sum(ctx.TxBytes()))
-		msg.Index = ctx.HeaderHash().String()
+		msg.Index = hex.EncodeToString(tmhash.Sum(ctx.TxBytes()))
 	}
 	// 验证设备
 	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
