@@ -89,6 +89,32 @@ export interface MsgDeleteEventPb {
 export interface MsgDeleteEventPbResponse {
 }
 
+export interface MsgCreateDeviceRegistry {
+  creator: string;
+  mid: string;
+  metaData: string;
+}
+
+export interface MsgCreateDeviceRegistryResponse {
+}
+
+export interface MsgUpdateDeviceRegistry {
+  creator: string;
+  mid: string;
+  metaData: string;
+}
+
+export interface MsgUpdateDeviceRegistryResponse {
+}
+
+export interface MsgDeleteDeviceRegistry {
+  creator: string;
+  mid: string;
+}
+
+export interface MsgDeleteDeviceRegistryResponse {
+}
+
 function createBaseMsgCreateDevice(): MsgCreateDevice {
   return { creator: "", deviceName: "", address: "", value: "" };
 }
@@ -1088,6 +1114,315 @@ export const MsgDeleteEventPbResponse = {
   },
 };
 
+function createBaseMsgCreateDeviceRegistry(): MsgCreateDeviceRegistry {
+  return { creator: "", mid: "", metaData: "" };
+}
+
+export const MsgCreateDeviceRegistry = {
+  encode(message: MsgCreateDeviceRegistry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.mid !== "") {
+      writer.uint32(18).string(message.mid);
+    }
+    if (message.metaData !== "") {
+      writer.uint32(26).string(message.metaData);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateDeviceRegistry {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateDeviceRegistry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.mid = reader.string();
+          break;
+        case 3:
+          message.metaData = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateDeviceRegistry {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      mid: isSet(object.mid) ? String(object.mid) : "",
+      metaData: isSet(object.metaData) ? String(object.metaData) : "",
+    };
+  },
+
+  toJSON(message: MsgCreateDeviceRegistry): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.mid !== undefined && (obj.mid = message.mid);
+    message.metaData !== undefined && (obj.metaData = message.metaData);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgCreateDeviceRegistry>, I>>(object: I): MsgCreateDeviceRegistry {
+    const message = createBaseMsgCreateDeviceRegistry();
+    message.creator = object.creator ?? "";
+    message.mid = object.mid ?? "";
+    message.metaData = object.metaData ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgCreateDeviceRegistryResponse(): MsgCreateDeviceRegistryResponse {
+  return {};
+}
+
+export const MsgCreateDeviceRegistryResponse = {
+  encode(_: MsgCreateDeviceRegistryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateDeviceRegistryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateDeviceRegistryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgCreateDeviceRegistryResponse {
+    return {};
+  },
+
+  toJSON(_: MsgCreateDeviceRegistryResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgCreateDeviceRegistryResponse>, I>>(_: I): MsgCreateDeviceRegistryResponse {
+    const message = createBaseMsgCreateDeviceRegistryResponse();
+    return message;
+  },
+};
+
+function createBaseMsgUpdateDeviceRegistry(): MsgUpdateDeviceRegistry {
+  return { creator: "", mid: "", metaData: "" };
+}
+
+export const MsgUpdateDeviceRegistry = {
+  encode(message: MsgUpdateDeviceRegistry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.mid !== "") {
+      writer.uint32(18).string(message.mid);
+    }
+    if (message.metaData !== "") {
+      writer.uint32(26).string(message.metaData);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateDeviceRegistry {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateDeviceRegistry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.mid = reader.string();
+          break;
+        case 3:
+          message.metaData = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgUpdateDeviceRegistry {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      mid: isSet(object.mid) ? String(object.mid) : "",
+      metaData: isSet(object.metaData) ? String(object.metaData) : "",
+    };
+  },
+
+  toJSON(message: MsgUpdateDeviceRegistry): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.mid !== undefined && (obj.mid = message.mid);
+    message.metaData !== undefined && (obj.metaData = message.metaData);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateDeviceRegistry>, I>>(object: I): MsgUpdateDeviceRegistry {
+    const message = createBaseMsgUpdateDeviceRegistry();
+    message.creator = object.creator ?? "";
+    message.mid = object.mid ?? "";
+    message.metaData = object.metaData ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgUpdateDeviceRegistryResponse(): MsgUpdateDeviceRegistryResponse {
+  return {};
+}
+
+export const MsgUpdateDeviceRegistryResponse = {
+  encode(_: MsgUpdateDeviceRegistryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgUpdateDeviceRegistryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateDeviceRegistryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgUpdateDeviceRegistryResponse {
+    return {};
+  },
+
+  toJSON(_: MsgUpdateDeviceRegistryResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgUpdateDeviceRegistryResponse>, I>>(_: I): MsgUpdateDeviceRegistryResponse {
+    const message = createBaseMsgUpdateDeviceRegistryResponse();
+    return message;
+  },
+};
+
+function createBaseMsgDeleteDeviceRegistry(): MsgDeleteDeviceRegistry {
+  return { creator: "", mid: "" };
+}
+
+export const MsgDeleteDeviceRegistry = {
+  encode(message: MsgDeleteDeviceRegistry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.mid !== "") {
+      writer.uint32(18).string(message.mid);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteDeviceRegistry {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeleteDeviceRegistry();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.mid = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgDeleteDeviceRegistry {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      mid: isSet(object.mid) ? String(object.mid) : "",
+    };
+  },
+
+  toJSON(message: MsgDeleteDeviceRegistry): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.mid !== undefined && (obj.mid = message.mid);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgDeleteDeviceRegistry>, I>>(object: I): MsgDeleteDeviceRegistry {
+    const message = createBaseMsgDeleteDeviceRegistry();
+    message.creator = object.creator ?? "";
+    message.mid = object.mid ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgDeleteDeviceRegistryResponse(): MsgDeleteDeviceRegistryResponse {
+  return {};
+}
+
+export const MsgDeleteDeviceRegistryResponse = {
+  encode(_: MsgDeleteDeviceRegistryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDeleteDeviceRegistryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeleteDeviceRegistryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgDeleteDeviceRegistryResponse {
+    return {};
+  },
+
+  toJSON(_: MsgDeleteDeviceRegistryResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<MsgDeleteDeviceRegistryResponse>, I>>(_: I): MsgDeleteDeviceRegistryResponse {
+    const message = createBaseMsgDeleteDeviceRegistryResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateDevice(request: MsgCreateDevice): Promise<MsgCreateDeviceResponse>;
@@ -1099,6 +1434,9 @@ export interface Msg {
   CreateEventPb(request: MsgCreateEventPb): Promise<MsgCreateEventPbResponse>;
   UpdateEventPb(request: MsgUpdateEventPb): Promise<MsgUpdateEventPbResponse>;
   DeleteEventPb(request: MsgDeleteEventPb): Promise<MsgDeleteEventPbResponse>;
+  CreateDeviceRegistry(request: MsgCreateDeviceRegistry): Promise<MsgCreateDeviceRegistryResponse>;
+  UpdateDeviceRegistry(request: MsgUpdateDeviceRegistry): Promise<MsgUpdateDeviceRegistryResponse>;
+  DeleteDeviceRegistry(request: MsgDeleteDeviceRegistry): Promise<MsgDeleteDeviceRegistryResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -1114,6 +1452,9 @@ export class MsgClientImpl implements Msg {
     this.CreateEventPb = this.CreateEventPb.bind(this);
     this.UpdateEventPb = this.UpdateEventPb.bind(this);
     this.DeleteEventPb = this.DeleteEventPb.bind(this);
+    this.CreateDeviceRegistry = this.CreateDeviceRegistry.bind(this);
+    this.UpdateDeviceRegistry = this.UpdateDeviceRegistry.bind(this);
+    this.DeleteDeviceRegistry = this.DeleteDeviceRegistry.bind(this);
   }
   CreateDevice(request: MsgCreateDevice): Promise<MsgCreateDeviceResponse> {
     const data = MsgCreateDevice.encode(request).finish();
@@ -1167,6 +1508,36 @@ export class MsgClientImpl implements Msg {
     const data = MsgDeleteEventPb.encode(request).finish();
     const promise = this.rpc.request("stccommunity.iotdepinprotocol.iotdepinprotocol.Msg", "DeleteEventPb", data);
     return promise.then((data) => MsgDeleteEventPbResponse.decode(new _m0.Reader(data)));
+  }
+
+  CreateDeviceRegistry(request: MsgCreateDeviceRegistry): Promise<MsgCreateDeviceRegistryResponse> {
+    const data = MsgCreateDeviceRegistry.encode(request).finish();
+    const promise = this.rpc.request(
+      "stccommunity.iotdepinprotocol.iotdepinprotocol.Msg",
+      "CreateDeviceRegistry",
+      data,
+    );
+    return promise.then((data) => MsgCreateDeviceRegistryResponse.decode(new _m0.Reader(data)));
+  }
+
+  UpdateDeviceRegistry(request: MsgUpdateDeviceRegistry): Promise<MsgUpdateDeviceRegistryResponse> {
+    const data = MsgUpdateDeviceRegistry.encode(request).finish();
+    const promise = this.rpc.request(
+      "stccommunity.iotdepinprotocol.iotdepinprotocol.Msg",
+      "UpdateDeviceRegistry",
+      data,
+    );
+    return promise.then((data) => MsgUpdateDeviceRegistryResponse.decode(new _m0.Reader(data)));
+  }
+
+  DeleteDeviceRegistry(request: MsgDeleteDeviceRegistry): Promise<MsgDeleteDeviceRegistryResponse> {
+    const data = MsgDeleteDeviceRegistry.encode(request).finish();
+    const promise = this.rpc.request(
+      "stccommunity.iotdepinprotocol.iotdepinprotocol.Msg",
+      "DeleteDeviceRegistry",
+      data,
+    );
+    return promise.then((data) => MsgDeleteDeviceRegistryResponse.decode(new _m0.Reader(data)));
   }
 }
 

@@ -38,6 +38,14 @@ func TestGenesis(t *testing.T) {
 				Index: "1",
 			},
 		},
+		DeviceRegistryList: []types.DeviceRegistry{
+			{
+				Mid: "0",
+			},
+			{
+				Mid: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -52,5 +60,6 @@ func TestGenesis(t *testing.T) {
 	require.ElementsMatch(t, genesisState.DeviceList, got.DeviceList)
 	require.ElementsMatch(t, genesisState.KvList, got.KvList)
 	require.ElementsMatch(t, genesisState.EventPbList, got.EventPbList)
+	require.ElementsMatch(t, genesisState.DeviceRegistryList, got.DeviceRegistryList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

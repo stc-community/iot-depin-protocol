@@ -20,6 +20,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	for _, elem := range genState.EventPbList {
 		k.SetEventPb(ctx, elem)
 	}
+	// Set all the deviceRegistry
+	for _, elem := range genState.DeviceRegistryList {
+		k.SetDeviceRegistry(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetParams(ctx, genState.Params)
 }
@@ -32,6 +36,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.DeviceList = k.GetAllDevice(ctx)
 	genesis.KvList = k.GetAllKv(ctx)
 	genesis.EventPbList = k.GetAllEventPb(ctx)
+	genesis.DeviceRegistryList = k.GetAllDeviceRegistry(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

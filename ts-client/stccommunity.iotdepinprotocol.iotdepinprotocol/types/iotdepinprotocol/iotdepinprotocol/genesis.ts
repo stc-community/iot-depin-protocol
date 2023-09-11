@@ -1,6 +1,7 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 import { Device } from "./device";
+import { DeviceRegistry } from "./device_registry";
 import { EventPb } from "./event_pb";
 import { Kv } from "./kv";
 import { Params } from "./params";
@@ -13,10 +14,11 @@ export interface GenesisState {
   deviceList: Device[];
   kvList: Kv[];
   eventPbList: EventPb[];
+  deviceRegistryList: DeviceRegistry[];
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, deviceList: [], kvList: [], eventPbList: [] };
+  return { params: undefined, deviceList: [], kvList: [], eventPbList: [], deviceRegistryList: [] };
 }
 
 export const GenesisState = {
@@ -32,6 +34,9 @@ export const GenesisState = {
     }
     for (const v of message.eventPbList) {
       EventPb.encode(v!, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.deviceRegistryList) {
+      DeviceRegistry.encode(v!, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -55,6 +60,9 @@ export const GenesisState = {
         case 4:
           message.eventPbList.push(EventPb.decode(reader, reader.uint32()));
           break;
+        case 5:
+          message.deviceRegistryList.push(DeviceRegistry.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -69,6 +77,9 @@ export const GenesisState = {
       deviceList: Array.isArray(object?.deviceList) ? object.deviceList.map((e: any) => Device.fromJSON(e)) : [],
       kvList: Array.isArray(object?.kvList) ? object.kvList.map((e: any) => Kv.fromJSON(e)) : [],
       eventPbList: Array.isArray(object?.eventPbList) ? object.eventPbList.map((e: any) => EventPb.fromJSON(e)) : [],
+      deviceRegistryList: Array.isArray(object?.deviceRegistryList)
+        ? object.deviceRegistryList.map((e: any) => DeviceRegistry.fromJSON(e))
+        : [],
     };
   },
 
@@ -90,6 +101,11 @@ export const GenesisState = {
     } else {
       obj.eventPbList = [];
     }
+    if (message.deviceRegistryList) {
+      obj.deviceRegistryList = message.deviceRegistryList.map((e) => e ? DeviceRegistry.toJSON(e) : undefined);
+    } else {
+      obj.deviceRegistryList = [];
+    }
     return obj;
   },
 
@@ -101,6 +117,7 @@ export const GenesisState = {
     message.deviceList = object.deviceList?.map((e) => Device.fromPartial(e)) || [];
     message.kvList = object.kvList?.map((e) => Kv.fromPartial(e)) || [];
     message.eventPbList = object.eventPbList?.map((e) => EventPb.fromPartial(e)) || [];
+    message.deviceRegistryList = object.deviceRegistryList?.map((e) => DeviceRegistry.fromPartial(e)) || [];
     return message;
   },
 };

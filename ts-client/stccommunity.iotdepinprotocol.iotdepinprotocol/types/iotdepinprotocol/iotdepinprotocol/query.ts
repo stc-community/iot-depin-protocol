@@ -2,6 +2,7 @@
 import _m0 from "protobufjs/minimal";
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { Device } from "./device";
+import { DeviceRegistry } from "./device_registry";
 import { EventPb } from "./event_pb";
 import { Kv } from "./kv";
 import { Params } from "./params";
@@ -71,6 +72,23 @@ export interface QueryAllEventPbRequest {
 
 export interface QueryAllEventPbResponse {
   eventPb: EventPb[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetDeviceRegistryRequest {
+  mid: string;
+}
+
+export interface QueryGetDeviceRegistryResponse {
+  deviceRegistry: DeviceRegistry | undefined;
+}
+
+export interface QueryAllDeviceRegistryRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllDeviceRegistryResponse {
+  deviceRegistry: DeviceRegistry[];
   pagination: PageResponse | undefined;
 }
 
@@ -848,6 +866,230 @@ export const QueryAllEventPbResponse = {
   },
 };
 
+function createBaseQueryGetDeviceRegistryRequest(): QueryGetDeviceRegistryRequest {
+  return { mid: "" };
+}
+
+export const QueryGetDeviceRegistryRequest = {
+  encode(message: QueryGetDeviceRegistryRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.mid !== "") {
+      writer.uint32(10).string(message.mid);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetDeviceRegistryRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetDeviceRegistryRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.mid = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetDeviceRegistryRequest {
+    return { mid: isSet(object.mid) ? String(object.mid) : "" };
+  },
+
+  toJSON(message: QueryGetDeviceRegistryRequest): unknown {
+    const obj: any = {};
+    message.mid !== undefined && (obj.mid = message.mid);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetDeviceRegistryRequest>, I>>(
+    object: I,
+  ): QueryGetDeviceRegistryRequest {
+    const message = createBaseQueryGetDeviceRegistryRequest();
+    message.mid = object.mid ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetDeviceRegistryResponse(): QueryGetDeviceRegistryResponse {
+  return { deviceRegistry: undefined };
+}
+
+export const QueryGetDeviceRegistryResponse = {
+  encode(message: QueryGetDeviceRegistryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.deviceRegistry !== undefined) {
+      DeviceRegistry.encode(message.deviceRegistry, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetDeviceRegistryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetDeviceRegistryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.deviceRegistry = DeviceRegistry.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetDeviceRegistryResponse {
+    return {
+      deviceRegistry: isSet(object.deviceRegistry) ? DeviceRegistry.fromJSON(object.deviceRegistry) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetDeviceRegistryResponse): unknown {
+    const obj: any = {};
+    message.deviceRegistry !== undefined
+      && (obj.deviceRegistry = message.deviceRegistry ? DeviceRegistry.toJSON(message.deviceRegistry) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetDeviceRegistryResponse>, I>>(
+    object: I,
+  ): QueryGetDeviceRegistryResponse {
+    const message = createBaseQueryGetDeviceRegistryResponse();
+    message.deviceRegistry = (object.deviceRegistry !== undefined && object.deviceRegistry !== null)
+      ? DeviceRegistry.fromPartial(object.deviceRegistry)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllDeviceRegistryRequest(): QueryAllDeviceRegistryRequest {
+  return { pagination: undefined };
+}
+
+export const QueryAllDeviceRegistryRequest = {
+  encode(message: QueryAllDeviceRegistryRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllDeviceRegistryRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllDeviceRegistryRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllDeviceRegistryRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryAllDeviceRegistryRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllDeviceRegistryRequest>, I>>(
+    object: I,
+  ): QueryAllDeviceRegistryRequest {
+    const message = createBaseQueryAllDeviceRegistryRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllDeviceRegistryResponse(): QueryAllDeviceRegistryResponse {
+  return { deviceRegistry: [], pagination: undefined };
+}
+
+export const QueryAllDeviceRegistryResponse = {
+  encode(message: QueryAllDeviceRegistryResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.deviceRegistry) {
+      DeviceRegistry.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllDeviceRegistryResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllDeviceRegistryResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.deviceRegistry.push(DeviceRegistry.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllDeviceRegistryResponse {
+    return {
+      deviceRegistry: Array.isArray(object?.deviceRegistry)
+        ? object.deviceRegistry.map((e: any) => DeviceRegistry.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryAllDeviceRegistryResponse): unknown {
+    const obj: any = {};
+    if (message.deviceRegistry) {
+      obj.deviceRegistry = message.deviceRegistry.map((e) => e ? DeviceRegistry.toJSON(e) : undefined);
+    } else {
+      obj.deviceRegistry = [];
+    }
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllDeviceRegistryResponse>, I>>(
+    object: I,
+  ): QueryAllDeviceRegistryResponse {
+    const message = createBaseQueryAllDeviceRegistryResponse();
+    message.deviceRegistry = object.deviceRegistry?.map((e) => DeviceRegistry.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -861,6 +1103,9 @@ export interface Query {
   /** Queries a list of EventPb items. */
   EventPb(request: QueryGetEventPbRequest): Promise<QueryGetEventPbResponse>;
   EventPbAll(request: QueryAllEventPbRequest): Promise<QueryAllEventPbResponse>;
+  /** Queries a list of DeviceRegistry items. */
+  DeviceRegistry(request: QueryGetDeviceRegistryRequest): Promise<QueryGetDeviceRegistryResponse>;
+  DeviceRegistryAll(request: QueryAllDeviceRegistryRequest): Promise<QueryAllDeviceRegistryResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -874,6 +1119,8 @@ export class QueryClientImpl implements Query {
     this.KvAll = this.KvAll.bind(this);
     this.EventPb = this.EventPb.bind(this);
     this.EventPbAll = this.EventPbAll.bind(this);
+    this.DeviceRegistry = this.DeviceRegistry.bind(this);
+    this.DeviceRegistryAll = this.DeviceRegistryAll.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -915,6 +1162,18 @@ export class QueryClientImpl implements Query {
     const data = QueryAllEventPbRequest.encode(request).finish();
     const promise = this.rpc.request("stccommunity.iotdepinprotocol.iotdepinprotocol.Query", "EventPbAll", data);
     return promise.then((data) => QueryAllEventPbResponse.decode(new _m0.Reader(data)));
+  }
+
+  DeviceRegistry(request: QueryGetDeviceRegistryRequest): Promise<QueryGetDeviceRegistryResponse> {
+    const data = QueryGetDeviceRegistryRequest.encode(request).finish();
+    const promise = this.rpc.request("stccommunity.iotdepinprotocol.iotdepinprotocol.Query", "DeviceRegistry", data);
+    return promise.then((data) => QueryGetDeviceRegistryResponse.decode(new _m0.Reader(data)));
+  }
+
+  DeviceRegistryAll(request: QueryAllDeviceRegistryRequest): Promise<QueryAllDeviceRegistryResponse> {
+    const data = QueryAllDeviceRegistryRequest.encode(request).finish();
+    const promise = this.rpc.request("stccommunity.iotdepinprotocol.iotdepinprotocol.Query", "DeviceRegistryAll", data);
+    return promise.then((data) => QueryAllDeviceRegistryResponse.decode(new _m0.Reader(data)));
   }
 }
 

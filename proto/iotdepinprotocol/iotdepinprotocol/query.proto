@@ -9,6 +9,7 @@ import "iotdepinprotocol/iotdepinprotocol/params.proto";
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
+import "iotdepinprotocol/iotdepinprotocol/device_registry.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
@@ -50,6 +51,16 @@ service Query {
     option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/event_pb";
   
   }
+  
+  // Queries a list of DeviceRegistry items.
+  rpc DeviceRegistry    (QueryGetDeviceRegistryRequest) returns (QueryGetDeviceRegistryResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry/{mid}";
+  
+  }
+  rpc DeviceRegistryAll (QueryAllDeviceRegistryRequest) returns (QueryAllDeviceRegistryResponse) {
+    option (google.api.http).get = "/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -71,7 +82,7 @@ message QueryGetDeviceResponse {
 
 message QueryAllDeviceRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string deviceName = 2;
+  string                                deviceName = 2;
 }
 
 message QueryAllDeviceResponse {
@@ -80,7 +91,7 @@ message QueryAllDeviceResponse {
 }
 
 message QueryGetKvRequest {
-  string index = 1;
+  string index      = 1;
   string deviceName = 2;
 }
 
@@ -90,7 +101,7 @@ message QueryGetKvResponse {
 
 message QueryAllKvRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string deviceName = 2;
+  string                                deviceName = 2;
 }
 
 message QueryAllKvResponse {
@@ -99,7 +110,7 @@ message QueryAllKvResponse {
 }
 
 message QueryGetEventPbRequest {
-  string index = 1;
+  string index      = 1;
   string deviceName = 2;
 }
 
@@ -109,11 +120,28 @@ message QueryGetEventPbResponse {
 
 message QueryAllEventPbRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
-  string deviceName = 2;
+  string                                deviceName = 2;
 }
 
 message QueryAllEventPbResponse {
   repeated EventPb                                eventPb    = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetDeviceRegistryRequest {
+  string mid = 1;
+}
+
+message QueryGetDeviceRegistryResponse {
+  DeviceRegistry deviceRegistry = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllDeviceRegistryRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllDeviceRegistryResponse {
+  repeated DeviceRegistry                         deviceRegistry = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
 }
 

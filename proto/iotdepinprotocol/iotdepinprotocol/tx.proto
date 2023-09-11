@@ -5,20 +5,24 @@ package stccommunity.iotdepinprotocol.iotdepinprotocol;
 import "iotdepinprotocol/iotdepinprotocol/device.proto";
 import "iotdepinprotocol/iotdepinprotocol/kv.proto";
 import "iotdepinprotocol/iotdepinprotocol/event_pb.proto";
+import "iotdepinprotocol/iotdepinprotocol/device_registry.proto";
 
 option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
 
 // Msg defines the Msg service.
 service Msg {
-  rpc CreateDevice  (MsgCreateDevice ) returns (MsgCreateDeviceResponse );
-  rpc UpdateDevice  (MsgUpdateDevice ) returns (MsgUpdateDeviceResponse );
-  rpc DeleteDevice  (MsgDeleteDevice ) returns (MsgDeleteDeviceResponse );
-  rpc CreateKv      (MsgCreateKv     ) returns (MsgCreateKvResponse     );
-  rpc UpdateKv      (MsgUpdateKv     ) returns (MsgUpdateKvResponse     );
-  rpc DeleteKv      (MsgDeleteKv     ) returns (MsgDeleteKvResponse     );
-  rpc CreateEventPb (MsgCreateEventPb) returns (MsgCreateEventPbResponse);
-  rpc UpdateEventPb (MsgUpdateEventPb) returns (MsgUpdateEventPbResponse);
-  rpc DeleteEventPb (MsgDeleteEventPb) returns (MsgDeleteEventPbResponse);
+  rpc CreateDevice         (MsgCreateDevice        ) returns (MsgCreateDeviceResponse        );
+  rpc UpdateDevice         (MsgUpdateDevice        ) returns (MsgUpdateDeviceResponse        );
+  rpc DeleteDevice         (MsgDeleteDevice        ) returns (MsgDeleteDeviceResponse        );
+  rpc CreateKv             (MsgCreateKv            ) returns (MsgCreateKvResponse            );
+  rpc UpdateKv             (MsgUpdateKv            ) returns (MsgUpdateKvResponse            );
+  rpc DeleteKv             (MsgDeleteKv            ) returns (MsgDeleteKvResponse            );
+  rpc CreateEventPb        (MsgCreateEventPb       ) returns (MsgCreateEventPbResponse       );
+  rpc UpdateEventPb        (MsgUpdateEventPb       ) returns (MsgUpdateEventPbResponse       );
+  rpc DeleteEventPb        (MsgDeleteEventPb       ) returns (MsgDeleteEventPbResponse       );
+  rpc CreateDeviceRegistry (MsgCreateDeviceRegistry) returns (MsgCreateDeviceRegistryResponse);
+  rpc UpdateDeviceRegistry (MsgUpdateDeviceRegistry) returns (MsgUpdateDeviceRegistryResponse);
+  rpc DeleteDeviceRegistry (MsgDeleteDeviceRegistry) returns (MsgDeleteDeviceRegistryResponse);
 }
 message MsgCreateDevice {
   string creator    = 1;
@@ -64,8 +68,8 @@ message MsgUpdateKv {
 message MsgUpdateKvResponse {}
 
 message MsgDeleteKv {
-  string creator = 1;
-  string index   = 2;
+  string creator    = 1;
+  string index      = 2;
   string deviceName = 3;
 }
 
@@ -90,10 +94,33 @@ message MsgUpdateEventPb {
 message MsgUpdateEventPbResponse {}
 
 message MsgDeleteEventPb {
-  string creator = 1;
-  string index   = 2;
+  string creator    = 1;
+  string index      = 2;
   string deviceName = 3;
 }
 
 message MsgDeleteEventPbResponse {}
+
+message MsgCreateDeviceRegistry {
+  string creator  = 1;
+  string mid      = 2;
+  string metaData = 3;
+}
+
+message MsgCreateDeviceRegistryResponse {}
+
+message MsgUpdateDeviceRegistry {
+  string creator  = 1;
+  string mid      = 2;
+  string metaData = 3;
+}
+
+message MsgUpdateDeviceRegistryResponse {}
+
+message MsgDeleteDeviceRegistry {
+  string creator = 1;
+  string mid     = 2;
+}
+
+message MsgDeleteDeviceRegistryResponse {}
 

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package stccommunity.iotdepinprotocol.iotdepinprotocol;
+
+option go_package = "github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types";
+
+message DeviceRegistry {
+  string mid = 1; 
+  string metaData = 2; 
+  string creator = 3;
+}
+

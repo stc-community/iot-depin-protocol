@@ -16,6 +16,12 @@ export interface IotdepinprotocolDevice {
   creator?: string;
 }
 
+export interface IotdepinprotocolDeviceRegistry {
+  mid?: string;
+  metaData?: string;
+  creator?: string;
+}
+
 export interface IotdepinprotocolEventPb {
   index?: string;
   deviceName?: string;
@@ -30,17 +36,23 @@ export interface IotdepinprotocolKv {
   creator?: string;
 }
 
+export type IotdepinprotocolMsgCreateDeviceRegistryResponse = object;
+
 export type IotdepinprotocolMsgCreateDeviceResponse = object;
 
 export type IotdepinprotocolMsgCreateEventPbResponse = object;
 
 export type IotdepinprotocolMsgCreateKvResponse = object;
 
+export type IotdepinprotocolMsgDeleteDeviceRegistryResponse = object;
+
 export type IotdepinprotocolMsgDeleteDeviceResponse = object;
 
 export type IotdepinprotocolMsgDeleteEventPbResponse = object;
 
 export type IotdepinprotocolMsgDeleteKvResponse = object;
+
+export type IotdepinprotocolMsgUpdateDeviceRegistryResponse = object;
 
 export type IotdepinprotocolMsgUpdateDeviceResponse = object;
 
@@ -52,6 +64,21 @@ export type IotdepinprotocolMsgUpdateKvResponse = object;
  * Params defines the parameters for the module.
  */
 export type IotdepinprotocolParams = object;
+
+export interface IotdepinprotocolQueryAllDeviceRegistryResponse {
+  deviceRegistry?: IotdepinprotocolDeviceRegistry[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
 
 export interface IotdepinprotocolQueryAllDeviceResponse {
   device?: IotdepinprotocolDevice[];
@@ -96,6 +123,10 @@ export interface IotdepinprotocolQueryAllKvResponse {
    *  }
    */
   pagination?: V1Beta1PageResponse;
+}
+
+export interface IotdepinprotocolQueryGetDeviceRegistryResponse {
+  deviceRegistry?: IotdepinprotocolDeviceRegistry;
 }
 
 export interface IotdepinprotocolQueryGetDeviceResponse {
@@ -363,6 +394,47 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryDevice = (deviceName: string, params: RequestParams = {}) =>
     this.request<IotdepinprotocolQueryGetDeviceResponse, RpcStatus>({
       path: `/stc-community/iot-depin-protocol/iotdepinprotocol/device/${deviceName}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryDeviceRegistryAll
+   * @request GET:/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry
+   */
+  queryDeviceRegistryAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<IotdepinprotocolQueryAllDeviceRegistryResponse, RpcStatus>({
+      path: `/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryDeviceRegistry
+   * @summary Queries a list of DeviceRegistry items.
+   * @request GET:/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry/{mid}
+   */
+  queryDeviceRegistry = (mid: string, params: RequestParams = {}) =>
+    this.request<IotdepinprotocolQueryGetDeviceRegistryResponse, RpcStatus>({
+      path: `/stc-community/iot-depin-protocol/iotdepinprotocol/device_registry/${mid}`,
       method: "GET",
       format: "json",
       ...params,

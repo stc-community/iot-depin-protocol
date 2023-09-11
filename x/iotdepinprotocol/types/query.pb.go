@@ -705,6 +705,190 @@ func (m *QueryAllEventPbResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryGetDeviceRegistryRequest struct {
+	Mid string `protobuf:"bytes,1,opt,name=mid,proto3" json:"mid,omitempty"`
+}
+
+func (m *QueryGetDeviceRegistryRequest) Reset()         { *m = QueryGetDeviceRegistryRequest{} }
+func (m *QueryGetDeviceRegistryRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDeviceRegistryRequest) ProtoMessage()    {}
+func (*QueryGetDeviceRegistryRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{14}
+}
+func (m *QueryGetDeviceRegistryRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetDeviceRegistryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetDeviceRegistryRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetDeviceRegistryRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDeviceRegistryRequest.Merge(m, src)
+}
+func (m *QueryGetDeviceRegistryRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetDeviceRegistryRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDeviceRegistryRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetDeviceRegistryRequest proto.InternalMessageInfo
+
+func (m *QueryGetDeviceRegistryRequest) GetMid() string {
+	if m != nil {
+		return m.Mid
+	}
+	return ""
+}
+
+type QueryGetDeviceRegistryResponse struct {
+	DeviceRegistry DeviceRegistry `protobuf:"bytes,1,opt,name=deviceRegistry,proto3" json:"deviceRegistry"`
+}
+
+func (m *QueryGetDeviceRegistryResponse) Reset()         { *m = QueryGetDeviceRegistryResponse{} }
+func (m *QueryGetDeviceRegistryResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDeviceRegistryResponse) ProtoMessage()    {}
+func (*QueryGetDeviceRegistryResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{15}
+}
+func (m *QueryGetDeviceRegistryResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetDeviceRegistryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetDeviceRegistryResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetDeviceRegistryResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDeviceRegistryResponse.Merge(m, src)
+}
+func (m *QueryGetDeviceRegistryResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetDeviceRegistryResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDeviceRegistryResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetDeviceRegistryResponse proto.InternalMessageInfo
+
+func (m *QueryGetDeviceRegistryResponse) GetDeviceRegistry() DeviceRegistry {
+	if m != nil {
+		return m.DeviceRegistry
+	}
+	return DeviceRegistry{}
+}
+
+type QueryAllDeviceRegistryRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllDeviceRegistryRequest) Reset()         { *m = QueryAllDeviceRegistryRequest{} }
+func (m *QueryAllDeviceRegistryRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllDeviceRegistryRequest) ProtoMessage()    {}
+func (*QueryAllDeviceRegistryRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{16}
+}
+func (m *QueryAllDeviceRegistryRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllDeviceRegistryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllDeviceRegistryRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllDeviceRegistryRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllDeviceRegistryRequest.Merge(m, src)
+}
+func (m *QueryAllDeviceRegistryRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllDeviceRegistryRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllDeviceRegistryRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllDeviceRegistryRequest proto.InternalMessageInfo
+
+func (m *QueryAllDeviceRegistryRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllDeviceRegistryResponse struct {
+	DeviceRegistry []DeviceRegistry    `protobuf:"bytes,1,rep,name=deviceRegistry,proto3" json:"deviceRegistry"`
+	Pagination     *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllDeviceRegistryResponse) Reset()         { *m = QueryAllDeviceRegistryResponse{} }
+func (m *QueryAllDeviceRegistryResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllDeviceRegistryResponse) ProtoMessage()    {}
+func (*QueryAllDeviceRegistryResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2c8017fed7be7367, []int{17}
+}
+func (m *QueryAllDeviceRegistryResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllDeviceRegistryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllDeviceRegistryResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllDeviceRegistryResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllDeviceRegistryResponse.Merge(m, src)
+}
+func (m *QueryAllDeviceRegistryResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllDeviceRegistryResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllDeviceRegistryResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllDeviceRegistryResponse proto.InternalMessageInfo
+
+func (m *QueryAllDeviceRegistryResponse) GetDeviceRegistry() []DeviceRegistry {
+	if m != nil {
+		return m.DeviceRegistry
+	}
+	return nil
+}
+
+func (m *QueryAllDeviceRegistryResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryParamsResponse")
@@ -720,6 +904,10 @@ func init() {
 	proto.RegisterType((*QueryGetEventPbResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetEventPbResponse")
 	proto.RegisterType((*QueryAllEventPbRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllEventPbRequest")
 	proto.RegisterType((*QueryAllEventPbResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllEventPbResponse")
+	proto.RegisterType((*QueryGetDeviceRegistryRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetDeviceRegistryRequest")
+	proto.RegisterType((*QueryGetDeviceRegistryResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryGetDeviceRegistryResponse")
+	proto.RegisterType((*QueryAllDeviceRegistryRequest)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllDeviceRegistryRequest")
+	proto.RegisterType((*QueryAllDeviceRegistryResponse)(nil), "stccommunity.iotdepinprotocol.iotdepinprotocol.QueryAllDeviceRegistryResponse")
 }
 
 func init() {
@@ -727,56 +915,66 @@ func init() {
 }
 
 var fileDescriptor_2c8017fed7be7367 = []byte{
-	// 778 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x96, 0x5d, 0x6b, 0x13, 0x4d,
-	0x14, 0xc7, 0x33, 0xe9, 0xd3, 0x94, 0xce, 0xf3, 0xdc, 0x3c, 0x63, 0x7d, 0x21, 0xc8, 0x2a, 0x7b,
-	0xa1, 0x22, 0x64, 0xd7, 0x56, 0xb4, 0x48, 0x29, 0x92, 0xb4, 0x69, 0x2b, 0x81, 0x52, 0x83, 0x20,
-	0x78, 0x51, 0xd9, 0x6c, 0x87, 0x75, 0xc9, 0x66, 0x67, 0x9b, 0x9d, 0x2c, 0x2d, 0xa5, 0x28, 0x7e,
-	0x02, 0xc1, 0x5b, 0xef, 0xfd, 0x08, 0x5e, 0xf8, 0x05, 0x7a, 0x23, 0x14, 0xf5, 0xc2, 0x1b, 0x45,
-	0x52, 0xc1, 0xaf, 0x21, 0x3b, 0x73, 0xb6, 0x49, 0x76, 0x0b, 0x6b, 0x76, 0x43, 0xef, 0x32, 0x93,
-	0x33, 0xe7, 0xfc, 0x7f, 0xe7, 0x9c, 0x99, 0xb3, 0xb8, 0x62, 0x33, 0xbe, 0x43, 0x3d, 0xdb, 0xf5,
-	0xba, 0x8c, 0x33, 0x93, 0x39, 0x7a, 0x62, 0x63, 0xb7, 0x47, 0xbb, 0xfb, 0x9a, 0x58, 0x12, 0xcd,
-	0xe7, 0xa6, 0xc9, 0x3a, 0x9d, 0x9e, 0x6b, 0xf3, 0x7d, 0x2d, 0x6e, 0x9a, 0xd8, 0x28, 0xcf, 0x59,
-	0xcc, 0x62, 0x62, 0xa5, 0x87, 0xbf, 0xa4, 0x97, 0xf2, 0x55, 0x8b, 0x31, 0xcb, 0xa1, 0xba, 0xe1,
-	0xd9, 0xba, 0xe1, 0xba, 0x8c, 0x1b, 0xdc, 0x66, 0xae, 0x0f, 0xff, 0xde, 0x36, 0x99, 0xdf, 0x61,
-	0xbe, 0xde, 0x32, 0x7c, 0x2a, 0x83, 0xeb, 0xc1, 0x7c, 0x8b, 0x72, 0x63, 0x5e, 0xf7, 0x0c, 0xcb,
-	0x76, 0x85, 0x31, 0xd8, 0x6a, 0xe9, 0xf2, 0x3d, 0xa3, 0x6b, 0x74, 0xfc, 0xbf, 0xb7, 0xdf, 0xa1,
-	0x81, 0x6d, 0xd2, 0x48, 0x4b, 0xba, 0x7d, 0x3b, 0x00, 0xdb, 0x3b, 0xe9, 0xb6, 0x34, 0xa0, 0x2e,
-	0x7f, 0xee, 0xb5, 0xe4, 0x09, 0x75, 0x0e, 0x93, 0xc7, 0x21, 0xdf, 0x96, 0x90, 0xd8, 0xa4, 0xbb,
-	0x3d, 0xea, 0x73, 0xb5, 0x8d, 0x2f, 0x8c, 0xec, 0xfa, 0x1e, 0x73, 0x7d, 0x4a, 0x9e, 0xe0, 0x92,
-	0x44, 0xb9, 0x82, 0xae, 0xa3, 0x5b, 0xff, 0x2e, 0xdc, 0x1f, 0xb3, 0x16, 0x9a, 0xf4, 0x57, 0xfb,
-	0xe7, 0xe8, 0xc7, 0xb5, 0x42, 0x13, 0x7c, 0xa9, 0x8b, 0xf8, 0xa2, 0x08, 0xb6, 0x4e, 0xf9, 0xaa,
-	0x00, 0x07, 0x15, 0x44, 0xc1, 0x58, 0x66, 0x62, 0xd3, 0xe8, 0x50, 0x11, 0x72, 0xb6, 0x39, 0xb4,
-	0xa3, 0xba, 0xf8, 0x52, 0xfc, 0xe0, 0x40, 0xa8, 0xb4, 0xcb, 0x2a, 0x54, 0xfa, 0x8b, 0x84, 0x4a,
-	0x5f, 0xea, 0x4b, 0x10, 0x5a, 0x75, 0x9c, 0x51, 0xa1, 0x6b, 0x18, 0x0f, 0xda, 0x02, 0x42, 0xde,
-	0xd0, 0x64, 0x0f, 0x69, 0x61, 0x0f, 0x69, 0xb2, 0x81, 0xa1, 0x87, 0xb4, 0x2d, 0xc3, 0x8a, 0xce,
-	0x36, 0x87, 0x4e, 0xc6, 0x80, 0x8b, 0x09, 0xe0, 0x0f, 0x08, 0x88, 0x87, 0x14, 0x9c, 0x41, 0x3c,
-	0x35, 0x29, 0x62, 0xb2, 0x3e, 0x02, 0x56, 0x14, 0x60, 0x37, 0x53, 0xc1, 0xa4, 0xa4, 0x61, 0x32,
-	0xf5, 0x11, 0xfe, 0x3f, 0x2a, 0x55, 0x23, 0x88, 0xd2, 0x36, 0x87, 0xa7, 0x6d, 0x77, 0x87, 0xee,
-	0x41, 0x69, 0xe5, 0x22, 0x35, 0x09, 0xdb, 0xd0, 0xb1, 0xe0, 0x0a, 0xf8, 0x37, 0x70, 0xb1, 0x1d,
-	0x40, 0xea, 0x17, 0xc6, 0x65, 0x6f, 0x04, 0xc0, 0x5d, 0x6c, 0x07, 0xea, 0x01, 0x48, 0xad, 0x3a,
-	0xce, 0x40, 0xea, 0x79, 0x55, 0xf8, 0x3d, 0x02, 0x3a, 0x88, 0x1e, 0xa3, 0x9b, 0xca, 0x4b, 0x37,
-	0xb9, 0x8a, 0x6e, 0x0e, 0x2e, 0x5f, 0x3d, 0x7c, 0x52, 0xb6, 0x5a, 0xf9, 0xca, 0xda, 0xc5, 0x97,
-	0x13, 0xfe, 0x80, 0xfe, 0x29, 0x9e, 0xa1, 0x72, 0x0b, 0x32, 0xbf, 0x38, 0x6e, 0x0a, 0xc0, 0x23,
-	0xe4, 0x21, 0xf2, 0xa6, 0xbe, 0x1a, 0xba, 0x4f, 0x31, 0x88, 0xf3, 0x2a, 0xf8, 0x47, 0x04, 0xdc,
-	0xc3, 0x12, 0xce, 0xe2, 0x9e, 0x9a, 0x1c, 0xf7, 0xc4, 0x9a, 0x60, 0xe1, 0xdd, 0x7f, 0x78, 0x5a,
-	0xa8, 0x27, 0x5f, 0x11, 0x2e, 0xc9, 0xd7, 0x9d, 0xd4, 0xc6, 0x55, 0x99, 0x1c, 0x40, 0xe5, 0x95,
-	0x5c, 0x3e, 0xa4, 0x52, 0xb5, 0xfa, 0xfa, 0xcb, 0xaf, 0xb7, 0xc5, 0x25, 0xf2, 0x40, 0xf7, 0xb9,
-	0x59, 0x39, 0xf5, 0x16, 0xce, 0xc4, 0x8a, 0x38, 0x5d, 0x49, 0x1b, 0xd9, 0xe4, 0x37, 0xc2, 0x25,
-	0xf9, 0x32, 0x92, 0x7a, 0x26, 0x49, 0xf1, 0xa1, 0x56, 0x5e, 0xcb, 0xeb, 0x06, 0xe0, 0x36, 0x05,
-	0xdc, 0x06, 0x59, 0xcb, 0x00, 0x27, 0xfb, 0x4f, 0x3f, 0x18, 0xf4, 0xe1, 0x21, 0xf9, 0x8e, 0xf0,
-	0xac, 0x0c, 0x51, 0x75, 0x9c, 0x8c, 0xb0, 0xf1, 0xc1, 0x98, 0x11, 0x36, 0x31, 0xdd, 0x72, 0x55,
-	0x12, 0x46, 0xd9, 0x67, 0x84, 0x8b, 0x8d, 0x80, 0x54, 0xb3, 0xa6, 0xff, 0x74, 0x16, 0x94, 0x6b,
-	0x79, 0x5c, 0x00, 0x50, 0x5d, 0x00, 0x3d, 0x24, 0xcb, 0x19, 0x80, 0xda, 0x81, 0x7e, 0x20, 0xde,
-	0xd4, 0x43, 0xf2, 0x09, 0xe1, 0xe9, 0x46, 0x10, 0x16, 0xac, 0x9a, 0x35, 0xd3, 0x79, 0xb9, 0x46,
-	0x06, 0x95, 0xba, 0x2c, 0xb8, 0x16, 0xc9, 0xbd, 0x4c, 0x5c, 0xe1, 0x75, 0x9b, 0x81, 0x37, 0x8b,
-	0x64, 0xbe, 0x28, 0xa3, 0x2f, 0x79, 0x79, 0x3d, 0xb7, 0x1f, 0x60, 0x6b, 0x08, 0xb6, 0x3a, 0x59,
-	0xc9, 0xc0, 0x16, 0x7d, 0x75, 0x9f, 0x56, 0xae, 0x8f, 0x30, 0x86, 0x00, 0x61, 0xf9, 0x32, 0x5f,
-	0x94, 0x89, 0xc0, 0x26, 0x67, 0x8f, 0xba, 0x22, 0x60, 0x97, 0xc9, 0x52, 0x0e, 0xd8, 0xda, 0xf6,
-	0x51, 0x5f, 0x41, 0xc7, 0x7d, 0x05, 0xfd, 0xec, 0x2b, 0xe8, 0xcd, 0x89, 0x52, 0x38, 0x3e, 0x51,
-	0x0a, 0xdf, 0x4e, 0x94, 0xc2, 0xb3, 0x55, 0xcb, 0xe6, 0x2f, 0x7a, 0x2d, 0xcd, 0x64, 0x9d, 0xf4,
-	0x00, 0x7b, 0xc9, 0x10, 0x7c, 0xdf, 0xa3, 0x7e, 0xab, 0x24, 0xd6, 0x77, 0xff, 0x04, 0x00, 0x00,
-	0xff, 0xff, 0x78, 0x9a, 0x06, 0xe8, 0x42, 0x0e, 0x00, 0x00,
+	// 930 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x97, 0x5d, 0x6b, 0x33, 0x45,
+	0x14, 0xc7, 0x33, 0x89, 0x4d, 0xe9, 0x08, 0xa5, 0x1d, 0xeb, 0x0b, 0x41, 0x57, 0xd9, 0x0b, 0x15,
+	0x21, 0xbb, 0xb6, 0xa2, 0x41, 0x4a, 0x95, 0xa4, 0x4d, 0x5b, 0x1b, 0x1a, 0x62, 0x10, 0x04, 0x2f,
+	0x5a, 0x36, 0xc9, 0xb0, 0x2e, 0xd9, 0xb7, 0x66, 0x37, 0x4b, 0x4b, 0x28, 0xbe, 0x7c, 0x00, 0x11,
+	0xfc, 0x04, 0x5e, 0xf9, 0x11, 0xbc, 0xf0, 0x0b, 0xf4, 0x46, 0x28, 0x2a, 0xe8, 0x8d, 0x22, 0xe9,
+	0x03, 0xcf, 0xb7, 0x78, 0x78, 0xd8, 0x99, 0xb3, 0x49, 0x76, 0xb7, 0x7d, 0xd2, 0xec, 0xee, 0xd3,
+	0xbb, 0xcc, 0x64, 0xe6, 0x9c, 0xff, 0xef, 0x9c, 0x33, 0x33, 0x67, 0x71, 0x59, 0xb3, 0xdc, 0x1e,
+	0xb5, 0x35, 0xd3, 0x1e, 0x58, 0xae, 0xd5, 0xb5, 0x74, 0x39, 0x36, 0x71, 0x36, 0xa4, 0x83, 0x0b,
+	0x89, 0x0d, 0x89, 0xe4, 0xb8, 0xdd, 0xae, 0x65, 0x18, 0x43, 0x53, 0x73, 0x2f, 0xa4, 0xe8, 0xd2,
+	0xd8, 0x44, 0x69, 0x43, 0xb5, 0x54, 0x8b, 0x8d, 0x64, 0xff, 0x17, 0xb7, 0x52, 0x7a, 0x5d, 0xb5,
+	0x2c, 0x55, 0xa7, 0xb2, 0x62, 0x6b, 0xb2, 0x62, 0x9a, 0x96, 0xab, 0xb8, 0x9a, 0x65, 0x3a, 0xf0,
+	0xef, 0x7b, 0x5d, 0xcb, 0x31, 0x2c, 0x47, 0xee, 0x28, 0x0e, 0xe5, 0xce, 0x65, 0x6f, 0xb3, 0x43,
+	0x5d, 0x65, 0x53, 0xb6, 0x15, 0x55, 0x33, 0xd9, 0x62, 0x58, 0x2b, 0xcd, 0x97, 0x6f, 0x2b, 0x03,
+	0xc5, 0x70, 0xee, 0xbf, 0xbe, 0x47, 0x3d, 0xad, 0x4b, 0x03, 0x2d, 0xf3, 0xd7, 0xf7, 0x3d, 0x58,
+	0xfb, 0xfe, 0xfc, 0xb5, 0xd4, 0xa3, 0xa6, 0x7b, 0x6a, 0x77, 0x60, 0x47, 0xe5, 0xbe, 0x6a, 0x4e,
+	0x07, 0x54, 0xd5, 0x1c, 0x37, 0x48, 0x83, 0xb8, 0x81, 0xc9, 0xe7, 0x7e, 0x60, 0x5a, 0x8c, 0xad,
+	0x4d, 0xcf, 0x86, 0xd4, 0x71, 0xc5, 0x3e, 0x7e, 0x29, 0x34, 0xeb, 0xd8, 0x96, 0xe9, 0x50, 0xf2,
+	0x05, 0x2e, 0xf2, 0x18, 0xbc, 0x86, 0xde, 0x42, 0xef, 0xbe, 0xb8, 0xf5, 0xd1, 0x82, 0x49, 0x94,
+	0xb8, 0xbd, 0xda, 0x0b, 0x57, 0xff, 0xbd, 0x99, 0x6b, 0x83, 0x2d, 0xb1, 0x82, 0x5f, 0x66, 0xce,
+	0x0e, 0xa8, 0xbb, 0xc7, 0x34, 0x82, 0x0a, 0x22, 0x60, 0xcc, 0x45, 0x37, 0x15, 0x83, 0x32, 0x97,
+	0x2b, 0xed, 0x99, 0x19, 0xd1, 0xc4, 0xaf, 0x44, 0x37, 0x4e, 0x85, 0xf2, 0x75, 0x49, 0x85, 0x72,
+	0x7b, 0x81, 0x50, 0x6e, 0x4b, 0xfc, 0x06, 0x84, 0x56, 0x75, 0x3d, 0x2c, 0x74, 0x1f, 0xe3, 0x69,
+	0x3d, 0x81, 0xcb, 0xb7, 0x25, 0x5e, 0x7c, 0x92, 0x5f, 0x7c, 0x12, 0xaf, 0x7c, 0x28, 0x3e, 0xa9,
+	0xa5, 0xa8, 0xc1, 0xde, 0xf6, 0xcc, 0xce, 0x08, 0x70, 0x3e, 0x06, 0xfc, 0x2b, 0x02, 0xe2, 0x19,
+	0x05, 0xb7, 0x10, 0x17, 0xb2, 0x22, 0x26, 0x07, 0x21, 0xb0, 0x3c, 0x03, 0x7b, 0x67, 0x2e, 0x18,
+	0x97, 0x34, 0x4b, 0x26, 0x7e, 0x86, 0xd7, 0x83, 0x54, 0x35, 0xbc, 0x20, 0x6c, 0x1b, 0x78, 0x49,
+	0x33, 0x7b, 0xf4, 0x1c, 0x52, 0xcb, 0x07, 0x73, 0x83, 0x70, 0x02, 0x15, 0x0b, 0xa6, 0x80, 0xff,
+	0x10, 0xe7, 0xfb, 0x1e, 0x84, 0x7e, 0x6b, 0x51, 0xf6, 0x86, 0x07, 0xdc, 0xf9, 0xbe, 0x27, 0x8e,
+	0x40, 0x6a, 0x55, 0xd7, 0xa7, 0x52, 0x1f, 0x2a, 0xc3, 0xbf, 0x20, 0xa0, 0x03, 0xef, 0x11, 0xba,
+	0x42, 0x5a, 0xba, 0xec, 0x32, 0xda, 0x9c, 0x1e, 0xbe, 0xba, 0x7f, 0x17, 0xb5, 0x3a, 0xe9, 0xd2,
+	0x3a, 0xc0, 0xaf, 0xc6, 0xec, 0x01, 0xfd, 0x97, 0x78, 0x99, 0xf2, 0x29, 0x88, 0x7c, 0x65, 0xd1,
+	0x10, 0x80, 0x45, 0x88, 0x43, 0x60, 0x4d, 0xfc, 0x76, 0xe6, 0x3c, 0x45, 0x20, 0x1e, 0x2a, 0xe1,
+	0xbf, 0x21, 0xe0, 0x9e, 0x95, 0x70, 0x1b, 0x77, 0x21, 0x3b, 0xee, 0xec, 0x8a, 0x60, 0x13, 0xbf,
+	0x11, 0xbd, 0x81, 0xf9, 0xeb, 0x12, 0x84, 0x71, 0x0d, 0x17, 0x0c, 0xad, 0x07, 0x95, 0xe0, 0xff,
+	0x14, 0x7f, 0x40, 0x58, 0xb8, 0x6b, 0x0f, 0x70, 0xeb, 0x78, 0xb5, 0x17, 0xfa, 0x07, 0xe2, 0xff,
+	0x49, 0xb2, 0x3b, 0x2d, 0xb0, 0x02, 0x51, 0x88, 0xd8, 0x16, 0x55, 0x60, 0x98, 0xb9, 0x53, 0xc3,
+	0x0c, 0x19, 0x95, 0x82, 0xf8, 0x77, 0x40, 0x7e, 0x8b, 0xa7, 0x67, 0x90, 0x17, 0x9e, 0x17, 0x79,
+	0x66, 0x65, 0xb0, 0xf5, 0xf3, 0x1a, 0x5e, 0x62, 0x64, 0xe4, 0x2f, 0x84, 0x8b, 0xfc, 0x91, 0x27,
+	0xb5, 0x45, 0x35, 0xc7, 0xfb, 0x90, 0xd2, 0x6e, 0x2a, 0x1b, 0x5c, 0xa9, 0x58, 0xfd, 0xfe, 0xcf,
+	0x47, 0x3f, 0xe5, 0xb7, 0xc9, 0xc7, 0xb2, 0xe3, 0x76, 0xcb, 0x13, 0x6b, 0x7e, 0x87, 0x54, 0x66,
+	0xbb, 0xcb, 0xf3, 0x5a, 0x3e, 0xf2, 0x18, 0xe1, 0x22, 0x0f, 0x29, 0xa9, 0x27, 0x92, 0x14, 0xed,
+	0x6d, 0x4a, 0xfb, 0x69, 0xcd, 0x00, 0x5c, 0x93, 0xc1, 0x1d, 0x92, 0xfd, 0x04, 0x70, 0xbc, 0x1c,
+	0xe4, 0xd1, 0xf4, 0x3a, 0xba, 0x24, 0xff, 0x22, 0xbc, 0xc2, 0x5d, 0x54, 0x75, 0x3d, 0x21, 0x6c,
+	0xb4, 0x3f, 0x4a, 0x08, 0x1b, 0x6b, 0x72, 0x52, 0x65, 0x12, 0x3a, 0x9a, 0x3f, 0x10, 0xce, 0x37,
+	0x3c, 0x52, 0x4d, 0x1a, 0xfe, 0x49, 0x4b, 0x50, 0xaa, 0xa5, 0x31, 0x01, 0x40, 0x75, 0x06, 0xf4,
+	0x29, 0xd9, 0x49, 0x00, 0xd4, 0xf7, 0xe4, 0x11, 0x7b, 0x5a, 0x2f, 0xc9, 0xef, 0x08, 0x2f, 0x35,
+	0x3c, 0x3f, 0x61, 0xd5, 0xa4, 0x91, 0x4e, 0xcb, 0x15, 0xea, 0x57, 0xc4, 0x1d, 0xc6, 0x55, 0x21,
+	0x1f, 0x26, 0xe2, 0xf2, 0x8f, 0xdb, 0x32, 0x3c, 0x5d, 0x24, 0xf1, 0x41, 0x09, 0x3f, 0xe8, 0xa5,
+	0x83, 0xd4, 0x76, 0x80, 0xad, 0xc1, 0xd8, 0xea, 0x64, 0x37, 0x01, 0x5b, 0xf0, 0xd5, 0x36, 0xc9,
+	0xdc, 0x18, 0x61, 0x0c, 0x0e, 0xfc, 0xf4, 0x25, 0x3e, 0x28, 0x99, 0xc0, 0xc6, 0x5b, 0x10, 0x71,
+	0x97, 0xc1, 0xee, 0x90, 0xed, 0x14, 0xb0, 0xe4, 0xbb, 0x3c, 0x5e, 0x0d, 0x3f, 0x48, 0xe4, 0x38,
+	0xed, 0xf5, 0x17, 0x7a, 0xa2, 0x4b, 0xcd, 0xac, 0xcc, 0x01, 0x76, 0x8b, 0x61, 0x1f, 0x91, 0xc3,
+	0xc4, 0x17, 0xcd, 0xe4, 0x3b, 0x5b, 0x1e, 0x19, 0x5a, 0xef, 0x92, 0x3c, 0x41, 0x78, 0x3d, 0xec,
+	0xcc, 0xcf, 0xf7, 0x71, 0xda, 0x8b, 0x31, 0x8b, 0x30, 0xdc, 0xd9, 0x8e, 0x88, 0x47, 0x2c, 0x0c,
+	0x7b, 0xa4, 0x96, 0x3e, 0x0c, 0xb5, 0x93, 0xab, 0xb1, 0x80, 0xae, 0xc7, 0x02, 0xfa, 0x7f, 0x2c,
+	0xa0, 0x1f, 0x6f, 0x84, 0xdc, 0xf5, 0x8d, 0x90, 0xfb, 0xe7, 0x46, 0xc8, 0x7d, 0xb5, 0xa7, 0x6a,
+	0xee, 0xd7, 0xc3, 0x8e, 0xd4, 0xb5, 0x8c, 0xf9, 0x7e, 0xce, 0xe3, 0x9e, 0xdc, 0x0b, 0x9b, 0x3a,
+	0x9d, 0x22, 0x1b, 0x7f, 0xf0, 0x34, 0x00, 0x00, 0xff, 0xff, 0x89, 0x61, 0x5a, 0x8b, 0x87, 0x12,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -802,6 +1000,9 @@ type QueryClient interface {
 	// Queries a list of EventPb items.
 	EventPb(ctx context.Context, in *QueryGetEventPbRequest, opts ...grpc.CallOption) (*QueryGetEventPbResponse, error)
 	EventPbAll(ctx context.Context, in *QueryAllEventPbRequest, opts ...grpc.CallOption) (*QueryAllEventPbResponse, error)
+	// Queries a list of DeviceRegistry items.
+	DeviceRegistry(ctx context.Context, in *QueryGetDeviceRegistryRequest, opts ...grpc.CallOption) (*QueryGetDeviceRegistryResponse, error)
+	DeviceRegistryAll(ctx context.Context, in *QueryAllDeviceRegistryRequest, opts ...grpc.CallOption) (*QueryAllDeviceRegistryResponse, error)
 }
 
 type queryClient struct {
@@ -875,6 +1076,24 @@ func (c *queryClient) EventPbAll(ctx context.Context, in *QueryAllEventPbRequest
 	return out, nil
 }
 
+func (c *queryClient) DeviceRegistry(ctx context.Context, in *QueryGetDeviceRegistryRequest, opts ...grpc.CallOption) (*QueryGetDeviceRegistryResponse, error) {
+	out := new(QueryGetDeviceRegistryResponse)
+	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/DeviceRegistry", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) DeviceRegistryAll(ctx context.Context, in *QueryAllDeviceRegistryRequest, opts ...grpc.CallOption) (*QueryAllDeviceRegistryResponse, error) {
+	out := new(QueryAllDeviceRegistryResponse)
+	err := c.cc.Invoke(ctx, "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/DeviceRegistryAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -888,6 +1107,9 @@ type QueryServer interface {
 	// Queries a list of EventPb items.
 	EventPb(context.Context, *QueryGetEventPbRequest) (*QueryGetEventPbResponse, error)
 	EventPbAll(context.Context, *QueryAllEventPbRequest) (*QueryAllEventPbResponse, error)
+	// Queries a list of DeviceRegistry items.
+	DeviceRegistry(context.Context, *QueryGetDeviceRegistryRequest) (*QueryGetDeviceRegistryResponse, error)
+	DeviceRegistryAll(context.Context, *QueryAllDeviceRegistryRequest) (*QueryAllDeviceRegistryResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -914,6 +1136,12 @@ func (*UnimplementedQueryServer) EventPb(ctx context.Context, req *QueryGetEvent
 }
 func (*UnimplementedQueryServer) EventPbAll(ctx context.Context, req *QueryAllEventPbRequest) (*QueryAllEventPbResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method EventPbAll not implemented")
+}
+func (*UnimplementedQueryServer) DeviceRegistry(ctx context.Context, req *QueryGetDeviceRegistryRequest) (*QueryGetDeviceRegistryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeviceRegistry not implemented")
+}
+func (*UnimplementedQueryServer) DeviceRegistryAll(ctx context.Context, req *QueryAllDeviceRegistryRequest) (*QueryAllDeviceRegistryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeviceRegistryAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -1046,6 +1274,42 @@ func _Query_EventPbAll_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_DeviceRegistry_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetDeviceRegistryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).DeviceRegistry(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/DeviceRegistry",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).DeviceRegistry(ctx, req.(*QueryGetDeviceRegistryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_DeviceRegistryAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllDeviceRegistryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).DeviceRegistryAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stccommunity.iotdepinprotocol.iotdepinprotocol.Query/DeviceRegistryAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).DeviceRegistryAll(ctx, req.(*QueryAllDeviceRegistryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "stccommunity.iotdepinprotocol.iotdepinprotocol.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -1077,6 +1341,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "EventPbAll",
 			Handler:    _Query_EventPbAll_Handler,
+		},
+		{
+			MethodName: "DeviceRegistry",
+			Handler:    _Query_DeviceRegistry_Handler,
+		},
+		{
+			MethodName: "DeviceRegistryAll",
+			Handler:    _Query_DeviceRegistryAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1615,6 +1887,153 @@ func (m *QueryAllEventPbResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetDeviceRegistryRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetDeviceRegistryRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetDeviceRegistryRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Mid) > 0 {
+		i -= len(m.Mid)
+		copy(dAtA[i:], m.Mid)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Mid)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetDeviceRegistryResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetDeviceRegistryResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetDeviceRegistryResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.DeviceRegistry.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllDeviceRegistryRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllDeviceRegistryRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllDeviceRegistryRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllDeviceRegistryResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllDeviceRegistryResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllDeviceRegistryResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.DeviceRegistry) > 0 {
+		for iNdEx := len(m.DeviceRegistry) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.DeviceRegistry[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1823,6 +2242,62 @@ func (m *QueryAllEventPbResponse) Size() (n int) {
 	_ = l
 	if len(m.EventPb) > 0 {
 		for _, e := range m.EventPb {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetDeviceRegistryRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Mid)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetDeviceRegistryResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.DeviceRegistry.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllDeviceRegistryRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllDeviceRegistryResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.DeviceRegistry) > 0 {
+		for _, e := range m.DeviceRegistry {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -3186,6 +3661,377 @@ func (m *QueryAllEventPbResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.EventPb = append(m.EventPb, EventPb{})
 			if err := m.EventPb[len(m.EventPb)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetDeviceRegistryRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetDeviceRegistryRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetDeviceRegistryRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Mid", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Mid = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetDeviceRegistryResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetDeviceRegistryResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetDeviceRegistryResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceRegistry", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.DeviceRegistry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllDeviceRegistryRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllDeviceRegistryRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllDeviceRegistryRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllDeviceRegistryResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllDeviceRegistryResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllDeviceRegistryResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DeviceRegistry", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DeviceRegistry = append(m.DeviceRegistry, DeviceRegistry{})
+			if err := m.DeviceRegistry[len(m.DeviceRegistry)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

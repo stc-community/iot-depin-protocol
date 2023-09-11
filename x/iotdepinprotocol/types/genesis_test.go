@@ -46,6 +46,14 @@ func TestGenesisState_Validate(t *testing.T) {
 						Index: "1",
 					},
 				},
+				DeviceRegistryList: []types.DeviceRegistry{
+					{
+						Mid: "0",
+					},
+					{
+						Mid: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -87,6 +95,20 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 					{
 						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated deviceRegistry",
+			genState: &types.GenesisState{
+				DeviceRegistryList: []types.DeviceRegistry{
+					{
+						Mid: "0",
+					},
+					{
+						Mid: "0",
 					},
 				},
 			},
