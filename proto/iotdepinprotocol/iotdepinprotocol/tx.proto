@@ -80,6 +80,8 @@ message MsgCreateEventPb {
   string index      = 2;
   string deviceName = 3;
   string payload    = 4;
+  string createdAt  = 5;
+  string updatedAt  = 6;
 }
 
 message MsgCreateEventPbResponse {}
@@ -89,6 +91,8 @@ message MsgUpdateEventPb {
   string index      = 2;
   string deviceName = 3;
   string payload    = 4;
+  string createdAt  = 5;
+  string updatedAt  = 6;
 }
 
 message MsgUpdateEventPbResponse {}

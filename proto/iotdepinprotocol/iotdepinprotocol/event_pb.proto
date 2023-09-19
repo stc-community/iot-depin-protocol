@@ -8,5 +8,7 @@ message EventPb {
   string deviceName = 2; 
   string payload = 3; 
   string creator = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
 }
 

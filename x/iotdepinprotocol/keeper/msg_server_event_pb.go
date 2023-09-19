@@ -7,6 +7,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stc-community/iot-depin-protocol/x/iotdepinprotocol/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
+	"time"
 )
 
 func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEventPb) (*types.MsgCreateEventPbResponse, error) {
@@ -16,15 +17,15 @@ func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEven
 		msg.Index = hex.EncodeToString(tmhash.Sum(ctx.TxBytes()))
 	}
 	// 验证设备
-	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
-	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
-	}
-	if deviceFound.Creator != msg.Creator {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device creator can create events")
-	}
+	//deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
+	//if !isFound {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
+	//}
+	//if deviceFound.Creator != msg.Creator {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device creator can create events")
+	//}
 	// Check if the value already exists
-	_, isFound = k.GetEventPb(
+	_, isFound := k.GetEventPb(
 		ctx,
 		msg.Index,
 		msg.DeviceName,
@@ -38,6 +39,7 @@ func (k msgServer) CreateEventPb(goCtx context.Context, msg *types.MsgCreateEven
 		Index:      msg.Index,
 		DeviceName: msg.DeviceName,
 		Payload:    msg.Payload,
+		CreatedAt:  time.Now().String(),
 	}
 
 	k.SetEventPb(
@@ -67,14 +69,14 @@ func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEven
 	}
 
 	// 验证设备
-	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
-	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
-	}
-	// 只有设备钱包账户可以修改事件
-	if msg.Creator != deviceFound.Address {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device wallet accounts can modify events")
-	}
+	//deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
+	//if !isFound {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
+	//}
+	//// 只有设备钱包账户可以修改事件
+	//if msg.Creator != deviceFound.Address {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device wallet accounts can modify events")
+	//}
 
 	// Checks if the the msg creator is the same as the current owner
 	//if msg.Creator != valFound.Creator {
@@ -86,6 +88,8 @@ func (k msgServer) UpdateEventPb(goCtx context.Context, msg *types.MsgUpdateEven
 		Index:      msg.Index,
 		DeviceName: msg.DeviceName,
 		Payload:    msg.Payload,
+		CreatedAt:  valFound.CreatedAt,
+		UpdatedAt:  time.Now().String(),
 	}
 
 	k.SetEventPb(ctx, eventPb)
