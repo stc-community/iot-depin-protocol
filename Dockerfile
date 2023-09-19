@@ -30,7 +30,7 @@ FROM debian:latest
 
 ENV LOCAL=/usr/local
 
-COPY --from=build /root/go/bin/iot-depin-protocold ${LOCAL}/bin/checkersd/iot-depin-protocold
+COPY --from=build /root/go/bin/iot-depin-protocold ${LOCAL}/bin/iot-depin-protocold
 COPY --from=build /root/.iot-depin-protocol /root/.iot-depin-protocol
 
 EXPOSE 1317 26657
@@ -38,4 +38,5 @@ EXPOSE 1317 26657
 ENTRYPOINT ["iot-depin-protocold", "start"]
 
 
-# docker build --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.6 .
+# docker build --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.7 .
+# docker buildx build --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.8 --platform=linux/amd64 . --push
