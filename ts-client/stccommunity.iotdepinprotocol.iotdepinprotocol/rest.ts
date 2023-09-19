@@ -27,6 +27,8 @@ export interface IotdepinprotocolEventPb {
   deviceName?: string;
   payload?: string;
   creator?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IotdepinprotocolKv {

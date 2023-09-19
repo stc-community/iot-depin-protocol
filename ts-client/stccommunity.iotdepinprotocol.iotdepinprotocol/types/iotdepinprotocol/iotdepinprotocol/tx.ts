@@ -65,6 +65,8 @@ export interface MsgCreateEventPb {
   index: string;
   deviceName: string;
   payload: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface MsgCreateEventPbResponse {
@@ -75,6 +77,8 @@ export interface MsgUpdateEventPb {
   index: string;
   deviceName: string;
   payload: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface MsgUpdateEventPbResponse {
@@ -779,7 +783,7 @@ export const MsgDeleteKvResponse = {
 };
 
 function createBaseMsgCreateEventPb(): MsgCreateEventPb {
-  return { creator: "", index: "", deviceName: "", payload: "" };
+  return { creator: "", index: "", deviceName: "", payload: "", createdAt: "", updatedAt: "" };
 }
 
 export const MsgCreateEventPb = {
@@ -795,6 +799,12 @@ export const MsgCreateEventPb = {
     }
     if (message.payload !== "") {
       writer.uint32(34).string(message.payload);
+    }
+    if (message.createdAt !== "") {
+      writer.uint32(42).string(message.createdAt);
+    }
+    if (message.updatedAt !== "") {
+      writer.uint32(50).string(message.updatedAt);
     }
     return writer;
   },
@@ -818,6 +828,12 @@ export const MsgCreateEventPb = {
         case 4:
           message.payload = reader.string();
           break;
+        case 5:
+          message.createdAt = reader.string();
+          break;
+        case 6:
+          message.updatedAt = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -832,6 +848,8 @@ export const MsgCreateEventPb = {
       index: isSet(object.index) ? String(object.index) : "",
       deviceName: isSet(object.deviceName) ? String(object.deviceName) : "",
       payload: isSet(object.payload) ? String(object.payload) : "",
+      createdAt: isSet(object.createdAt) ? String(object.createdAt) : "",
+      updatedAt: isSet(object.updatedAt) ? String(object.updatedAt) : "",
     };
   },
 
@@ -841,6 +859,8 @@ export const MsgCreateEventPb = {
     message.index !== undefined && (obj.index = message.index);
     message.deviceName !== undefined && (obj.deviceName = message.deviceName);
     message.payload !== undefined && (obj.payload = message.payload);
+    message.createdAt !== undefined && (obj.createdAt = message.createdAt);
+    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt);
     return obj;
   },
 
@@ -850,6 +870,8 @@ export const MsgCreateEventPb = {
     message.index = object.index ?? "";
     message.deviceName = object.deviceName ?? "";
     message.payload = object.payload ?? "";
+    message.createdAt = object.createdAt ?? "";
+    message.updatedAt = object.updatedAt ?? "";
     return message;
   },
 };
@@ -894,7 +916,7 @@ export const MsgCreateEventPbResponse = {
 };
 
 function createBaseMsgUpdateEventPb(): MsgUpdateEventPb {
-  return { creator: "", index: "", deviceName: "", payload: "" };
+  return { creator: "", index: "", deviceName: "", payload: "", createdAt: "", updatedAt: "" };
 }
 
 export const MsgUpdateEventPb = {
@@ -910,6 +932,12 @@ export const MsgUpdateEventPb = {
     }
     if (message.payload !== "") {
       writer.uint32(34).string(message.payload);
+    }
+    if (message.createdAt !== "") {
+      writer.uint32(42).string(message.createdAt);
+    }
+    if (message.updatedAt !== "") {
+      writer.uint32(50).string(message.updatedAt);
     }
     return writer;
   },
@@ -933,6 +961,12 @@ export const MsgUpdateEventPb = {
         case 4:
           message.payload = reader.string();
           break;
+        case 5:
+          message.createdAt = reader.string();
+          break;
+        case 6:
+          message.updatedAt = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -947,6 +981,8 @@ export const MsgUpdateEventPb = {
       index: isSet(object.index) ? String(object.index) : "",
       deviceName: isSet(object.deviceName) ? String(object.deviceName) : "",
       payload: isSet(object.payload) ? String(object.payload) : "",
+      createdAt: isSet(object.createdAt) ? String(object.createdAt) : "",
+      updatedAt: isSet(object.updatedAt) ? String(object.updatedAt) : "",
     };
   },
 
@@ -956,6 +992,8 @@ export const MsgUpdateEventPb = {
     message.index !== undefined && (obj.index = message.index);
     message.deviceName !== undefined && (obj.deviceName = message.deviceName);
     message.payload !== undefined && (obj.payload = message.payload);
+    message.createdAt !== undefined && (obj.createdAt = message.createdAt);
+    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt);
     return obj;
   },
 
@@ -965,6 +1003,8 @@ export const MsgUpdateEventPb = {
     message.index = object.index ?? "";
     message.deviceName = object.deviceName ?? "";
     message.payload = object.payload ?? "";
+    message.createdAt = object.createdAt ?? "";
+    message.updatedAt = object.updatedAt ?? "";
     return message;
   },
 };

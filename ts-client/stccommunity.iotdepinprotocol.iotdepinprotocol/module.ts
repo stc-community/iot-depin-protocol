@@ -7,17 +7,17 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgCreateDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgCreateKv } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgCreateEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgUpdateEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
 import { MsgCreateDeviceRegistry } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgDeleteDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgDeleteDeviceRegistry } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgDeleteEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
-import { MsgUpdateDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgCreateDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
 import { MsgUpdateKv } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgUpdateEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
 import { MsgDeleteKv } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgUpdateDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgCreateEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgDeleteDevice } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgDeleteEventPb } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgDeleteDeviceRegistry } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
+import { MsgCreateKv } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
 import { MsgUpdateDeviceRegistry } from "./types/iotdepinprotocol/iotdepinprotocol/tx";
 
 import { Device as typeDevice} from "./types"
@@ -26,31 +26,7 @@ import { EventPb as typeEventPb} from "./types"
 import { Kv as typeKv} from "./types"
 import { Params as typeParams} from "./types"
 
-export { MsgCreateDevice, MsgCreateKv, MsgCreateEventPb, MsgUpdateEventPb, MsgCreateDeviceRegistry, MsgDeleteDevice, MsgDeleteDeviceRegistry, MsgDeleteEventPb, MsgUpdateDevice, MsgUpdateKv, MsgDeleteKv, MsgUpdateDeviceRegistry };
-
-type sendMsgCreateDeviceParams = {
-  value: MsgCreateDevice,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateKvParams = {
-  value: MsgCreateKv,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateEventPbParams = {
-  value: MsgCreateEventPb,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateEventPbParams = {
-  value: MsgUpdateEventPb,
-  fee?: StdFee,
-  memo?: string
-};
+export { MsgCreateDeviceRegistry, MsgCreateDevice, MsgUpdateKv, MsgUpdateEventPb, MsgDeleteKv, MsgUpdateDevice, MsgCreateEventPb, MsgDeleteDevice, MsgDeleteEventPb, MsgDeleteDeviceRegistry, MsgCreateKv, MsgUpdateDeviceRegistry };
 
 type sendMsgCreateDeviceRegistryParams = {
   value: MsgCreateDeviceRegistry,
@@ -58,26 +34,8 @@ type sendMsgCreateDeviceRegistryParams = {
   memo?: string
 };
 
-type sendMsgDeleteDeviceParams = {
-  value: MsgDeleteDevice,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgDeleteDeviceRegistryParams = {
-  value: MsgDeleteDeviceRegistry,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgDeleteEventPbParams = {
-  value: MsgDeleteEventPb,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateDeviceParams = {
-  value: MsgUpdateDevice,
+type sendMsgCreateDeviceParams = {
+  value: MsgCreateDevice,
   fee?: StdFee,
   memo?: string
 };
@@ -88,8 +46,50 @@ type sendMsgUpdateKvParams = {
   memo?: string
 };
 
+type sendMsgUpdateEventPbParams = {
+  value: MsgUpdateEventPb,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendMsgDeleteKvParams = {
   value: MsgDeleteKv,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateDeviceParams = {
+  value: MsgUpdateDevice,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateEventPbParams = {
+  value: MsgCreateEventPb,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteDeviceParams = {
+  value: MsgDeleteDevice,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteEventPbParams = {
+  value: MsgDeleteEventPb,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteDeviceRegistryParams = {
+  value: MsgDeleteDeviceRegistry,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateKvParams = {
+  value: MsgCreateKv,
   fee?: StdFee,
   memo?: string
 };
@@ -101,48 +101,48 @@ type sendMsgUpdateDeviceRegistryParams = {
 };
 
 
-type msgCreateDeviceParams = {
-  value: MsgCreateDevice,
-};
-
-type msgCreateKvParams = {
-  value: MsgCreateKv,
-};
-
-type msgCreateEventPbParams = {
-  value: MsgCreateEventPb,
-};
-
-type msgUpdateEventPbParams = {
-  value: MsgUpdateEventPb,
-};
-
 type msgCreateDeviceRegistryParams = {
   value: MsgCreateDeviceRegistry,
 };
 
-type msgDeleteDeviceParams = {
-  value: MsgDeleteDevice,
-};
-
-type msgDeleteDeviceRegistryParams = {
-  value: MsgDeleteDeviceRegistry,
-};
-
-type msgDeleteEventPbParams = {
-  value: MsgDeleteEventPb,
-};
-
-type msgUpdateDeviceParams = {
-  value: MsgUpdateDevice,
+type msgCreateDeviceParams = {
+  value: MsgCreateDevice,
 };
 
 type msgUpdateKvParams = {
   value: MsgUpdateKv,
 };
 
+type msgUpdateEventPbParams = {
+  value: MsgUpdateEventPb,
+};
+
 type msgDeleteKvParams = {
   value: MsgDeleteKv,
+};
+
+type msgUpdateDeviceParams = {
+  value: MsgUpdateDevice,
+};
+
+type msgCreateEventPbParams = {
+  value: MsgCreateEventPb,
+};
+
+type msgDeleteDeviceParams = {
+  value: MsgDeleteDevice,
+};
+
+type msgDeleteEventPbParams = {
+  value: MsgDeleteEventPb,
+};
+
+type msgDeleteDeviceRegistryParams = {
+  value: MsgDeleteDeviceRegistry,
+};
+
+type msgCreateKvParams = {
+  value: MsgCreateKv,
 };
 
 type msgUpdateDeviceRegistryParams = {
@@ -179,62 +179,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendMsgCreateDevice({ value, fee, memo }: sendMsgCreateDeviceParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateDevice: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgCreateDevice({ value: MsgCreateDevice.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateDevice: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateKv({ value, fee, memo }: sendMsgCreateKvParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateKv: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgCreateKv({ value: MsgCreateKv.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateKv: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateEventPb({ value, fee, memo }: sendMsgCreateEventPbParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateEventPb: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgCreateEventPb({ value: MsgCreateEventPb.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateEventPb: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateEventPb({ value, fee, memo }: sendMsgUpdateEventPbParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateEventPb: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgUpdateEventPb({ value: MsgUpdateEventPb.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateEventPb: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendMsgCreateDeviceRegistry({ value, fee, memo }: sendMsgCreateDeviceRegistryParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgCreateDeviceRegistry: Unable to sign Tx. Signer is not present.')
@@ -249,59 +193,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgDeleteDevice({ value, fee, memo }: sendMsgDeleteDeviceParams): Promise<DeliverTxResponse> {
+		async sendMsgCreateDevice({ value, fee, memo }: sendMsgCreateDeviceParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteDevice: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgCreateDevice: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgDeleteDevice({ value: MsgDeleteDevice.fromPartial(value) })
+				let msg = this.msgCreateDevice({ value: MsgCreateDevice.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteDevice: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgDeleteDeviceRegistry({ value, fee, memo }: sendMsgDeleteDeviceRegistryParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteDeviceRegistry: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgDeleteDeviceRegistry({ value: MsgDeleteDeviceRegistry.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteDeviceRegistry: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgDeleteEventPb({ value, fee, memo }: sendMsgDeleteEventPbParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgDeleteEventPb: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgDeleteEventPb({ value: MsgDeleteEventPb.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgDeleteEventPb: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateDevice({ value, fee, memo }: sendMsgUpdateDeviceParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateDevice: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgUpdateDevice({ value: MsgUpdateDevice.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateDevice: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgCreateDevice: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -319,6 +221,20 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgUpdateEventPb({ value, fee, memo }: sendMsgUpdateEventPbParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateEventPb: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgUpdateEventPb({ value: MsgUpdateEventPb.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateEventPb: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendMsgDeleteKv({ value, fee, memo }: sendMsgDeleteKvParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgDeleteKv: Unable to sign Tx. Signer is not present.')
@@ -330,6 +246,90 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendMsgDeleteKv: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateDevice({ value, fee, memo }: sendMsgUpdateDeviceParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateDevice: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgUpdateDevice({ value: MsgUpdateDevice.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateDevice: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateEventPb({ value, fee, memo }: sendMsgCreateEventPbParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateEventPb: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateEventPb({ value: MsgCreateEventPb.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateEventPb: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteDevice({ value, fee, memo }: sendMsgDeleteDeviceParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteDevice: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgDeleteDevice({ value: MsgDeleteDevice.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteDevice: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteEventPb({ value, fee, memo }: sendMsgDeleteEventPbParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteEventPb: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgDeleteEventPb({ value: MsgDeleteEventPb.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteEventPb: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteDeviceRegistry({ value, fee, memo }: sendMsgDeleteDeviceRegistryParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteDeviceRegistry: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgDeleteDeviceRegistry({ value: MsgDeleteDeviceRegistry.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteDeviceRegistry: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateKv({ value, fee, memo }: sendMsgCreateKvParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateKv: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateKv({ value: MsgCreateKv.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateKv: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -348,38 +348,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		},
 		
 		
-		msgCreateDevice({ value }: msgCreateDeviceParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateDevice", value: MsgCreateDevice.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateDevice: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateKv({ value }: msgCreateKvParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKv", value: MsgCreateKv.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateKv: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateEventPb({ value }: msgCreateEventPbParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateEventPb", value: MsgCreateEventPb.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateEventPb: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateEventPb({ value }: msgUpdateEventPbParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateEventPb", value: MsgUpdateEventPb.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateEventPb: Could not create message: ' + e.message)
-			}
-		},
-		
 		msgCreateDeviceRegistry({ value }: msgCreateDeviceRegistryParams): EncodeObject {
 			try {
 				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateDeviceRegistry", value: MsgCreateDeviceRegistry.fromPartial( value ) }  
@@ -388,35 +356,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgDeleteDevice({ value }: msgDeleteDeviceParams): EncodeObject {
+		msgCreateDevice({ value }: msgCreateDeviceParams): EncodeObject {
 			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDevice", value: MsgDeleteDevice.fromPartial( value ) }  
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateDevice", value: MsgCreateDevice.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteDevice: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgDeleteDeviceRegistry({ value }: msgDeleteDeviceRegistryParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDeviceRegistry", value: MsgDeleteDeviceRegistry.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteDeviceRegistry: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgDeleteEventPb({ value }: msgDeleteEventPbParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteEventPb", value: MsgDeleteEventPb.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgDeleteEventPb: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateDevice({ value }: msgUpdateDeviceParams): EncodeObject {
-			try {
-				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateDevice", value: MsgUpdateDevice.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateDevice: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgCreateDevice: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -428,11 +372,67 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		msgUpdateEventPb({ value }: msgUpdateEventPbParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateEventPb", value: MsgUpdateEventPb.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateEventPb: Could not create message: ' + e.message)
+			}
+		},
+		
 		msgDeleteKv({ value }: msgDeleteKvParams): EncodeObject {
 			try {
 				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteKv", value: MsgDeleteKv.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgDeleteKv: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateDevice({ value }: msgUpdateDeviceParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgUpdateDevice", value: MsgUpdateDevice.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateDevice: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateEventPb({ value }: msgCreateEventPbParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateEventPb", value: MsgCreateEventPb.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateEventPb: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteDevice({ value }: msgDeleteDeviceParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDevice", value: MsgDeleteDevice.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteDevice: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteEventPb({ value }: msgDeleteEventPbParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteEventPb", value: MsgDeleteEventPb.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteEventPb: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteDeviceRegistry({ value }: msgDeleteDeviceRegistryParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgDeleteDeviceRegistry", value: MsgDeleteDeviceRegistry.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteDeviceRegistry: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateKv({ value }: msgCreateKvParams): EncodeObject {
+			try {
+				return { typeUrl: "/stccommunity.iotdepinprotocol.iotdepinprotocol.MsgCreateKv", value: MsgCreateKv.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateKv: Could not create message: ' + e.message)
 			}
 		},
 		
