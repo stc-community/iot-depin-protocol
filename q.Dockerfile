@@ -11,5 +11,5 @@ EXPOSE 1317 26657
 ENTRYPOINT ["iot-depin-protocold", "start"]
 
 
-# docker build -f q.Dockerfile --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.11 .
-# docker buildx build -f q.Dockerfile --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.11 --platform=linux/amd64 . --push
+# docker build -f q.Dockerfile --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.12 .
+# docker buildx build -f q.Dockerfile --progress plain -t harbor.oneitfarm.com/bifrost/cloudx3-iot:v0.0.12 --platform=linux/amd64 . --push

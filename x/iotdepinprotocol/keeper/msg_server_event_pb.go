@@ -101,7 +101,7 @@ func (k msgServer) DeleteEventPb(goCtx context.Context, msg *types.MsgDeleteEven
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Check if the value exists
-	valFound, isFound := k.GetEventPb(
+	_, isFound := k.GetEventPb(
 		ctx,
 		msg.Index,
 		msg.DeviceName,
@@ -111,9 +111,9 @@ func (k msgServer) DeleteEventPb(goCtx context.Context, msg *types.MsgDeleteEven
 	}
 
 	// Checks if the the msg creator is the same as the current owner
-	if msg.Creator != valFound.Creator {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
-	}
+	//if msg.Creator != valFound.Creator {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
+	//}
 
 	k.RemoveEventPb(
 		ctx,
