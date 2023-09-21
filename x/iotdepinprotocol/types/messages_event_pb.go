@@ -108,11 +108,13 @@ var _ sdk.Msg = &MsgDeleteEventPb{}
 func NewMsgDeleteEventPb(
 	creator string,
 	index string,
+	deviceName string,
 
 ) *MsgDeleteEventPb {
 	return &MsgDeleteEventPb{
-		Creator: creator,
-		Index:   index,
+		Creator:    creator,
+		Index:      index,
+		DeviceName: deviceName,
 	}
 }
 func (msg *MsgDeleteEventPb) Route() string {

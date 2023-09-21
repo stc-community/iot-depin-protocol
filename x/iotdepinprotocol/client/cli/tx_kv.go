@@ -82,11 +82,12 @@ func CmdUpdateKv() *cobra.Command {
 
 func CmdDeleteKv() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "delete-kv [index]",
+		Use:   "delete-kv [index] [device-name]",
 		Short: "Delete a kv",
-		Args:  cobra.ExactArgs(1),
+		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			indexIndex := args[0]
+			argDeviceName := args[1]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -96,6 +97,7 @@ func CmdDeleteKv() *cobra.Command {
 			msg := types.NewMsgDeleteKv(
 				clientCtx.GetFromAddress().String(),
 				indexIndex,
+				argDeviceName,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

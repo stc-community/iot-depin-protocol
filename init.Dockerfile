@@ -1,4 +1,4 @@
-FROM debian:11-slim
+FROM alpine:latest
 
 ENV LOCAL=/usr/local
 

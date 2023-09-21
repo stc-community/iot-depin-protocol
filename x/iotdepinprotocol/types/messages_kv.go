@@ -108,11 +108,13 @@ var _ sdk.Msg = &MsgDeleteKv{}
 func NewMsgDeleteKv(
 	creator string,
 	index string,
+	deviceName string,
 
 ) *MsgDeleteKv {
 	return &MsgDeleteKv{
-		Creator: creator,
-		Index:   index,
+		Creator:    creator,
+		Index:      index,
+		DeviceName: deviceName,
 	}
 }
 func (msg *MsgDeleteKv) Route() string {
