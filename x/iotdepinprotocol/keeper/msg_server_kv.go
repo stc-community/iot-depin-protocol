@@ -11,16 +11,16 @@ func (k msgServer) CreateKv(goCtx context.Context, msg *types.MsgCreateKv) (*typ
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// 验证设备
-	deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
-	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
-	}
-	if deviceFound.Creator != msg.Creator {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device creator can create kv")
-	}
+	//deviceFound, isFound := k.GetDevice(ctx, msg.DeviceName)
+	//if !isFound {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "device not fount")
+	//}
+	//if deviceFound.Creator != msg.Creator {
+	//	return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "only device creator can create kv")
+	//}
 
 	// Check if the value already exists
-	_, isFound = k.GetKv(
+	_, isFound := k.GetKv(
 		ctx,
 		msg.Index,
 		msg.DeviceName,
